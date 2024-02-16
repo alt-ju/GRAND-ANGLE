@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grand Angle</title>
-  <!-- Boostrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <!-- css link -->
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <h1 class="bienvenu">Bienvenue</h1>
+<?php
+
+$title = "Connexion";
+
+include "includes/pages/header.php";
+
+;?>
+
+
+<h1 class="bienvenu">Bienvenue</h1>
  
   <form class="form-login" method="POST" action="">
           <div class="from-divs">
@@ -21,16 +18,13 @@
           <div class="red"></div>
           </div>
           <div class="from-divs">
-              <label for="pass" >Mot De Pass :</label>
+              <label for="pass" >Mot de Passe :</label>
           </div>
           <div class="from-divs">
               <input type="password"  class="field-login" id="pass"  name="pass">
           </div>
           <div class="from-divs login-input" >
-            <input  type="submit" class="input-sub-login" value="Confirm identity">
+            <input type="submit" class="input-sub-login" value="Confirm identity">
           </div>
           <div class="red"></div>
   </form>
-
-</body>
-</html>
