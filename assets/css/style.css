@@ -29,7 +29,7 @@
     font-family: var(--FONTTITLE);
   }
   
-  .form-login, .form-add-service{
+  .form-login{
 
     width:600px;
     height: 400px;
@@ -55,7 +55,7 @@
   }
   
   
-  .form-divs{
+  .from-divs{
    margin: 10px 15px;
   }
   
@@ -230,7 +230,6 @@ div.art-state div.first-art img {
 div.art-state div.first-art p {
   padding: 0.5rem 0;
 }
-
 /***********   PAGE ADD COLLABORATEUR  et ADD SERVICE ***********/
 .add-collab{
   width:800px;
