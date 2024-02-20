@@ -55,7 +55,7 @@
   }
   
   
-  .from-divs{
+  .form-divs{
    margin: 10px 15px;
   }
   
@@ -229,4 +229,89 @@ div.art-state div.first-art img {
 
 div.art-state div.first-art p {
   padding: 0.5rem 0;
+}
+
+
+.add-collab{
+  width:800px;
+  height: 900px;
+  margin-top:5%;
+  margin-left:auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--BGCOLORPR);
+  color: var(--FONTCOLOR2);
+  border-radius: 25px;
+  font-family: var(--FONTTEXT);
+  font-weight: 500;
+}
+
+.field-add-collab{
+  width:550px;
+  height:35px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 7px 4px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.input-sub-add-collab{
+  width: 120px;
+  border:none;
+  border-radius: 25px;
+  padding: 5px;
+  margin: 15px 10px;
+  background-color: var(--PRIMARY);
+  color:var(--FONTCOLOR);
+  font-weight: 700;
+}
+
+ .input-sub-add-collab:hover{
+  background-color: var(--ACCENT1);
+  color: var(--FONTCOLOR2);
+  font-family: var(--FONTTITLE);
+  font-weight: 700;
+}
+.valider-service{
+  width: 120px;
+  border:none;
+  border-radius: 25px;
+  padding: 5px;
+  margin: 10px 15px;
+  background-color: var(--PRIMARY);
+  color:var(--FONTCOLOR);
+  font-weight: 700;
+}
+
+.valider-service:hover{
+  background-color: var(--ACCENT1);
+  color: var(--FONTCOLOR2);
+  font-family: var(--FONTTITLE);
+  font-weight: 700;
+}
+
+#add-service{
+  width: 140px;
+  border:none;
+  border-radius: 25px;
+  padding: 5px;
+  margin: 0px 10px;
+  background-color: var(--PRIMARY);
+  color:var(--FONTCOLOR);
+  font-weight: 700;
+}
+
+#add-service:hover{
+  background-color: var(--ACCENT1);
+  color: var(--FONTCOLOR2);
+  font-family: var(--FONTTITLE);
+  font-weight: 700;
+}
+
+h2{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  font-family: var(--FONTTITLE);
 }
