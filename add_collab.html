@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./assests/css/style.css">
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
   <title>Ajouter un collaboratuer</title>
 </head>
 <body>
+ 
   <form action="" method="POST" class="add-collab">
-    <h2>Ajouter un collaboratuer</h2>
+     <h2 class="title-form">Ajouter un collaboratuer</h2>
     <div class="form-divs">
       <label for="nom" >Nom :</label>
     </div>
@@ -20,7 +22,7 @@
       <label for="prenom" >Prenom :</label>
     </div>
     <div class="form-divs">
-    <input type="text"  id="prenom" class="field-add-collab"  name="prenom" placeholder="">
+    <input type="text" id="prenom" class="field-add-collab"  name="prenom" placeholder="">
     <div class="red"></div>
     </div>
 
@@ -34,21 +36,12 @@
       <option value="Directeur">Directeur</option>
       <option value="Responsable Communication">Responsable Communication</option>
        <option value="Responsable technique">Responsable technique</option>
-      <option value="Assistant">Assistant</option>
-      <option value="Traductrices">Traductrices</option>
+       <option value="Chargé de communication">Chargé de communication</option>
+      <option value="Assistane">Assistante</option>
+      <option value="Traducteur">Traducteur</option>
       <option value="Technicien">Technicien</option>
       </select>
-      <button id="add-service">Ajouter un service</button>
-      <section id="creat-service" style="display: none;">
-          <div class="form-divs">
-          <label for="creat-service">Ajouter un service</label>
-        </div>
-        <div class="form-divs">
-          <input type="text" name="creat-service" id="creat-service"  class="field-add-collab">
-        </div>
-        <input  type="submit" class="valider-service" value="Valider">
-        <div class="red"></div>
-      </section>
+      <button id="add-service"><a href="add_service.html" target="_blank" class="a-in-btn">Ajouter un service</a></button>
    </div>
     <div class="form-divs">
       <label for="email" >Email :</label>
@@ -69,17 +62,6 @@
     <div class="red"></div>
   </form>
 
-  <script>
-  let button = document.getElementById('add-service');
-  let section = document.getElementById('creat-service');
-  function toggleSection(){
-    if (section.style.display === 'none' ) {
-    section.style.display = 'block';
-    }else{
-    section.style.display = 'none' ;
-    }
-  }
-    button.addEventListener('click',toggleSection);
-  </script>
+
 </body>
 </html>
