@@ -346,3 +346,61 @@ div.art-state div.first-art p {
   padding: 10px;
   font-size: 1.4rem;
 }
+
+.btn-ajouter{
+  color:var(--FONTCOLOR);
+  background-color: var(--PRIMARY);
+  width: 180px;
+  height: 30px;
+  border-radius: 25px;
+  border:none;
+  margin-top:30px;
+  margin-bottom: 5px;
+  margin-right: 80px;
+}
+
+.btn-ajouter:hover{
+  background-color: var(--ACCENT1);
+}
+
+.btn-ajouter a{
+  color:var(--FONTCOLOR);
+text-decoration: none;
+}
+
+.btn-ajouter a:hover{
+  color:var(--FONTCOLOR2);
+}
+
+.btn-add-collab{
+  display:flex;
+  justify-content: end;
+}
+
+.table-collab{
+display: flex;
+justify-content: center;
+}
+
+.list-collab{
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 0.9rem;
+  min-width:400px;
+  text-align: center;
+}
+
+.list-collab thead{
+  background-color: var(--PRIMARY);
+  color: var(--FONTCOLOR);
+  font-weight: bold;
+  text-align: center;
+}
+
+.list-collab th,td{
+  padding: 12px 15px;
+}
+
+.list-collab tbody,tr{
+  border: 1px solid #ddd;
+}
