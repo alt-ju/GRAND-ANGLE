@@ -10,6 +10,7 @@
     <!-- css link -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/javascript/script.js"></script>
 </head>
 <body>
     <main>

@@ -247,3 +247,6 @@ div.art-state div.arrow a svg {
   fill: var(--FONTCOLOR2);
 }
 
+#arrow-l {
+  display: none;
+}
