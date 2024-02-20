@@ -5,57 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="./assets/css/style.css">
-  <title>Gestion des collaboratteurs</title>
+  <title>Ajouter un collaboratuer</title>
 </head>
 <body>
-  <div class="gestion">
-<h2 class="title-page">Gestion des collaborateurs</h2>
-<button class="btn-ajouter"><a href="add_collab.html" target="_blank">Ajouter un collaborateur</a></button>
-<div class="table-collab">
-  <table class="list-collab" >
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Service</th>
-        <th>Email</th>
-        <th>Modifier</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Schneider</td>
-        <td>Alex</td>
-        <td>Traducteur</td>
-        <td>alex.schneider@grandangle.fr</td>
-        <td>
-          <button class="modif-collab">Modifier</button>
-          <button class="modif-collab">Supprimer</button>
-        </td>
-      </tr>
-      <tr>
-        <td>Schneider</td>
-        <td>Alex</td>
-        <td>Traducteur</td>
-        <td>alex.schneider@grandangle.fr</td>
-        <td>
-          <button class="modif-collab">Modifier</button>
-          <button class="modif-collab">Supprimer</button>
-        </td>
-      </tr>
-      <tr>
-        <td>Schneider</td>
-        <td>Alex</td>
-        <td>Traducteur</td>
-        <td>alex.schneider@grandangle.fr</td>
-        <td>
-          <button class="modif-collab">Modifier</button>
-          <button class="modif-collab">Supprimer</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-  </div>
+ 
+  <form action="" method="POST" class="add-collab">
+     <h2 class="title-form">Ajouter un collaboratuer</h2>
+    <div class="form-divs">
+      <label for="nom" >Nom :</label>
+    </div>
+    <div class="form-divs">
+    <input type="text"  id="nom" class="field-add-collab"  name="nom" placeholder="">
+    <div class="red"></div>
+    </div>
+    <div class="form-divs">
+      <label for="prenom" >Prenom :</label>
+    </div>
+    <div class="form-divs">
+    <input type="text" id="prenom" class="field-add-collab"  name="prenom" placeholder="">
+    <div class="red"></div>
+    </div>
+
+    <div class="form-divs">
+      <label for="service-select">Selectioner un service:</label>
+    </div>
+
+    <div class="form-divs">
+      <select name="service-select" id="service-select" class="field-add-collab">
+      <option value="Service">----Service----</option>
+      <option value="Directeur">Directeur</option>
+      <option value="Responsable Communication">Responsable Communication</option>
+       <option value="Responsable technique">Responsable technique</option>
+       <option value="Chargé de communication">Chargé de communication</option>
+      <option value="Assistane">Assistante</option>
+      <option value="Traducteur">Traducteur</option>
+      <option value="Technicien">Technicien</option>
+      </select>
+      <button id="add-service"><a href="add_service.html" target="_blank" class="a-in-btn">Ajouter un service</a></button>
+   </div>
+    <div class="form-divs">
+      <label for="email" >Email :</label>
+    </div>
+    <div class="form-divs">
+    <input type="email"  id="email" class="field-add-collab"  name="email" placeholder="email@example.com">
+    <div class="red"></div>
+    </div>
+    <div class="form-divs">
+        <label for="pass" >Mot De Pass :</label>
+    </div>
+    <div class="form-divs">
+        <input type="password"  class="field-add-collab" id="pass"  name="pass">
+    </div>
+    <div class="form-divs login-input" >
+      <input  type="submit" class="input-sub-add-collab" value="Valider">
+    </div>
+    <div class="red"></div>
+  </form>
+
+
 </body>
 </html>
