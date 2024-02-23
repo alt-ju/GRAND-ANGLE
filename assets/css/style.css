@@ -92,6 +92,21 @@
     font-family: var(--FONTTEXT);
   }
 
+/********* NAV BARR **********/
+
+nav {
+  background-color: var(--SECONDARY);
+  grid-column: 1/2;
+  grid-row: 1/13;
+}
+
+nav ul li a svg {
+  fill: #C1D734;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+
 
   /********* DASHBOARD HOME **********/
 
