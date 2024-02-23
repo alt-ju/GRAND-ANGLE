@@ -424,3 +424,63 @@ svg{
 svg:hover{
   color: var(--ACCENT1);
 }
+
+/***********   add artist  ***********/
+
+.page-artist{
+  background-color: var(--SECONDARY);
+  margin-top:100px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.title-page-artist{
+  font-family: var(--FONTTITLE);
+  font-weight: 700;
+  width:50%;
+  margin-left: auto;
+  margin-right:auto;
+  margin-bottom: 40px;
+  padding-top: 40px;
+  text-align: center;
+}
+
+
+
+
+.table-artiste{
+  display: flex;
+  justify-content: center;
+  }
+  
+  .list-artiste{
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+    min-width:400px;
+    text-align: center;
+    background-color: var(--BGCOLORPR);
+  }
+  
+  .list-artiste thead{
+    background-color: var(--PRIMARY);
+    color: var(--FONTCOLOR);
+    font-weight: bold;
+    text-align: center;
+    border-top-left-radius: 25px;
+    border-top-left-radius: 25px;
+  }
+  
+  .list-artiste th,td{
+    padding: 12px 15px;
+  }
+  
+  .list-artiste tbody,tr{
+    border: 1px solid #ddd;
+  }
+  
+  .list-artiste tr:nth-of-type(even){
+    background-color: #fff;
+  }
