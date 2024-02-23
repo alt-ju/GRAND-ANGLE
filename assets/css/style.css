@@ -1,9 +1,10 @@
 :root {
     --BGCOLORPU: #252525;
     --BGCOLORPR: #F3f3f3;
-    --PRIMARY: #310F8E;
-    --SECONDARY: #565759;
-    --ACCENT1: #FEE440  ;
+    --PRIMARY: #565759;
+    --SECONDARY: #E0EBEA; 
+     --ACCENT1: #C1D734;
+    --ACCENT3: #FEE440  ;
     --ACCENT2: #ed5BE8;
     --FONTCOLOR: #F3f3f3;
     --FONTCOLOR2: #252525;
@@ -332,8 +333,9 @@ div.art-state div.first-art p {
   width: 800px;
   margin-left: auto;
   margin-right: auto;
-  background-color: var(--BGCOLORPR);
+  background-color: var(--SECONDARY);
   margin-top: 70px;
+  border-radius: 12px;
 }
 
 .title-page{
@@ -388,6 +390,7 @@ justify-content: center;
   font-size: 0.9rem;
   min-width:400px;
   text-align: center;
+  background-color: var(--BGCOLORPR);
 }
 
 .list-collab thead{
@@ -395,6 +398,9 @@ justify-content: center;
   color: var(--FONTCOLOR);
   font-weight: bold;
   text-align: center;
+  border-top-left-radius: 25px;
+  border-top-left-radius: 25px;
+
 }
 
 .list-collab th,td{
@@ -409,17 +415,12 @@ justify-content: center;
   background-color: #fff;
 }
 
-.modif-collab{
-  background-color: var(--PRIMARY);
-  color: var(--FONTCOLOR);
-  width: 100px;
-  height: 30px;
-  border:none;
-  border-radius: 25px;
-  margin-left:2px;
+svg{
+  width: 15px;
+  height: auto;
+  padding: 0 40px;
 }
 
-.modif-collab:hover{
-  background-color: var(--ACCENT1);
-  color: var(--FONTCOLOR2);
+svg:hover{
+  color: var(--ACCENT1);
 }
