@@ -93,10 +93,55 @@
     font-family: var(--FONTTEXT);
   }
 
+   /********* NAVBARR **********/ 
+
+   nav {
+    height: 100vh;
+    width: 86px;
+    background-color: var(--BGCOLORPU);
+    
+   }
+
+   nav ul {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+   }
+
+   nav ul li.brg-btn {
+    padding-top: 1.5rem;
+   }
+
+   nav ul svg{
+    height: 2.5rem;
+    width: 2.5rem;
+    fill: var(--ACCENT1);
+    padding: 0;
+   }
+
+   nav ul div.menu-items {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   }
+
+   nav ul div.menu-items li {
+      padding: 2rem;
+   }
+
+   nav ul div li svg {
+    height: 1.75rem;
+    width: 1.75rem;
+   }
 
   /********* DASHBOARD HOME **********/
 
-input.dash{
+/* input.dash{
   width: 12rem;
   padding: 0.75rem 1rem;
   border-radius: 12px;
@@ -230,7 +275,7 @@ div.art-state div.first-art img {
 
 div.art-state div.first-art p {
   padding: 0.5rem 0;
-}
+} */
 
 /***********   PAGE ADD COLLABORATEUR  et ADD SERVICE ***********/
 .add-collab{
