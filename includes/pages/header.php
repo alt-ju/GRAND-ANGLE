@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     
-    <script src="assets/javascript/script.js"></script>
+    <!-- <script src="assets/javascript/script.js"></script> -->
+    <script src="./script-nav.js"></script>
 </head>
 <body>
     <main>
