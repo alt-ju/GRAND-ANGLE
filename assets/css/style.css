@@ -526,6 +526,8 @@ margin-right: 10PX;
     background-color: #fff;
   }
 
+
+
   /***********  fiche-artist ***********/
 
   .fiche-artist{
@@ -536,7 +538,15 @@ margin-right: 10PX;
     margin-left:auto ;
     margin-right: auto;
     border-radius: 12px;
+    display: flex; 
+    flex-direction: column;
   }
+
+  .container-fiche-artiste{
+    display: flex;
+   
+  }
+
   .title-fiche-artist{
     width: 50%;
     margin-left: auto;
@@ -563,4 +573,43 @@ margin-right: 10PX;
   }
 .name-artist, .email-artist, .tel-artist{
   margin: 20px;
+}
+
+.info{
+  font-weight: 600;
+  font-family: var(--FONTTITLE);
+}
+
+
+.dir_artist{
+  margin: 20px;
+  width: 200px;
+  height: auto;
+  border: 2px solid var(--PRIMARY);
+  border-radius: 12px;
+}
+
+.title-table-dir-art{
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid var(--PRIMARY);
+  font-family: var(--FONTTITLE);
+  font-weight: 600;
+}
+
+.dir_artist p {
+  text-align: center;
+  padding: 5px 0 7px 0;
+}
+
+.svg-dir-art{
+  display: flex;
+  margin: 5px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.svg-dir-art svg{
+  padding: 0;
 }
