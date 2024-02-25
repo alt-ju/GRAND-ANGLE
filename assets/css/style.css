@@ -433,6 +433,8 @@ svg:hover{
   width: 70%;
   margin-left: auto;
   margin-right: auto;
+  display:flex;
+  flex-direction: column;
 
 }
 
@@ -445,9 +447,38 @@ svg:hover{
   margin-bottom: 40px;
   padding-top: 40px;
   text-align: center;
+  font-size: 1.4rem;
 }
 
+.search-container{
+  width:67%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
 
+.search-bar{
+width: 250px;
+height:30px;
+border-radius: 4px;
+}
+
+.search-btn{
+  width: 70px;
+  position: absolute;
+  left:180px;
+  top:15%;
+  background-color: transparent;
+  border: none;
+}
+
+.plus{
+  padding: 0 15px;
+  background-color: var(--PRIMARY);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
 
 
 .table-artiste{
