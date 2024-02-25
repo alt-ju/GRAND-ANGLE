@@ -1,7 +1,9 @@
 
 <nav class="nav-menu">
+    <div id="burger">        
+        <li id="brg-btn" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></li>
+    </div>
     <ul>
-        <li id="brg-btn" onclick="openNav()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></li>
         <div class="menu-items">
             <div class="items">
                 <a href="">
@@ -43,14 +45,14 @@
                     <span class="hidden-items">Collaborateurs</span>
                 </a>
             </div>
-        </div>      
+        </div>  
     </ul>
     
 </nav>
 
-<!-- <script>
-    
-    let btn = document.querySelector('.brg-btn')
+<script>
+   /*  
+   let btn = document.querySelector('.brg-btn')
     btn.addEventListener('click', openNav())
 
     function openNav() {
@@ -60,8 +62,22 @@
         } else {
             items.style.display = 'none'
         }
-    }
-</script> -->
+    }  */
+
+    const btn = document.getElementById('burger').addEventListener('click', function () {
+    let items = document.querySelectorAll('.hidden-items')
+    items.forEach(element => {
+         let computedStyle = getComputedStyle(element)
+        if (computedStyle.display === 'none') {
+            element.classList.add('open')
+        } else {
+            element.classList.remove('open')
+        }
+    }) 
+})
+ 
+
+</script> 
 
 </main>
 </body>
