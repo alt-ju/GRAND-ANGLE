@@ -525,3 +525,42 @@ margin-right: 10PX;
   .list-artiste tr:nth-of-type(even){
     background-color: #fff;
   }
+
+  /***********  fiche-artist ***********/
+
+  .fiche-artist{
+    margin-top: 20px;
+    width:900px;
+    height: max-content;
+    background-color: var(--SECONDARY);
+    margin-left:auto ;
+    margin-right: auto;
+    border-radius: 12px;
+  }
+  .title-fiche-artist{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: var(--FONTTITLE);
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.4rem;
+  }
+  .img-keeper{
+  width: 150px;
+  height:200px;
+  background-color: var(--BGCOLORPR);
+  margin: 20px 10px;
+  border-radius: 5px;
+  }
+
+  .img-keeper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+.name-artist, .email-artist, .tel-artist{
+  margin: 20px;
+}
