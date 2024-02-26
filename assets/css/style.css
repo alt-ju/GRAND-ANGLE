@@ -423,7 +423,7 @@ svg{
 }
 
 svg:hover{
-  color: var(--ACCENT1);
+  fill: var(--PRIMARY);
 }
 
 /***********   add artist  ***********/
@@ -486,10 +486,12 @@ margin-right: 10PX;
   padding: 0;
   margin-top: auto;
   margin-bottom: auto;
+  fill: #fff;
 }
 .plus:hover{
   background-color: var(--ACCENT1);
   cursor: pointer;
+  fill: #252525;
 }
 .table-artiste{
   display: flex;
@@ -540,11 +542,12 @@ margin-right: 10PX;
     border-radius: 12px;
     display: flex; 
     flex-direction: column;
+  
   }
 
   .container-fiche-artiste{
     display: flex;
-   
+   justify-content: space-between;
   }
 
   .title-fiche-artist{
@@ -561,7 +564,7 @@ margin-right: 10PX;
   width: 150px;
   height:200px;
   background-color: var(--BGCOLORPR);
-  margin: 20px 10px;
+  margin: 20px 35px;
   border-radius: 5px;
   }
 
@@ -612,4 +615,27 @@ margin-right: 10PX;
 
 .svg-dir-art svg{
   padding: 0;
+}
+
+
+.bio-artiste{
+  width: 500px;
+  height: 250px;
+  border:2px solid var(--PRIMARY);
+  border-radius: 12px;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding: 10px;
+  margin-top: 20px;
+  line-height: 1.2rem;
+}
+
+.info-bio{
+  font-weight: 600;
+  font-family: var(--FONTTITLE);
+  padding-bottom: 5px;
+}
+
+.select-langue-fiche-artist{
+  margin: 10px 0;
 }
