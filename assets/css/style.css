@@ -534,8 +534,8 @@ margin-right: 10PX;
 
   .fiche-artist{
     margin-top: 20px;
-    width:900px;
-    height: max-content;
+    width:1000px;
+
     background-color: var(--SECONDARY);
     margin-left:auto ;
     margin-right: auto;
@@ -617,6 +617,11 @@ margin-right: 10PX;
   padding: 0;
 }
 
+.left-fiche-artist{
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+}
 
 .bio-artiste{
   width: 500px;
@@ -638,4 +643,106 @@ margin-right: 10PX;
 
 .select-langue-fiche-artist{
   margin: 10px 0;
+}
+.select-langue-fiche-artist label{
+  font-weight: 600;
+  font-family: var(--FONTTITLE);
+}
+
+.add-langue{
+  width: 150px;
+}
+
+.slide-container{
+  max-width: 1120px;
+  width: 100%;
+  background-color: var(--PRIMARY);
+  padding: 20px;
+  margin: 10px 0;
+}
+
+ .slide-content{
+  margin: 10px 40px;
+} 
+
+.card{
+  width:200px;
+  border-radius: 25px;
+  background-color: #fff;
+}
+
+.image-content,
+.card-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:10px 14px;
+}
+
+.image-content{
+  position: relative;
+  row-gap: 5px;
+  padding: 25px 0;
+}
+
+.card-image{
+  position: relative;
+  height:150px;
+  width :150px;
+  background-color: #F3f3f3;
+}
+.overlay{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #252525;
+  border-radius: 25px 25px 0 25px;
+}
+.overlay::before,
+.overlay::after{
+  content: '';
+  position: absolute;
+  right:0;
+  bottom: -15px;
+  height: 15px;
+  width: 15px;
+  background-color: var(--BGCOLORPU);
+}
+
+.overlay::after{
+  border-radius:0 25px 0 0 ;
+  background-color: #fff;
+}
+.card-image .card-img{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border: 4px solid var(--BGCOLORPR);
+}
+
+.libelle-artwork{
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.voir-plus{
+border:none;
+background-color: var(--BGCOLORPU);
+color: var(--FONTCOLOR);
+border-radius: 20px;
+padding: 5px 10px;
+margin:5px 0 ;
+cursor: pointer;
+width: 90px;
+font-weight: 500;
+font-family: var(--FONTTITLE);
+transition: all 0.3s ease;
+}
+
+.voir-plus:hover{
+  background-color: var(--ACCENT1);
+  color: var(--FONTCOLOR2);
 }
