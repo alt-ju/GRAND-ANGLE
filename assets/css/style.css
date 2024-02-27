@@ -534,7 +534,7 @@ margin-right: 10PX;
 
   .fiche-artist{
     margin-top: 20px;
-    width:1000px;
+    width:1100px;
 
     background-color: var(--SECONDARY);
     margin-left:auto ;
@@ -652,7 +652,23 @@ margin-right: 10PX;
 .add-langue{
   width: 150px;
 }
+.artwork-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--PRIMARY);
+  margin-right: 10px;
+}
 
+#back-btn, #next-btn{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  fill: #fff;
+  background-color: black;
+  padding: 5px;
+  margin: 0 10px;
+}
 .list-artwork{
   width: 700px;
   display: flex;
