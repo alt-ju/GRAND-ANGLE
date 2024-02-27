@@ -79,5 +79,3 @@ const btn = document.getElementById('burger');
 
 </script> 
 
-</main>
-</body>
