@@ -93,7 +93,82 @@
     font-family: var(--FONTTEXT);
   }
 
+   /********* NAVBARR **********/ 
 
+   nav {
+    height: 100vh;
+    width: fit-content;
+    background-color: var(--BGCOLORPU);
+
+   }
+
+   nav div#burger {
+    height: fit-content;
+    width: fit-content;
+    padding: 1.5rem 0 0 1.5rem;
+    cursor: pointer;
+    position: absolute;
+   }
+
+   nav ul {
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+   }
+
+   nav div#burger a#brg-btn {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+   }
+
+   nav svg{
+    height: 2.5rem;
+    width: 2.5rem;
+    fill: var(--ACCENT1);
+    padding: 0;
+   }
+
+   nav ul div li svg {
+      height: 1.75rem;
+      width: 1.75rem;
+    }
+
+   nav ul div.menu-items {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   }
+
+   nav ul div.menu-items div.items {
+    padding: 2rem; 
+    display: flex;
+   }
+
+   nav ul div.menu-items div.items a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+   }
+
+   nav ul div.menu-items div span {
+    color: var(--ACCENT1);
+    display: none;
+    margin: auto 1rem;
+    padding-left: 1.5rem; 
+    transition: display 1s;
+   }
+
+   nav ul div.menu-items div span a {
+    color: var(--ACCENT1);
+   }
+   
+  
   /********* DASHBOARD HOME **********/
 
 input.dash{
@@ -230,7 +305,7 @@ div.art-state div.first-art img {
 
 div.art-state div.first-art p {
   padding: 0.5rem 0;
-}
+} 
 
 /***********   PAGE ADD COLLABORATEUR  et ADD SERVICE ***********/
 .add-collab{
