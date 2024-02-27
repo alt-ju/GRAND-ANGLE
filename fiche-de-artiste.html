@@ -103,16 +103,68 @@ Au-delà de sa carrière artistique, Iran Darroudi a également joué un rôle i
         </div>
       </div>
     </div>
+    <div class="card-keeper">
+      <div class="card">
+        <div class="image-content">
+          <span class="overlay"></span>
+          <div class="card-image">
+          <img src="./assets/img/darroudi_cold.jpg" alt="" class="card-img">
+          </div>
+        </div>
+        <div class="card-content">
+        <h4 class="libelle-artwork">Awake</h4>
+        <a href="#"><button class="voir-plus">Voir plus</button></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image-content">
+          <span class="overlay"></span>
+          <div class="card-image">
+          <img src="./assets/img/darroudi_cold.jpg" alt="" class="card-img">
+          </div>
+        </div>
+        <div class="card-content">
+        <h4 class="libelle-artwork">Awake</h4>
+        <a href="#"><button class="voir-plus">Voir plus</button></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image-content">
+          <span class="overlay"></span>
+          <div class="card-image">
+          <img src="./assets/img/darroudi_cold.jpg" alt="" class="card-img">
+          </div>
+        </div>
+        <div class="card-content">
+        <h4 class="libelle-artwork">Awake</h4>
+        <a href="#"><button class="voir-plus">Voir plus</button></a>
+        </div>
+      </div>
+    </div>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" id="next-btn"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
 </div>
-
-
-
-</div>
-
 </div>
 </div>
 </div>
+</div>
+<script>
+  let scrollContainer = document.querySelector(".list-artwork");
+  let backBtn = document.getElementById("back-btn");
+  let nextBtn = document.getElementById("next-btn");
+  scrollContainer.addEventListener("wheel", (evt)=>{
+    evt.preventDefault();
+    scrollContainer.scrollLeft += evt.deltaY;
+    scrollContainer.style.scrollBehviour = "auto";
+    });
+    nextBtn.addEventListener("click", ()=>{
+        scrollContainer.style.scrollBehviour = "smooth";
+        scrollContainer.scrollLeft += 690;
+    });
+    backBtn.addEventListener("click", ()=>{
+        scrollContainer.style.scrollBehviour = "smooth";
+        scrollContainer.scrollLeft -= 690;
+    });
+</script>
 </body>
 </html>
