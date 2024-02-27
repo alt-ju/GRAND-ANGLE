@@ -163,11 +163,15 @@
     padding-left: 1.5rem; 
     transition: display 1s;
    }
+
+   nav ul div.menu-items div span a {
+    color: var(--ACCENT1);
+   }
    
   
   /********* DASHBOARD HOME **********/
 
-/* input.dash{
+input.dash{
   width: 12rem;
   padding: 0.75rem 1rem;
   border-radius: 12px;
@@ -301,7 +305,7 @@ div.art-state div.first-art img {
 
 div.art-state div.first-art p {
   padding: 0.5rem 0;
-} */
+} 
 
 /***********   PAGE ADD COLLABORATEUR  et ADD SERVICE ***********/
 .add-collab{
