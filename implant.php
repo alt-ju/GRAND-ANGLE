@@ -2,8 +2,8 @@
 
 session_start();
 
-includes "includes/pages/header.php";
-includes "includes/pages/navbarr.php";
+include "includes/pages/header.php";
+include "includes/pages/navbarr.php";
 
 
 ;?>
