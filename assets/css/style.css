@@ -837,13 +837,13 @@ transition: all 0.3s ease;
 .form-add-artist{
   width:800px;
   height: 900px;
-  margin-top:2%;
+  margin-top:20px;
   margin-left:auto;
   margin-right: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: var(--BGCOLORPR);
+  background-color: var(--SECONDARY);
   color: var(--FONTCOLOR2);
   border-radius: 25px;
   font-family: var(--FONTTEXT);
