@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>form-add-artist</title>
+</head>
+<body>
+  <form action="" method="POST" class="form-add-artist">
+    <h2 class="title-form">Ajouter un artiste</h2>
+   <div class="form-divs">
+     <label for="nom" >Nom de l'artiste :</label>
+   </div>
+   <div class="form-divs">
+   <input type="text"  id="nom" class="field-add-collab"  name="nom" placeholder="">
+   <div class="red"></div>
+   </div>
+   <div class="form-divs">
+     <label for="prenom" >Prenom de l'artiste :</label>
+   </div>
+   <div class="form-divs">
+   <input type="text" id="prenom" class="field-add-collab"  name="prenom" placeholder="">
+   <div class="red"></div>
+   </div>
+
+   <div class="form-divs selector-langue">
+      <select name="langue" id="langue" class="field-add-collab add-langue">
+      <option value="Français">Français</option>
+      <option value="Anglais">Anglais</option>
+      <option value="Allemand">Allemand</option>
+      <option value="Persan">Persan</option>
+      <option value="Chinois">Chinois</option>
+      </select>
+     <button id="add-service"><a href="#"  class="a-in-btn">Ajouter un langue</a>
+    </button>
+  </div>
+   <div class="form-divs">
+     <label for="email" >Email :</label>
+   </div>
+   <div class="form-divs">
+   <input type="email"  id="email" class="field-add-collab"  name="email" placeholder="email@example.com">
+   <div class="red"></div>
+   </div>
+   <div class="form-divs">
+       <label for="pass" >Mot De Pass :</label>
+   </div>
+   <div class="form-divs">
+       <input type="password"  class="field-add-collab" id="pass"  name="pass">
+   </div>
+   <div class="form-divs login-input" >
+     <input  type="submit" class="input-sub-add-collab" value="Valider">
+   </div>
+   <div class="red"></div>
+ </form>
+</body>
+</html>
