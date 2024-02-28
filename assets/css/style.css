@@ -3,8 +3,8 @@
     --BGCOLORPR: #F3f3f3;
     --PRIMARY: #565759;
     --SECONDARY: #E0EBEA; 
-     --ACCENT1: #C1D734;
-    --ACCENT3: #FEE440  ;
+    --ACCENT1: #C1D734;
+    --ACCENT3: #FEE440;
     --ACCENT2: #ed5BE8;
     --FONTCOLOR: #F3f3f3;
     --FONTCOLOR2: #252525;
@@ -12,7 +12,12 @@
     --FONTTEXT: "Montserrat", sans-serif;
   }
 
+  body {
+    font-family: var(--FONTTEXT);
+  }
+
   main {
+    background-color: var(--BGCOLORPR);
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
@@ -98,11 +103,12 @@
    nav {
     height: 100vh;
     width: fit-content;
-    background-color: var(--BGCOLORPU);
+    background-color: #223533;
     grid-column: 1/2;
     grid-row: 1/13;
     position: absolute;
     top: 0;
+    z-index: 100;
    }
 
    nav div#burger {
@@ -170,7 +176,52 @@
    nav ul div.menu-items div span a {
     color: var(--ACCENT1);
    }
-   
+  
+  /********* NAV HEAD **********/
+
+  div.nav-contain {
+    grid-column: 1/13;
+    height: 3rem;
+    padding: 0 2rem 0 6rem;
+    background-color: #223533;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  div.user h1 {
+    font-family: var(--FONTTITLE);
+    color: var(--FONTCOLOR);
+  }
+
+  div.loupe {
+    height: fit-content;
+    width: fit-content;
+    margin: auto 0;
+    padding-right: 0.25rem;
+  }
+
+  div.searchbar {
+    display: flex;
+
+  }
+
+  div.loupe svg#svg-loupe {
+    height: 20px;
+    width: 20px;
+    fill: #F3f3f3;
+    padding: 0;
+  }
+
+  div.searchbar input {
+    height: 2rem;
+    padding: 0.5rem;
+    border-radius: 50px;
+    border: solid 1px #94AFAD;
+  }
+  
   
   /********* DASHBOARD HOME **********/
 
@@ -180,29 +231,39 @@ h1.home {
 }
 
 div.calendar {
-  background-color: var(--SECONDARY);
-  grid-column: 3/7;
-  grid-row: 2/7;
-  border-radius: 12px;
+  grid-column: 3/8;
+  grid-row: 2/8;
+  margin: 2rem 1.5rem 2rem 0;
 }
 
 div.calendar-daily {
-  background-color: var(--SECONDARY);
-  grid-column: 8/11;
-  grid-row: 2/7;
+  grid-column: 8/12;
+  grid-row: 2/8;
+  margin: 2rem 0;
+}
+
+div.calendar,
+div.calendar-daily {
   border-radius: 12px;
+  background-color: var(--SECONDARY);
+  padding: 1rem;
 }
 
 div.art-state {
-  background-color: var(--PRIMARY);
+  background-color: var(--SECONDARY);
   grid-column: 2/13;
   grid-row: 8/12;
   border-radius: 12px;
   height: fit-content;
   margin-right: 2rem;
+  padding: 1rem;
 }
 
 /********* ART STATE **********/
+
+h2.state-title {
+  font-family: var(--FONTTITLE);
+}
 
 div.art-img img {
   position: relative;
@@ -220,8 +281,11 @@ div.carousel {
 div.cards-container {
   padding: 0 3rem;
   display: flex;
-  /* overflow-x: auto; */
-  scroll-behavior: smooth;
+}
+
+div.slider {
+  display: flex;
+  flex-direction: row;
 }
 
 div.product-container::-webkit-scrollbar {
@@ -237,21 +301,28 @@ div.art-card {
 
 button.pre-btn,
 button.nxt-btn {
+  background: linear-gradient(90deg, rgba(128,128,134,0) 0%, rgba(86,87,89,1) 25%);  
   width: fit-content;
   height: 100%;
   background-color: transparent;
   border: none;
   position: absolute;
   top: 0;
-  z-index: 9;
+  z-index: 1;
+  padding: 0;
 }
 
 button.pre-btn {
   left: 0;
+  background: linear-gradient(90deg, rgba(86,87,89,1) 69%, rgba(128,128,134,0) 94%);
+  border-radius: 0px 0px 0px 25px;
 }
 
 button.nxt-btn {
   right: 0;
+  background: linear-gradient(90deg, rgba(128,128,134,0) 0%, rgba(86,87,89,1) 26%);  
+  border-radius: 0px 0px 25px 0px;
+
 }
 
 
@@ -263,32 +334,8 @@ button.nxt-btn svg{
   fill: var(--ACCENT1);
 }
 
-.collection-container {
-  width: 100%;
-  display: grid; 
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-}
 
-.collection {
-  position: relative;
-}
-
-.collection img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.collection p {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  
-}
-
+ 
 /***********   PAGE ADD COLLABORATEUR  et ADD SERVICE ***********/
 .add-collab{
   width:800px;

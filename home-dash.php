@@ -5,11 +5,11 @@ $title = "Mon tableau de bord";
 
 include "includes/pages/header.php";
 include "includes/pages/navbarr.php";
+include "includes/pages/nav-head.php";
 
 
 ;?>
 
-<h1 class="home">Nom Prénom PHP</h1>
 <div class="calendar">
     test
     <?php ;?>
