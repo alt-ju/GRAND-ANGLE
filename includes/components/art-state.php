@@ -1,3 +1,15 @@
+<?php 
+
+require_once "./config/pdo.php";
+$sql = "SELECT oeuvres.id_oeuvres, oeuvres.etat_Oeuvre, oeuvres.libelle_Oeuvre, Image.chemin_Image
+FROM oeuvres
+JOIN image ON oeuvres.id_oeuvres = image.id_oeuvres";
+$requete = $db->query($sql);
+$oeuvres = $requete->fetchAll(PDO::FETCH_ASSOC);
+$db = null;
+
+;?>
+
 <div class="state-contain">
     <h2 class="state-title">Etat des oeuvres :</h2>
     <div class="carousel">
@@ -6,68 +18,19 @@
         <button class="nxt-btn"><svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></button>
         <div class="cards-container">
             <div class="slider"> 
+                 <?php forEach($oeuvres as $oeuvre) : ?>
                 <div class="art-card">
                     <div class="art-img">
-                        <img src="./assets/img/freud_strawberries.jpg" alt="">
+                        <img src=".<?= $oeuvre["chemin_Image"];?>" alt="">
                     </div>
-                    <p>id_oeuvre</p>
+                    <p><?php $oeuvre["libelle_Oeuvre"];?></p>
+                    <?php if($oeuvre["etat_Oeuvre"] === 0): ?>
                     <span>Pas livrée</span>
+                    <?php else : ?>
+                    <span>Livrée</span>
+                    <?php endif ;?>
                 </div>
-                <div class="art-card">
-                    <div class="art-img">
-                        <img src="./assets/img/freud_strawberries.jpg" alt="">
-                    </div>
-                    <p>id_oeuvre</p>
-                    <span>Pas livrée</span>
-                </div>
-                <div class="art-card">
-                    <div class="art-img">
-                        <img src="./assets/img/freud_strawberries.jpg" alt="">
-                    </div>
-                    <p>id_oeuvre</p>
-                    <span>Pas livrée</span>
-                </div>
-                <div class="art-card">
-                    <div class="art-img">
-                        <img src="./assets/img/freud_strawberries.jpg" alt="">
-                    </div>
-                    <p>id_oeuvre</p>
-                    <span>Pas livrée</span>
-                </div>
-                <div class="art-card">
-                    <div class="art-img">
-                        <img src="./assets/img/freud_strawberries.jpg" alt="">
-                    </div>
-                    <p>id_oeuvre</p>
-                    <span>Pas livrée</span>
-                </div>
-                <div class="art-card">
-                    <div class="art-img">
-                        <img src="./assets/img/freud_strawberries.jpg" alt="">
-                    </div>
-                    <p>id_oeuvre</p>
-                    <span>Pas livrée</span>
-                </div>
-                <div class="art-card">
-                    <div class="art-img">
-                        <img src="./assets/img/freud_strawberries.jpg" alt="">
-                    </div>
-                    <p>id_oeuvre</p>
-                    <span>Pas livrée</span>
-                </div>
-                <div class="art-card">
-                    <div class="art-img">
-                        <img src="./assets/img/freud_strawberries.jpg" alt="">
-                    </div>
-                    <p>id_oeuvre</p>
-                    <span>Pas livrée</span>
-                </div>
-                <div class="art-card">
-                    <div class="art-img">
-                        <img src="./assets/img/freud_strawberries.jpg" alt="">
-                    </div>
-                    <p>id_oeuvre</p>
-                    <span>Pas livrée</span>
+                <?php endforeach ;?>
                 </div>
             </div>
         </div>
