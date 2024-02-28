@@ -25,6 +25,42 @@
    <div class="red"></div>
    </div>
 
+   <div class="form-divs">
+    <label for="email" >Email de l'artiste :</label>
+  </div>
+  <div class="form-divs">
+  <input type="email"  id="email" class="field-add-collab"  name="email" placeholder="email@example.com">
+  <div class="red"></div>
+  </div>
+  <div class="form-divs">
+    <label for="tel" >Téléphone de l'artiste :</label>
+  </div>
+  <div class="form-divs">
+  <input type="tel"  id="tel" class="field-add-collab"  name="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+  <div class="red"></div>
+  </div>
+  <div class="form-divs">
+    <label for="img-artiste" class="costume-upload">Sélectionner une image</label>
+    <input type="file" id="img-artiste" name="img-artiste"   accept="image/png,image/jpeg,image/jpg" >
+  </div>
+  <div class="form-divs selector-dirart">
+    <select name="dirArt" id="dirArt" class="field-add-collab add-langue">
+    <option value="Leyli Golestan">Leyli Golestan</option>
+    <option value="Haniko Luo">Haniko Luo</option>
+    <option value="Susan Merkel">Susan Merkel</option>
+    <option value="James Harrisson">James Harrisson</option>
+    <option value="Claude France">Claude France</option>
+    </select>
+   <button id="add-service"><a href="#"  class="a-in-btn">Ajouter un directeur artistique</a>
+    </button>
+  </div>
+  <div class="form-divs">
+    <label for="bio">Bio de l'artiste:</label>
+  </div>
+  <div class="form-divs">
+  <textarea id="bio" name="bio" rows="15" cols="70"></textarea>
+  <div class="red"></div>
+  </div>
    <div class="form-divs selector-langue">
       <select name="langue" id="langue" class="field-add-collab add-langue">
       <option value="Français">Français</option>
@@ -36,19 +72,6 @@
      <button id="add-service"><a href="#"  class="a-in-btn">Ajouter un langue</a>
     </button>
   </div>
-   <div class="form-divs">
-     <label for="email" >Email :</label>
-   </div>
-   <div class="form-divs">
-   <input type="email"  id="email" class="field-add-collab"  name="email" placeholder="email@example.com">
-   <div class="red"></div>
-   </div>
-   <div class="form-divs">
-       <label for="pass" >Mot De Pass :</label>
-   </div>
-   <div class="form-divs">
-       <input type="password"  class="field-add-collab" id="pass"  name="pass">
-   </div>
    <div class="form-divs login-input" >
      <input  type="submit" class="input-sub-add-collab" value="Valider">
    </div>
