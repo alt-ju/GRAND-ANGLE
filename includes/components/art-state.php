@@ -1,7 +1,7 @@
 <?php 
 
 require_once "./config/pdo.php";
-$sql = "SELECT oeuvres.id_oeuvres, oeuvres.etat_Oeuvre, oeuvres.libelle_Oeuvre, Image.chemin_Image
+$sql = "SELECT oeuvres.id_oeuvres, oeuvres.etat_Oeuvre, Image.libelle_Image, Image.chemin_Image
 FROM oeuvres
 JOIN image ON oeuvres.id_oeuvres = image.id_oeuvres";
 $requete = $db->query($sql);
@@ -23,7 +23,7 @@ $db = null;
                     <div class="art-img">
                         <img src=".<?= $oeuvre["chemin_Image"];?>" alt="">
                     </div>
-                    <p><?php $oeuvre["libelle_Oeuvre"];?></p>
+                    <p><?= $oeuvre["libelle_Image"];?></p>
                     <?php if($oeuvre["etat_Oeuvre"] === 0): ?>
                     <span>Pas livrée</span>
                     <?php else : ?>
