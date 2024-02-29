@@ -381,3 +381,89 @@ svg{
 svg:hover{
   color: var(--ACCENT1);
 }
+
+
+  /********* LIST ART **********/
+
+div.btn-choose {
+  grid-column: 3/11;
+  grid-row: 2/3;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button.expo-btn {
+  width: 10rem;
+  height: 2rem;
+  border: none;
+  background-color: #B1CDCB;
+  border-radius: 50px;
+  color: var(--FONTCOLOR2);
+}
+
+button.expo-btn:hover {
+  color: var(--ACCENT1);
+  background-color: transparent;
+  border: solid 1px var(--ACCENT1);
+}
+
+button.btnActive {
+  width: 10rem;
+  height: 2rem;
+  color: var(--ACCENT1);
+  background-color: transparent;
+  border: solid 1px var(--ACCENT1);
+  border-radius: 50px;
+
+}
+
+div.art-contain-by-btn {
+  grid-column: 2/13;
+  grid-row: 3/12;
+  background-color: var(--SECONDARY);
+  margin-right: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+div.div-art-list {
+  width: 100%;
+  height: 100%;
+}
+
+div#div-art-now {
+  background-color: #C1D734;
+}
+
+div.art-content-now {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+div.art-now-expo {
+  display: flex;
+}
+
+div.image-oeuvre-ongoing {
+ 
+}
+
+div.image-oeuvre-ongoing img {
+  height: 200px;
+  width: 200px;
+}
+
+
+
+
+div#div-art-past {
+  background-color: #ed5BE8;
+}
+
+
+
+div#div-art-next {
+  background-color: #FEE440;
+}
