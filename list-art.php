@@ -2,6 +2,8 @@
 
 session_start();
 
+$title = "Liste des Oeuvres";
+
 include "includes/pages/header.php";
 include "includes/pages/navbarr.php";
 
