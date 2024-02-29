@@ -422,5 +422,5 @@ svg{
 }
 
 svg:hover{
-  color: var(--ACCENT1);
+  fill: var(--PRIMARY);
 }
