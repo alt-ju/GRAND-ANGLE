@@ -451,6 +451,7 @@ svg:hover{
 }
 
 .search-container{
+  width: 73%;
   margin-left: auto;
   margin-right: auto;
   position: relative;
