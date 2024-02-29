@@ -426,7 +426,7 @@ svg:hover{
   fill: var(--PRIMARY);
 }
 
-/***********   add artist  ***********/
+/***********   list artist  ***********/
 
 .page-artist{
   background-color: var(--SECONDARY);
