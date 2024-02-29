@@ -372,11 +372,12 @@ justify-content: center;
   background-color: #fff;
 }
 
-svg{
+/* svg{
   width: 15px;
   height: auto;
   padding: 0 40px;
 }
+ */
 
 svg:hover{
   color: var(--ACCENT1);
@@ -433,7 +434,7 @@ div.div-art-list {
 }
 
 div#div-art-now {
-  background-color: #C1D734;
+  background-color: #E0EBEA;
 }
 
 div.art-content-now {
@@ -442,21 +443,82 @@ div.art-content-now {
   overflow-y: scroll;
 }
 
-div.art-now-expo {
+div.title-art-content-now-expo h2{
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #78908E;
+  padding-bottom: 1rem;
+}
+
+div.container-cards-art-now {
   display: flex;
+  flex-wrap: wrap;
+}
+
+div.card-art-now-expo {
+  display: flex;
+  background-color: #78908E;
+  padding: 2rem;
+  width: 450px;
+  border-radius: 10px;
+  gap: 1rem;
 }
 
 div.image-oeuvre-ongoing {
- 
+  height: fit-content;
+  width: fit-content;
+  flex: 1;
 }
 
 div.image-oeuvre-ongoing img {
-  height: 200px;
-  width: 200px;
+  height: 12.5em;
+  width: 12.5em;
+  border-radius: 50%;
+  border: solid 2px var(--FONTCOLOR);
 }
 
+div.content-infos-oeuvre-ongoing {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 2;
+}
 
+div.infos-oeuvre-ongoing p {
+  margin-bottom: 1rem;
+}
 
+div.action-oeuvre-ongoing {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 2rem;
+}
+
+div.modify-oeuvre-ongoing svg,
+div.action-oeuvre-ongoing svg {
+  padding: 0;
+  height: 3.5rem;
+  width: 3.5rem;
+  fill: var(--FONTCOLOR2);
+  padding: 0 1rem;
+}
+
+div.container-button-art-ongoing button {
+  width: fit-content;
+  padding: 0.75rem 1rem;
+  border: none;
+  background-color: var(--ACCENT1);
+  border-radius: 50px;
+}
+
+div.container-button-art-ongoing button svg {
+  margin-left: 0.5em;
+  height: 0.9em;
+  width: 1em;
+  fill: var(--FONTCOLOR2);
+  border-radius: 50%;
+  border: solid 1px var(--FONTCOLOR2);
+}
 
 div#div-art-past {
   background-color: #ed5BE8;
