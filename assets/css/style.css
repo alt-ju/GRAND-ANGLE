@@ -432,7 +432,7 @@ svg:hover{
   background-color: var(--SECONDARY);
   margin-top:100px;
   width:850px;
-  width: max-content;
+
   margin-left: auto;
   margin-right: auto;
   border-radius: 12px;
@@ -593,7 +593,8 @@ margin-right: 10PX;
     height:30px;
     border-radius: 20px;
     padding: 5px 10px;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-top: 20px;
     cursor: pointer;
     width: 100px;
     font-weight: 500;
@@ -838,7 +839,7 @@ transition: all 0.3s ease;
 
 /***********  form-add-artist ***********/
 .form-add-artist{
-  width:800px;
+  width:920px;
   height: 900px;
   margin-top:20px;
   margin-left:auto;
@@ -853,12 +854,31 @@ transition: all 0.3s ease;
   font-weight: 500;
 }
 
-.field-add-collab{
+.title-form-add-artist{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  font-family: var(--FONTTITLE);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.field-add-artist{
   width:550px;
   height:35px;
   border-radius: 10px;
   border: none;
   box-shadow: 0px 0px 7px 4px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.form-divs-artist{
+  margin:5px 10px;
+}
+
+.form-divs-artist label{
+margin: 7px 10px;
+font-family: var(--FONTTITLE);
+font-weight: 500;
 }
 
 .input-sub-add-collab{
@@ -896,7 +916,7 @@ transition: all 0.3s ease;
   font-weight: 700;
 }
 
-#add-service{
+#add-langue, #add-dir-artist{
   width: 140px;
   border:none;
   border-radius: 25px;
@@ -907,18 +927,37 @@ transition: all 0.3s ease;
   font-weight: 700;
 }
 
-#add-service:hover{
+#add-langue:hover, #add-dir-artist:hover{
   background-color: var(--ACCENT1);
   color: var(--FONTCOLOR2);
   font-family: var(--FONTTITLE);
   font-weight: 700;
 }
 
-.title-form{
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
+#add-dir-artist{
+  width: 220px;
+}
+
+
+.costume-upload-form-artist{
+  border:none;
+  background-color: var(--BGCOLORPU);
+  color: var(--FONTCOLOR);
+  height:30px;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 20px 10px;
+  cursor: pointer;
+  width: 100px;
+  font-weight: 500;
   font-family: var(--FONTTITLE);
-  font-size: 1.4rem;
-  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.input-img{
+  margin:20px 10px;
+}
+
+.field-select{
+  width: 250px;
 }
