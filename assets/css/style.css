@@ -381,3 +381,102 @@ svg{
 svg:hover{
   color: var(--ACCENT1);
 }
+
+/***********   list des exposition ***********/
+.page-exposition{
+  background-color: var(--SECONDARY);
+  margin-top:100px;
+  width:850px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px;
+}
+
+.title-page-expo{
+  font-family: var(--FONTTITLE);
+  font-weight: 700;
+  width:50%;
+  margin-left: auto;
+  margin-right:auto;
+  margin-bottom: 40px;
+  padding-top: 40px;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.search-container-expo{
+  margin-left: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar{
+width: 250px;
+height:30px;
+border-radius: 4px;
+margin-right: 10PX;
+}
+
+.search-btn{
+  width: 40px;
+  position: absolute;
+  left:210px;
+  top:15%;
+  background-color: transparent;
+  border: none;
+}
+.search-btn svg{
+  padding: 0;
+}
+.plus{
+  background-color: var(--PRIMARY);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  fill: #fff;
+}
+.plus:hover{
+  background-color: var(--ACCENT1);
+  cursor: pointer;
+  fill: #252525;
+}
+.table-expo{
+  display: flex;
+  justify-content: center;
+  }
+  
+  .list-expo{
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+    min-width:500px;
+    text-align: center;
+    background-color: var(--BGCOLORPR);
+  }
+  
+  .list-expo thead{
+    background-color: var(--PRIMARY);
+    color: var(--FONTCOLOR);
+    font-weight: bold;
+    text-align: center;
+    border-top-left-radius: 25px;
+    border-top-left-radius: 25px;
+  }
+  
+  .list-expo th,td{
+    padding: 10px;
+  }
+  
+  .list-expo tbody,tr{
+    border: 1px solid #ddd;
+  }
+  
+  .list-expo tr:nth-of-type(even){
+    background-color: #fff;
+  }
