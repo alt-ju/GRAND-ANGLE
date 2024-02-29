@@ -899,46 +899,6 @@ font-weight: 500;
   font-family: var(--FONTTITLE);
   font-weight: 700;
 }
-.valider-service{
-  width: 120px;
-  border:none;
-  border-radius: 25px;
-  padding: 5px;
-  margin: 10px 25px;
-  background-color: var(--PRIMARY);
-  color:var(--FONTCOLOR);
-  font-weight: 700;
-}
-
-.valider-service:hover{
-  background-color: var(--ACCENT1);
-  color: var(--FONTCOLOR2);
-  font-family: var(--FONTTITLE);
-  font-weight: 700;
-}
-
-#add-langue, #add-dir-artist{
-  width: 140px;
-  border:none;
-  border-radius: 25px;
-  padding: 5px;
-  margin: 0px 10px;
-  background-color: var(--PRIMARY);
-  color:var(--FONTCOLOR);
-  font-weight: 700;
-}
-
-#add-langue:hover, #add-dir-artist:hover{
-  background-color: var(--ACCENT1);
-  color: var(--FONTCOLOR2);
-  font-family: var(--FONTTITLE);
-  font-weight: 700;
-}
-
-#add-dir-artist{
-  width: 220px;
-}
-
 
 .costume-upload-form-artist{
   border:none;
@@ -961,4 +921,29 @@ font-weight: 500;
 
 .field-select{
   width: 250px;
+}
+/***********  form-add-dirart ***********/
+.form-add-dirart{
+  width:700px;
+  height: 500px;
+  margin-top:20px;
+  margin-left:auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--SECONDARY);
+  color: var(--FONTCOLOR2);
+  border-radius: 25px;
+  font-family: var(--FONTTEXT);
+  font-weight: 500;
+}
+
+.title-form-add-dirart{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  font-family: var(--FONTTITLE);
+  font-size: 1.4rem;
+  font-weight: 700;
 }

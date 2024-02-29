@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>form add directeur artistique</title>
+</head>
+<body>
+  <form action="" method="POST" class="form-add-dirart">
+    <h2 class="title-form-add-dirart">Ajouter un directeur artistique </h2>
+   <div class="form-divs-artist">
+     <label for="nom" >Nom du directeur artistique :</label>
+   </div>
+   <div class="form-divs-artist">
+   <input type="text"  id="nom" class="field-add-artist"  name="nom" placeholder="">
+   <div class="red"></div>
+   </div>
+   <div class="form-divs-artist">
+     <label for="prenom" >Prenom du directeur artistique :</label>
+   </div>
+   <div class="form-divs-artist">
+   <input type="text" id="prenom" class="field-add-artist"  name="prenom" placeholder="">
+   <div class="red"></div>
+   </div>
+
+   <div class="form-divs-artist">
+    <label for="email" >Email du directeur artistique :</label>
+  </div>
+  <div class="form-divs-artist">
+  <input type="email"  id="email" class="field-add-artist"  name="email" placeholder="email@example.com">
+  <div class="red"></div>
+  </div>
+  <div class="form-divs-artist">
+    <label for="tel" >Téléphone du directeur artistique :</label>
+  </div>
+  <div class="form-divs-artist">
+  <input type="tel"  id="tel" class="field-add-artist"  name="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+  <div class="red"></div>
+  </div>
+</div>
+<div class="form-divs-artist login-input" >
+  <input  type="submit" class="input-sub-add-collab" value="Valider">
+</div>
+ </form>
+</body>
+</html>
