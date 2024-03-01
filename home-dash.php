@@ -5,8 +5,10 @@ $title = "Mon tableau de bord";
 
 include "includes/pages/header.php";
 include "includes/pages/navbarr.php";
-;?>
+include "includes/pages/nav-head.php";
 
+
+;?>
 
 <div class="calendar">
     test
@@ -17,7 +19,6 @@ include "includes/pages/navbarr.php";
     <?php ;?>
 </div>
 <div class="art-state">
-    test
     <?php include "includes/components/art-state.php";?>
 </div>
 

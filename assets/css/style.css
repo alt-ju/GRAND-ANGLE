@@ -3,8 +3,8 @@
     --BGCOLORPR: #F3f3f3;
     --PRIMARY: #565759;
     --SECONDARY: #E0EBEA; 
-     --ACCENT1: #C1D734;
-    --ACCENT3: #FEE440  ;
+    --ACCENT1: #C1D734;
+    --ACCENT3: #FEE440;
     --ACCENT2: #ed5BE8;
     --FONTCOLOR: #F3f3f3;
     --FONTCOLOR2: #252525;
@@ -12,7 +12,12 @@
     --FONTTEXT: "Montserrat", sans-serif;
   }
 
+  body {
+    font-family: var(--FONTTEXT);
+  }
+
   main {
+    background-color: var(--BGCOLORPR);
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
@@ -98,11 +103,12 @@
    nav {
     height: 100vh;
     width: fit-content;
-    background-color: var(--BGCOLORPU);
+    background-color: #223533;
     grid-column: 1/2;
     grid-row: 1/13;
     position: absolute;
     top: 0;
+    z-index: 100;
    }
 
    nav div#burger {
@@ -170,25 +176,159 @@
    nav ul div.menu-items div span a {
     color: var(--ACCENT1);
    }
-   
+  
+  /********* NAV HEAD **********/
+
+  div.nav-contain {
+    grid-column: 1/13;
+    height: 3rem;
+    padding: 0 2rem 0 6rem;
+    background-color: #223533;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  div.user h1 {
+    font-family: var(--FONTTITLE);
+    color: var(--FONTCOLOR);
+  }
+
+  div.loupe {
+    height: fit-content;
+    width: fit-content;
+    margin: auto 0;
+    padding-right: 0.25rem;
+  }
+
+  div.searchbar {
+    display: flex;
+
+  }
+
+  div.loupe svg#svg-loupe {
+    height: 20px;
+    width: 20px;
+    fill: #F3f3f3;
+    padding: 0;
+  }
+
+  div.searchbar input {
+    height: 2rem;
+    padding: 0.5rem;
+    border-radius: 50px;
+    border: solid 1px #94AFAD;
+  }
+  
   
   /********* DASHBOARD HOME **********/
 
+h1.home {
+  grid-column: 2/4;
+  padding-top: 1rem;
+}
+
 div.calendar {
-  background-color: var(--SECONDARY);
-  grid-column: 3/7;
+  grid-column: 3/8;
+  grid-row: 2/8;
+  margin: 2rem 1.5rem 2rem 0;
 }
 
 div.calendar-daily {
+  grid-column: 8/12;
+  grid-row: 2/8;
+  margin: 2rem 0;
+}
+
+div.calendar,
+div.calendar-daily {
+  border-radius: 12px;
   background-color: var(--SECONDARY);
-  grid-column: 9/12;
+  padding: 1rem;
 }
 
 div.art-state {
-  background-color: var(--PRIMARY);
-  grid-column: 3/12;
+  background-color: var(--SECONDARY);
+  grid-column: 2/13;
+  grid-row: 8/13;
+  border-radius: 12px;
+  height: fit-content;
+  margin-right: 2rem;
+  padding: 1rem;
 }
 
+/********* ART STATE **********/
+
+.slide-container{
+  max-width: 1120px;
+  width: 100%;
+  padding: 40px 0;
+}
+.slide-content{
+  margin: 0 40px;
+  overflow: hidden;
+  border-radius: 25px;
+}
+.card{
+  width: 50%;
+  border-radius: 25px;
+  background-color: #94AFAD;
+  margin-right: 1rem;
+}
+
+.image-content,
+.card-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+}
+.image-content{
+  position: relative;
+  row-gap: 5px;
+  padding: 25px 0;
+}
+
+.card-image{
+  position: relative;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background: #FFF;
+  padding: 3px;
+}
+.card-image .card-img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #78908E;
+}
+.name{
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+.state{
+  font-size: 14px;
+  color: #707070;
+  text-align: center;
+}
+
+.swiper-navBtn{
+  color: #C1D734;
+  transition: color 0.3s ease;
+}
+
+.swiper-button-next{
+  right: 0;
+}
+.swiper-button-prev{
+  left: 0;
+}
+ 
 /***********   PAGE ADD COLLABORATEUR  et ADD SERVICE ***********/
 .add-collab{
   width:800px;
