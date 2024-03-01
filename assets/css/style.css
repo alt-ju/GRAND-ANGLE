@@ -452,9 +452,15 @@ div.title-art-content-now-expo h2{
 }
 
 div.container-cards-art-now {
+  overflow-y: scroll;
+  height: 86%;
+}
+
+div.scroll-container {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  overflow-y: scroll;
 }
 
 div.card-art-now-expo {
