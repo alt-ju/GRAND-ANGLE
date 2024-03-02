@@ -573,7 +573,9 @@ div.div-art-list {
   height: 100%;
 }
 
-div#div-art-now {
+div#div-art-now,
+div#div-art-past,
+div#div-art-next {
   background-color: #E0EBEA;
 }
 
@@ -588,13 +590,6 @@ div.expo-content-now {
   height: 86%;
 }
 
-div.title-art-content-now-expo h2{
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: #78908E;
-  padding-bottom: 1rem;
-}
-
 div.container-cards-art-now {
   display: flex;
   flex-wrap: wrap;
@@ -602,15 +597,24 @@ div.container-cards-art-now {
 
 div.card-art-now-expo {
   display: flex;
+  flex-direction: column;
   background-color: #78908E;
   padding: 2rem;
   margin: 2rem;
   width: 450px;
-  height: 265px;
-  min-width: 450px;
-  min-height: 265px;
+  height: fit-content;
   border-radius: 10px;
-  gap: 1rem;
+  gap: 1rem; 
+}
+
+div.card-row1 h2 {
+  font-family: var(--FONTTITLE);
+  color: var(--SECONDARY);
+  font-size: 1.25rem;
+}
+
+div.card-row2 {
+  display: flex;
 }
 
 div.image-oeuvre-ongoing {
@@ -679,14 +683,4 @@ div.container-button-art-ongoing button svg {
   fill: var(--FONTCOLOR2);
   border-radius: 50%;
   border: solid 1px var(--FONTCOLOR2);
-}
-
-div#div-art-past {
-  background-color: #ed5BE8;
-}
-
-
-
-div#div-art-next {
-  background-color: #FEE440;
 }
