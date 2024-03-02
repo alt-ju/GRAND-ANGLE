@@ -1,6 +1,6 @@
 <?php
 
-require_once "./config/pdo.php";
+require_once "./config/pdo.php"; 
 
 $sqlArtPast = "SELECT oeuvres.libelle_Oeuvre, Image.chemin_Image, artiste.Nom_Artiste, artiste.Prenom_Artiste, exposition.Date_Debut, exposition.Date_Fin, exposition.libelle_Exposition
 FROM oeuvres 
@@ -11,10 +11,10 @@ WHERE exposition.Date_Fin < CURRENT_DATE()";
 $requeteArtPast = $db->query($sqlArtPast);
 $oeuvresPast = $requeteArtPast->fetchAll(PDO::FETCH_ASSOC);
 
-$db = null;
+
 
 ;?>
-
+ 
 
 <div class="art-content-now">
     
@@ -57,4 +57,4 @@ $db = null;
     <div class="container-button-art-ongoing">
         <button type="button" id="add-oeuvre-expo-now">Ajouter une oeuvre<svg viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg></button>
     </div>
-</div>
+</div> 
