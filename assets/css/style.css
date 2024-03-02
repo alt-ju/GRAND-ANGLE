@@ -580,8 +580,12 @@ div#div-art-now {
 div.art-content-now {
   width: 100%;
   height: 100%;
-  overflow: hidden;
   position: relative;
+}
+
+div.expo-content-now {
+  overflow-y: scroll;
+  height: 86%;
 }
 
 div.title-art-content-now-expo h2{
@@ -592,13 +596,6 @@ div.title-art-content-now-expo h2{
 }
 
 div.container-cards-art-now {
-  overflow-y: scroll;
-  height: 86%;
-}
-
-div.scroll-container {
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -659,11 +656,9 @@ div.action-oeuvre-ongoing svg {
   padding: 0 1rem;
 }
 
-div.container-button-art-ongoing {
-  
-  position: absolute;
-  right: 0;
-  bottom: 0;
+div.modify-oeuvre-ongoing svg:hover,
+div.action-oeuvre-ongoing svg:hover {
+  fill: var(--ACCENT1);
 }
 
 div.container-button-art-ongoing button {
@@ -672,6 +667,9 @@ div.container-button-art-ongoing button {
   border: none;
   background-color: var(--ACCENT1);
   border-radius: 50px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 div.container-button-art-ongoing button svg {
