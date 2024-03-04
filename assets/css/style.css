@@ -521,3 +521,97 @@ svg{
 svg:hover{
   color: var(--ACCENT1);
 }
+
+/********** IMPLANTATION **********/
+
+div.search-bar-implant {
+  grid-column: 3/6;
+  grid-row: 2/3;
+  
+}
+
+div.search-bar-implant input {
+  width: 100%;
+  height: 2rem;
+  border-radius: 25px;
+  border: 1px solid #223533;
+  padding: 0.5rem;
+}
+
+div.map-expo {
+  background-color: #94AFAD;
+  grid-column: 2/9;
+  grid-row: 3/12;
+  margin-right: 10%;
+}
+
+div.resume-map-expo {
+  background-color: #94AFAD;
+  grid-column: 9/13;
+  grid-row: 3/12;
+  margin-right: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  overflow: hidden; 
+}
+
+div.print-resume-map-expo {
+  grid-row: 12/13;
+  grid-column: 10/13;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
+
+div.print-resume-map-expo button {
+  height: 2rem;
+  padding: 0 1.25rem;
+  border-radius: 25px;
+  border: none;
+  background-color: var(--ACCENT1);
+  cursor: pointer;
+}
+
+div.scroll-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+div.resume-map-expo h1 {
+  font-family: var(--FONTTITLE);
+  font-weight: 500;
+  padding-bottom: 1rem;
+}
+
+div.card-implant {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #78908E;
+  width: 100%;
+}
+
+div.card-img-implant {
+  
+}
+
+div.card-img-implant img{
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+}
+
+div.card-info-implant p {
+  padding-bottom: 0.5rem;
+}
+
+div.card-position-implant input {
+  height: 3rem;
+  width: 3rem;
+}
