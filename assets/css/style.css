@@ -651,8 +651,8 @@ div.action-oeuvre-ongoing {
   padding-top: 2rem;
 }
 
-div.modify-oeuvre-ongoing svg,
-div.action-oeuvre-ongoing svg {
+div.modify-art-ongoing svg,
+div.delete-art-ongoing svg {
   padding: 0;
   height: 3.5rem;
   width: 3.5rem;
@@ -660,8 +660,8 @@ div.action-oeuvre-ongoing svg {
   padding: 0 1rem;
 }
 
-div.modify-oeuvre-ongoing svg:hover,
-div.action-oeuvre-ongoing svg:hover {
+div.modify-art-ongoing svg:hover,
+div.delete-art-ongoing svg:hover {
   fill: var(--ACCENT1);
 }
 
@@ -683,4 +683,18 @@ div.container-button-art-ongoing button svg {
   fill: var(--FONTCOLOR2);
   border-radius: 50%;
   border: solid 1px var(--FONTCOLOR2);
+}
+
+/**** NEXT ART  ****/
+
+div.art-content-next {
+  height: 100%;
+  width: 100%;
+}
+div.card-art-next {
+  background-color: #94AFAD;
+  height: fit-content;
+  width: 100%;
+  border-radius: 12px;
+  padding: 1rem;
 }
