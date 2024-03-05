@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +8,24 @@
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Ajouter un collaboratuer</title>
 </head>
+
 <body>
- 
+
   <form action="" method="POST" class="add-collab">
-     <h2 class="title-form">Ajouter un collaboratuer</h2>
+    <h2 class="title-form">Ajouter un collaboratuer</h2>
     <div class="form-divs">
-      <label for="nom" >Nom :</label>
+      <label for="nom">Nom :</label>
     </div>
     <div class="form-divs">
-    <input type="text"  id="nom" class="field-add-collab"  name="nom" placeholder="">
-    <div class="red"></div>
+      <input type="text" id="nom" class="field-add-collab" name="nom" placeholder="">
+      <div class="red"></div>
     </div>
     <div class="form-divs">
-      <label for="prenom" >Prenom :</label>
+      <label for="prenom">Prenom :</label>
     </div>
     <div class="form-divs">
-    <input type="text" id="prenom" class="field-add-collab"  name="prenom" placeholder="">
-    <div class="red"></div>
+      <input type="text" id="prenom" class="field-add-collab" name="prenom" placeholder="">
+      <div class="red"></div>
     </div>
 
     <div class="form-divs">
@@ -32,36 +34,58 @@
 
     <div class="form-divs">
       <select name="service-select" id="service-select" class="field-add-collab">
-      <option value="Service">----Service----</option>
-      <option value="Directeur">Directeur</option>
-      <option value="Responsable Communication">Responsable Communication</option>
-       <option value="Responsable technique">Responsable technique</option>
-       <option value="Chargé de communication">Chargé de communication</option>
-      <option value="Assistane">Assistante</option>
-      <option value="Traducteur">Traducteur</option>
-      <option value="Technicien">Technicien</option>
+        <option value="Service">----Service----</option>
+        <option value="Directeur">Directeur</option>
+        <option value="Responsable Communication">Responsable Communication</option>
+        <option value="Responsable technique">Responsable technique</option>
+        <option value="Chargé de communication">Chargé de communication</option>
+        <option value="Assistane">Assistante</option>
+        <option value="Traducteur">Traducteur</option>
+        <option value="Technicien">Technicien</option>
       </select>
-      <a href="add_service.html"><svg class="plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg></a>
-   </div>
+      <a href="add_service.html"><svg class="plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path
+            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+        </svg></a>
+    </div>
+
     <div class="form-divs">
-      <label for="email" >Email :</label>
+      <label for="email">Email :</label>
     </div>
     <div class="form-divs">
-    <input type="email"  id="email" class="field-add-collab"  name="email" placeholder="email@example.com">
-    <div class="red"></div>
+      <input type="email" id="email" class="field-add-collab" name="email" placeholder="email@example.com">
+      <div class="red"></div>
     </div>
     <div class="form-divs">
-        <label for="pass" >Mot De Pass :</label>
+      <label for="pass">Mot De Pass :</label>
     </div>
     <div class="form-divs">
-        <input type="password"  class="field-add-collab" id="pass"  name="pass">
+      <input type="password" class="field-add-collab" id="pass" name="pass">
     </div>
-    <div class="form-divs login-input" >
-      <input  type="submit" class="input-sub-add-collab" value="Valider">
+    <div class="form-divs login-input">
+      <input type="submit" class="input-sub-add-collab" value="Valider">
     </div>
     <div class="red"></div>
   </form>
 
+  <div class="servic-pup">
+    <div class="pup-up">
+      <form class="form-add-service" action="" method="POST" id="service-popup">
+        <h2 class="title-form">Créer un nouveau service</h2>
+        <div class="form-divs">
+          <label for="creat-service">Ajouter un service :</label>
+        </div>
+        <div class="form-divs">
+          <input type="text" name="creat-service" id="creat-service" class="field-add-service" />
+        </div>
+        <div class="red"></div>
+        <div class="login-input">
+          <input type="submit" class="valider-service" value="Valider" />
+        </div>
+      </form>
+    </div>
+  </div>
 
 </body>
+
 </html>
