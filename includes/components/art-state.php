@@ -1,13 +1,13 @@
 <?php 
 
 require_once "./config/pdo.php";
-$sql = "SELECT oeuvres.Id_oeuvre, oeuvres.etat_Oeuvre, Image.libelle_Image, Image.chemin_Image, exposition.Date_Debut, artiste.Id_Artiste
+$sql = "SELECT oeuvres.Id_oeuvre, oeuvres.etat_Oeuvre, image.libelle_Image, image.chemin_Image, exposition.Date_Debut, artiste.Id_Artiste
 FROM oeuvres
 JOIN image ON oeuvres.Id_oeuvre = image.Id_oeuvre
 JOIN artiste ON artiste.Id_Artiste = oeuvres.Id_Artiste
 JOIN exposition ON oeuvres.Id_Exposition = exposition.Id_Exposition 
-WHERE exposition.Date_Debut >= CURRENT_DATE()
-AND exposition.Date_Debut <= DATE_ADD(CURRENT_DATE(), INTERVAL 20 DAY)
+WHERE exposition.Date_Debut > CURRENT_DATE()
+AND exposition.Date_Debut <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY)
 ORDER BY exposition.Date_Debut ASC, oeuvres.etat_Oeuvre ASC";
 $requete = $db->query($sql);
 $oeuvres = $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -22,10 +22,10 @@ $db = null;
             <div class="card swiper-slide">
                 <div class="image-content">
                     <div class="card-image">
-                        <img src=".<?= $oeuvre["chemin_Image"];?>" alt="" class="card-img">
+                        <img src="./artwork/<?= $oeuvre["chemin_Image"]?>" alt="" class="card-img">
                     </div>
                     <div clas="card-content">
-                        <h2 class="name"><?= $oeuvre["libelle_Image"];?></h2>
+                        <h2 class="name"><?= $oeuvre["libelle_Image"]?></h2>
                         <?php if($oeuvre["etat_Oeuvre"] === 0): ?>
                         <span>Pas livrée</span>
                         <?php else : ?>
