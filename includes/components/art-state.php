@@ -1,11 +1,11 @@
 <?php 
 
 require_once "./config/pdo.php";
-$sql = "SELECT oeuvres.id_oeuvres, oeuvres.etat_Oeuvre, Image.libelle_Image, Image.chemin_Image, exposition.Date_Debut, artiste.Id_Artiste
+$sql = "SELECT oeuvres.Id_oeuvre, oeuvres.etat_Oeuvre, Image.libelle_Image, Image.chemin_Image, exposition.Date_Debut, artiste.Id_Artiste
 FROM oeuvres
-JOIN image ON oeuvres.id_oeuvres = image.id_oeuvres
+JOIN image ON oeuvres.Id_oeuvre = image.Id_oeuvre
 JOIN artiste ON artiste.Id_Artiste = oeuvres.Id_Artiste
-JOIN exposition ON oeuvres.Id_Artiste = artiste.Id_Artiste AND artiste.Id_Artiste = exposition.Id_Artiste
+JOIN exposition ON oeuvres.Id_Exposition = exposition.Id_Exposition 
 WHERE exposition.Date_Debut >= CURRENT_DATE()
 AND exposition.Date_Debut <= DATE_ADD(CURRENT_DATE(), INTERVAL 20 DAY)
 ORDER BY exposition.Date_Debut ASC, oeuvres.etat_Oeuvre ASC";
