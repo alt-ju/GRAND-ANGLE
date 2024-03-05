@@ -7,7 +7,7 @@ $title = "Liste des Oeuvres";
 include "includes/pages/header.php";
 include "includes/pages/navbarr.php";
 include "includes/pages/nav-head.php";
-
+require_once "./config/pdo.php";
 ;?>
 
 <div class="btn-choose">

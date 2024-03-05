@@ -1,17 +1,14 @@
 <?php
 
-require_once "./config/pdo.php";
-
 $sqlArtNow = "SELECT exposition.libelle_Exposition, oeuvres.libelle_Oeuvre, Image.chemin_Image, artiste.Nom_Artiste, artiste.Prenom_Artiste
 FROM oeuvres 
-JOIN image ON oeuvres.id_oeuvres = image.id_oeuvres
+JOIN image ON oeuvres.Id_oeuvre = image.Id_oeuvre
 JOIN artiste ON artiste.Id_Artiste = oeuvres.Id_Artiste
-JOIN exposition ON oeuvres.Id_Artiste = artiste.Id_Artiste AND artiste.Id_Artiste = exposition.Id_Artiste
+JOIN exposition ON oeuvres.Id_Exposition = exposition.Id_Exposition 
 WHERE exposition.Date_Debut <= DATE_ADD(CURRENT_DATE(), INTERVAL 3 DAY) AND CURRENT_DATE() <= exposition.Date_Fin";
 $requeteArtNow = $db->query($sqlArtNow);
 $oeuvresNow = $requeteArtNow->fetchAll(PDO::FETCH_ASSOC);
 
-$db = null;
 
 ;?>
 
@@ -25,7 +22,7 @@ $db = null;
                     </div>
                     <div class="card-row2">
                         <div class="image-oeuvre-ongoing">
-                            <a href=""><img src=".<?= $oeuvreNow["chemin_Image"];?>" alt=""></a>
+                            <a href=""><img src="./artwork/<?= $oeuvreNow["chemin_Image"];?>" alt=""></a>
                         </div>
                         <div class="content-infos-oeuvre-ongoing">
                             <div class="infos-oeuvre-ongoing">
