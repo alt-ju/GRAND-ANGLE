@@ -11,7 +11,7 @@ $sql= "SELECT collaborateur.*, service.* FROM collaborateur JOIN service ON coll
 
 $requete = $db -> query($sql);
 $collabs = $requete->fetchAll(PDO::FETCH_ASSOC);
-$db = null;
+
 ?>
 
 <div class="gestion">

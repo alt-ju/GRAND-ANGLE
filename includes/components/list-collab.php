@@ -5,7 +5,7 @@
         <h2 class="title-page">Gestion des collaborateurs</h2>
     </div>
   <div class="btn-add-collab">
-    <button class="btn-ajouter"><a href="add_collab.php" target="_blank">Ajouter un collaborateur</a></button>
+    <button class="btn-ajouter"><a href="includes/components/add_collab.php" target="_self">Ajouter un collaborateur</a></button>
   </div>
 
   <div class="table-collab">

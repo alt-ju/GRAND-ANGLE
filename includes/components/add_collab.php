@@ -1,10 +1,6 @@
 <?php
 
-include 'includes/pages/header.php';
-include "includes/pages/nav-head.php";
-include "includes/pages/navbarr.php";
-
-require_once './config/pdo.php';
+require_once "../../config/pdo.php";
 $nom = $prenom = $email = $pass= $service ='';
 $errors = array('nom'=>'','prenom'=>'','email'=>'','pass'=>'','service-select' =>'');
 
@@ -85,7 +81,7 @@ $sqlService1 = "SELECT Id_Service,libelle_Service FROM service";
 $requete = $db -> query($sqlService1);
   $services = $requete->fetchAll(PDO::FETCH_ASSOC);
  
-  require_once './config/pdo.php'; 
+ /*  require_once './config/pdo.php';  */
  $error= array('creat-service'=>'');
  if(isset($_POST['valid'])){
    if(empty($_POST['creat-service'])){
@@ -112,78 +108,80 @@ $requete = $db -> query($sqlService1);
    
 ?>
 
-
-  <form action="" method="POST" class="add-collab">
-    <h2 class="title-form">Ajouter un collaboratuer</h2>
-    <div class="form-divs">
-      <label for="nom">Nom :</label>
-    </div>
-    <div class="form-divs">
-      <input type="text" id="nom" class="field-add-collab" name="nom" placeholder="">
-      <div class="red"><?php echo $errors['nom']; ?></div>
-    </div>
-    <div class="form-divs">
-      <label for="prenom">Prenom :</label>
-    </div>
-    <div class="form-divs">
-      <input type="text" id="prenom" class="field-add-collab" name="prenom" placeholder="">
-      <div class="red"><?php echo $errors['prenom']; ?></div>
-    </div>
-
-    <div class="form-divs">
-      <label for="service-select">Selectioner un service:</label>
-    </div>
-
-    <div class="form-divs">
-      <select name="service-select" id="service-select" class="field-add-collab">
-        <?php foreach($services as $servic):?>
-        <option value="<?php echo $servic["libelle_Service"]?>"><?php echo $servic["libelle_Service"]?></option>
-        <?php endforeach?>
-      </select>
-      <a href="#" ><svg class="plus" id="add-pup" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-          <path
-            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-        </svg></a>
-    </div>
-
-    <div class="form-divs">
-      <label for="email">Email :</label>
-    </div>
-    <div class="form-divs">
-      <input type="email" id="email" class="field-add-collab" name="email" placeholder="email@example.com">
-      <div class="red"><?php echo $errors['email']; ?></div>
-    </div>
-    <div class="form-divs">
-      <label for="pass">Mot De Pass :</label>
-    </div>
-    <div class="form-divs">
-      <input type="password" class="field-add-collab" id="pass" name="pass">
-    </div>
-    <div class="form-divs login-input">
-      <input type="submit" name="submit" class="input-sub-add-collab" value="Valider">
-    </div>
-    <div class="red"><?php echo $errors['pass']; ?></div>
-  </form>
-
-<div class="service-pup">
-    <div class="pup-up">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" id="close"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
-      <form class="form-add-service" action="" method="POST" id="service-popup">
-        <h2 class="title-form">Créer un nouveau service</h2>
+<div class="add-collab-contain">
+      <form action="" method="POST" class="add-collab">
+        <h2 class="title-form">Ajouter un collaboratuer</h2>
         <div class="form-divs">
-          <label for="creat-service">Ajouter un service :</label>
+          <label for="nom">Nom :</label>
         </div>
         <div class="form-divs">
-          <input type="text" name="creat-service" id="creat-service" class="field-add-service" />
+          <input type="text" id="nom" class="field-add-collab" name="nom" placeholder="">
+          <div class="red"><?php echo $errors['nom']; ?></div>
         </div>
-        <div class="red"></div>
-        <div class="login-input">
-          <button type="submit" name="valid" class="valider-service" value="Valider"></button>
+        <div class="form-divs">
+          <label for="prenom">Prenom :</label>
+        </div>
+        <div class="form-divs">
+          <input type="text" id="prenom" class="field-add-collab" name="prenom" placeholder="">
+          <div class="red"><?php echo $errors['prenom']; ?></div>
+        </div>
 
+        <div class="form-divs">
+          <label for="service-select">Selectioner un service:</label>
         </div>
+
+        <div class="form-divs">
+          <select name="service-select" id="service-select" class="field-add-collab">
+            <?php foreach($services as $servic):?>
+            <option value="<?php echo $servic["libelle_Service"]?>"><?php echo $servic["libelle_Service"]?></option>
+            <?php endforeach?>
+          </select>
+          <a href="#" ><svg class="plus" id="add-pup" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path
+                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+            </svg></a>
+        </div>
+
+        <div class="form-divs">
+          <label for="email">Email :</label>
+        </div>
+        <div class="form-divs">
+          <input type="email" id="email" class="field-add-collab" name="email" placeholder="email@example.com">
+          <div class="red"><?php echo $errors['email']; ?></div>
+        </div>
+        <div class="form-divs">
+          <label for="pass">Mot De Pass :</label>
+        </div>
+        <div class="form-divs">
+          <input type="password" class="field-add-collab" id="pass" name="pass">
+        </div>
+        <div class="form-divs login-input">
+          <input type="submit" name="submit" class="input-sub-add-collab" value="Valider">
+        </div>
+        <div class="red"><?php echo $errors['pass']; ?></div>
       </form>
-    </div>
-  </div> 
+
+    <div class="service-pup">
+        <div class="pup-up">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" id="close"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+          <form class="form-add-service" action="" method="POST" id="service-popup">
+            <h2 class="title-form">Créer un nouveau service</h2>
+            <div class="form-divs">
+              <label for="creat-service">Ajouter un service :</label>
+            </div>
+            <div class="form-divs">
+              <input type="text" name="creat-service" id="creat-service" class="field-add-service" />
+            </div>
+            <div class="red"></div>
+            <div class="login-input">
+              <button type="submit" name="valid" class="valider-service" value="Valider"></button>
+
+            </div>
+          </form>
+        </div>
+    </div> 
+</div>
+
 <script>
   document.getElementById("add-pup").addEventListener("click" , function(){
     document.querySelector(".service-pup").style.display="flex";
@@ -196,4 +194,5 @@ $requete = $db -> query($sqlService1);
 </script>
 
 </body>
+</html>
 

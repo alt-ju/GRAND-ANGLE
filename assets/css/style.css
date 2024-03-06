@@ -24,19 +24,22 @@
   }
 
 /***********   PAGE CONNEXION   ***********/
+
+  .content-bienvenue {
+    grid-column: 3/11;
+    grid-row: 3/11;
+    
+  }
   
   .bienvenu{
-    color: var(--FONTCOLOR2);
-    width: 25%;
-    margin-top: 5%;
-    margin-left: auto;
-    margin-right: auto;
+    color: #223533;
     text-align: center;
     font-family: var(--FONTTITLE);
+    font-size: 2rem;
   }
   
   .form-login{
-
+  background-color: var(--SECONDARY);
     width:600px;
     height: 400px;
     margin-top:5%;
@@ -45,7 +48,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: var(--BGCOLORPR);
     color: var(--FONTCOLOR2);
     border-radius: 25px;
     font-family: var(--FONTTEXT);
