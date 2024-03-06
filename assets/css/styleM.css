@@ -1,0 +1,371 @@
+/***********   GESTION des collaborateur ***********/
+.gestion{
+    grid-column: 2/12;
+    grid-row: 2/12;
+    background-color: var(--SECONDARY);
+    border-radius: 12px;
+  }
+
+  .list-collab-contain {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+  }
+
+  .title-list-collab {
+    padding: 1rem;
+  }
+  
+  .title-page{
+    color: #78908E;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: var(--FONTTITLE);
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.4rem;
+  }
+  
+  .btn-ajouter{
+    background-color: var(--ACCENT1);
+    padding: 1rem 1.25rem;
+    border-radius: 25px;
+    border:none;
+    margin: 1rem;
+  }
+  
+  .btn-ajouter:hover{
+    background-color: var(--ACCENT1);
+  }
+  
+  .btn-ajouter a{
+    color:var(--FONTCOLOR2);
+  text-decoration: none;
+  }
+  
+  .btn-ajouter a:hover{
+    color:var(--FONTCOLOR2);
+  }
+  
+  .btn-add-collab{
+    display:flex;
+    justify-content: end;
+  }
+
+  
+  .table-collab{
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  }
+  
+  .list-collab{
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+    min-width:400px;
+    text-align: center;
+    background-color: var(--BGCOLORPR);
+  }
+  
+  .list-collab thead{
+    background-color: var(--PRIMARY);
+    color: var(--FONTCOLOR);
+    font-weight: bold;
+    text-align: center;
+    border-top-left-radius: 25px;
+    border-top-left-radius: 25px;
+  
+  }
+  
+  .list-collab th,td{
+    padding: 12px 15px;
+  }
+  
+  .list-collab tbody,tr{
+    border: 1px solid #ddd;
+  }
+  
+  .list-collab tr:nth-of-type(even){
+    background-color: #fff;
+  }
+  
+  .ctr-icon svg{
+    fill: var(--FONTCOLOR2);
+    width: 1rem;
+    height: 1rem;
+    margin: 0 1rem;
+  }
+  
+  .ctr-icon svg:hover{
+    fill: var(--ACCENT1);
+  }
+  
+  /***********   PAGE ADD COLLABORATEUR  et ADD SERVICE ***********/
+  .add-collab{
+    width: 1000px;
+    height:900px;
+   margin-top:2%;
+    margin-left:auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--SECONDARY);
+    color: var(--FONTCOLOR2);
+    border-radius: 25px;
+    font-family: var(--FONTTEXT);
+    font-weight: 500;
+    position: relative;
+  }
+   
+  .field-add-collab{
+    width:550px;
+    height:35px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 7px 4px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);
+  }
+   
+  .input-sub-add-collab{
+    width: 120px;
+    border:none;
+    border-radius: 25px;
+    padding: 5px;
+    margin: 15px 10px;
+    background-color: var(--PRIMARY);
+    color:var(--FONTCOLOR);
+    font-weight: 700;
+  }
+   
+   .input-sub-add-collab:hover{
+    background-color: var(--ACCENT1);
+    color: var(--FONTCOLOR2);
+    font-family: var(--FONTTITLE);
+    font-weight: 700;
+  }
+  .valider-service{
+    width: 120px;
+    border:none;
+    border-radius: 25px;
+    padding: 5px;
+    margin: 10px 25px;
+    background-color: var(--PRIMARY);
+    color:var(--FONTCOLOR);
+    font-weight: 700;
+  }
+   
+  .valider-service:hover{
+    background-color: var(--ACCENT1);
+    color: var(--FONTCOLOR2);
+    font-family: var(--FONTTITLE);
+    font-weight: 700;
+  }
+   
+  #add-service{
+    width: 140px;
+    border:none;
+    border-radius: 25px;
+    padding: 5px;
+    margin: 0px 10px;
+    background-color: var(--PRIMARY);
+    color:var(--FONTCOLOR);
+    font-weight: 700;
+  }
+   
+  #add-service:hover{
+    background-color: var(--ACCENT1);
+    color: var(--FONTCOLOR2);
+    font-family: var(--FONTTITLE);
+    font-weight: 700;
+  }
+   
+  .title-form{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    font-family: var(--FONTTITLE);
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+   
+  .plus{
+    width: 20px;
+    height: 20px;
+    background-color: var(--PRIMARY);
+  border-radius: 50%;
+  margin-left: 10px;
+  }
+   
+  .plus:hover{
+  background-color: var(--ACCENT1);
+  }
+   
+  .form-add-service{
+   width:400px;
+    height: 250px;
+    margin-top:5%;
+    margin-left:auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FFF;
+    color: var(--FONTCOLOR2);
+    border-radius: 25px;
+    font-family: var(--FONTTEXT);
+    font-weight: 500;
+  }
+  .service-pup{
+    width:100%;
+    height: 100%;
+    top:0;
+    position: absolute;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+   display: none;
+  }
+   
+  .pup-up{
+    background-color: #fff;
+    position: relative;
+    width:600px;
+    height: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 25px;
+   
+  }
+  .valider-service{
+    margin-right: 35px;
+  }
+   
+  .field-add-service{
+    width:350px;
+    height:35px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 7px 4px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);
+  }
+   
+  #close{
+    background-color: var(--PRIMARY);
+    fill: var(--BGCOLORPR);
+    width: 20px;
+    height:20px;
+    border-radius: 50%;
+    float: right;
+    cursor: pointer;
+  }
+   
+  .red{
+    color: red;
+  }
+
+
+  
+  /***********   list artist  ***********/
+ 
+.page-artist{
+    background-color: var(--SECONDARY);
+    margin-top:100px;
+    width:850px;
+   
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+  }
+   
+  .title-page-artist{
+    font-family: var(--FONTTITLE);
+    font-weight: 700;
+    width:50%;
+    margin-left: auto;
+    margin-right:auto;
+    margin-bottom: 40px;
+    padding-top: 40px;
+    text-align: center;
+    font-size: 1.4rem;
+  }
+   
+  .search-container{
+    width: 73%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+   
+  .search-bar{
+  width: 250px;
+  height:30px;
+  border-radius: 4px;
+  margin-right: 10PX;
+  }
+   
+  .search-btn{
+    width: 40px;
+    position: absolute;
+    left:210px;
+    top:15%;
+    background-color: transparent;
+    border: none;
+  }
+  .search-btn svg{
+    padding: 0;
+  }
+  .plus{
+    background-color: var(--PRIMARY);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    fill: #fff;
+  }
+  .plus:hover{
+    background-color: var(--ACCENT1);
+    cursor: pointer;
+    fill: #252525;
+  }
+  .table-artiste{
+    display: flex;
+    justify-content: center;
+    }
+   
+    .list-artiste{
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.9rem;
+      min-width:500px;
+      text-align: center;
+      background-color: var(--BGCOLORPR);
+    }
+   
+    .list-artiste thead{
+      background-color: var(--PRIMARY);
+      color: var(--FONTCOLOR);
+      font-weight: bold;
+      text-align: center;
+      border-top-left-radius: 25px;
+      border-top-left-radius: 25px;
+    }
+   
+    .list-artiste th,td{
+      padding: 10px;
+    }
+   
+    .list-artiste tbody,tr{
+      border: 1px solid #ddd;
+    }
+   
+    .list-artiste tr:nth-of-type(even){
+      background-color: #fff;
+    }
