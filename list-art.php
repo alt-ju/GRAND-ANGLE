@@ -4,6 +4,11 @@ session_start();
 
 $title = "Liste des Oeuvres";
 
+$title = "Liste des oeuvres";
+
+include "includes/pages/header.php";
+include "includes/pages/nav-head.php";
+include "includes/pages/navbarr.php";
 
 ;?>
 

@@ -30,6 +30,8 @@
   
   .btn-ajouter{
     background-color: var(--ACCENT1);
+    width: fit-content;
+    height: fit-content;
     padding: 1rem 1.25rem;
     border-radius: 25px;
     border:none;
@@ -272,7 +274,9 @@
   .container-list-artist {
     grid-column: 2/12;
     grid-row: 3/12;
-    overflow-y: scroll;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
   }
  
 .page-artist{
@@ -301,6 +305,7 @@
     margin-right: auto;
     position: relative;
     display: flex;
+    justify-content: space-between;
     align-items: center;
   }
    
@@ -372,4 +377,17 @@
    
     .list-artiste tr:nth-of-type(even){
       background-color: #fff;
+    }
+
+    .btn-dirart button {
+      width: fit-content;
+      height: fit-content;
+      padding: 1rem 1.25rem;
+      border-radius: 50px;
+      border: none;
+      background-color: var(--ACCENT1);  
+    }
+
+    .btn-dirart button a {
+      color: var(--FONTCOLOR2); 
     }

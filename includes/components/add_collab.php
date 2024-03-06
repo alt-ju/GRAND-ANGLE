@@ -2,6 +2,7 @@
 
 $title = "Ajouter un collaborateur";
 include "../pages/header.php";
+include "../pages/navbarr.php";
 
 require_once "../../config/pdo.php";
 $nom = $prenom = $email = $pass= $service ='';
