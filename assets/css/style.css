@@ -628,6 +628,7 @@ div.image-oeuvre-ongoing img {
   width: 12.5em;
   border-radius: 50%;
   border: solid 2px var(--FONTCOLOR);
+  object-fit: cover;
 }
 
 div.content-infos-oeuvre-ongoing {
