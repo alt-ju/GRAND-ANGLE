@@ -340,3 +340,372 @@ div.art-state {
   left: 0;
 }
  
+/***********   PAGE ADD COLLABORATEUR  et ADD SERVICE ***********/
+.add-collab{
+  width:800px;
+  height: 900px;
+  margin-top:2%;
+  margin-left:auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--BGCOLORPR);
+  color: var(--FONTCOLOR2);
+  border-radius: 25px;
+  font-family: var(--FONTTEXT);
+  font-weight: 500;
+}
+
+.field-add-collab{
+  width:550px;
+  height:35px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 7px 4px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.input-sub-add-collab{
+  width: 120px;
+  border:none;
+  border-radius: 25px;
+  padding: 5px;
+  margin: 15px 10px;
+  background-color: var(--PRIMARY);
+  color:var(--FONTCOLOR);
+  font-weight: 700;
+}
+
+ .input-sub-add-collab:hover{
+  background-color: var(--ACCENT1);
+  color: var(--FONTCOLOR2);
+  font-family: var(--FONTTITLE);
+  font-weight: 700;
+}
+.valider-service{
+  width: 120px;
+  border:none;
+  border-radius: 25px;
+  padding: 5px;
+  margin: 10px 25px;
+  background-color: var(--PRIMARY);
+  color:var(--FONTCOLOR);
+  font-weight: 700;
+}
+
+.valider-service:hover{
+  background-color: var(--ACCENT1);
+  color: var(--FONTCOLOR2);
+  font-family: var(--FONTTITLE);
+  font-weight: 700;
+}
+
+#add-service{
+  width: 140px;
+  border:none;
+  border-radius: 25px;
+  padding: 5px;
+  margin: 0px 10px;
+  background-color: var(--PRIMARY);
+  color:var(--FONTCOLOR);
+  font-weight: 700;
+}
+
+#add-service:hover{
+  background-color: var(--ACCENT1);
+  color: var(--FONTCOLOR2);
+  font-family: var(--FONTTITLE);
+  font-weight: 700;
+}
+
+.title-form{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  font-family: var(--FONTTITLE);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.a-in-btn{
+  text-decoration: none;
+  color:var(--FONTCOLOR);
+}
+.a-in-btn:hover{
+  text-decoration: none;
+  color:var(--FONTCOLOR2);
+}
+
+/***********   GESTION des collaborateur ***********/
+.gestion{
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--SECONDARY);
+  margin-top: 70px;
+  border-radius: 12px;
+}
+
+.title-page{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: var(--FONTTITLE);
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.4rem;
+}
+
+.btn-ajouter{
+  color:var(--FONTCOLOR);
+  background-color: var(--PRIMARY);
+  width: 180px;
+  height: 30px;
+  border-radius: 25px;
+  border:none;
+  margin-top:30px;
+  margin-bottom: 5px;
+  margin-right: 60px;
+}
+
+.btn-ajouter:hover{
+  background-color: var(--ACCENT1);
+}
+
+.btn-ajouter a{
+  color:var(--FONTCOLOR);
+text-decoration: none;
+}
+
+.btn-ajouter a:hover{
+  color:var(--FONTCOLOR2);
+}
+
+.btn-add-collab{
+  display:flex;
+  justify-content: end;
+}
+
+.table-collab{
+display: flex;
+justify-content: center;
+}
+
+.list-collab{
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 0.9rem;
+  min-width:400px;
+  text-align: center;
+  background-color: var(--BGCOLORPR);
+}
+
+.list-collab thead{
+  background-color: var(--PRIMARY);
+  color: var(--FONTCOLOR);
+  font-weight: bold;
+  text-align: center;
+  border-top-left-radius: 25px;
+  border-top-left-radius: 25px;
+
+}
+
+.list-collab th,td{
+  padding: 12px 15px;
+}
+
+.list-collab tbody,tr{
+  border: 1px solid #ddd;
+}
+
+.list-collab tr:nth-of-type(even){
+  background-color: #fff;
+}
+
+svg{
+  width: 15px;
+  height: auto;
+  padding: 0 40px;
+}
+
+svg:hover{
+  color: var(--ACCENT1);
+}
+
+
+  /********* LIST ART **********/
+
+div.btn-choose {
+  grid-column: 3/11;
+  grid-row: 2/3;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button.expo-btn {
+  width: 10rem;
+  height: 2rem;
+  border: none;
+  background-color: #B1CDCB;
+  border-radius: 50px;
+  color: var(--FONTCOLOR2);
+}
+
+button.expo-btn:hover {
+  color: var(--ACCENT1);
+  background-color: transparent;
+  border: solid 1px var(--ACCENT1);
+}
+
+button.btnActive {
+  width: 10rem;
+  height: 2rem;
+  color: var(--ACCENT1);
+  background-color: transparent;
+  border: solid 1px var(--ACCENT1);
+  border-radius: 50px;
+
+}
+
+div.art-contain-by-btn {
+  grid-column: 2/13;
+  grid-row: 3/12;
+  background-color: var(--SECONDARY);
+  margin-right: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+div.div-art-list {
+  width: 100%;
+  height: 100%;
+}
+
+div#div-art-now,
+div#div-art-past,
+div#div-art-next {
+  background-color: #E0EBEA;
+}
+
+div.art-content-now {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+div.expo-content-now {
+  overflow-y: scroll;
+  height: 86%;
+}
+
+div.container-cards-art-now {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.card-art-now-expo {
+  display: flex;
+  flex-direction: column;
+  background-color: #78908E;
+  padding: 2rem;
+  margin: 2rem;
+  width: 450px;
+  height: fit-content;
+  border-radius: 10px;
+  gap: 1rem; 
+}
+
+div.card-row1 h2 {
+  font-family: var(--FONTTITLE);
+  color: var(--SECONDARY);
+  font-size: 1.25rem;
+}
+
+div.card-row2 {
+  display: flex;
+}
+
+div.image-oeuvre-ongoing {
+  height: fit-content;
+  width: fit-content;
+  flex: 1;
+}
+
+div.image-oeuvre-ongoing img {
+  height: 12.5em;
+  width: 12.5em;
+  border-radius: 50%;
+  border: solid 2px var(--FONTCOLOR);
+  object-fit: cover;
+}
+
+div.content-infos-oeuvre-ongoing {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 2;
+}
+
+div.infos-oeuvre-ongoing p {
+  margin-bottom: 1rem;
+}
+
+p.libelle-art-now {
+  font-weight: 600;
+}
+
+div.action-oeuvre-ongoing {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 2rem;
+}
+
+div.modify-art-ongoing svg,
+div.delete-art-ongoing svg {
+  padding: 0;
+  height: 3.5rem;
+  width: 3.5rem;
+  fill: var(--FONTCOLOR2);
+  padding: 0 1rem;
+}
+
+div.modify-art-ongoing svg:hover,
+div.delete-art-ongoing svg:hover {
+  fill: var(--ACCENT1);
+}
+
+div.container-button-art-ongoing button {
+  width: fit-content;
+  padding: 0.75rem 1rem;
+  border: none;
+  background-color: var(--ACCENT1);
+  border-radius: 50px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+div.container-button-art-ongoing button svg {
+  margin-left: 0.5em;
+  height: 0.9em;
+  width: 1em;
+  fill: var(--FONTCOLOR2);
+  border-radius: 50%;
+  border: solid 1px var(--FONTCOLOR2);
+}
+
+/**** NEXT ART  ****/
+
+div.art-content-next {
+  height: 100%;
+  width: 100%;
+}
+div.card-art-next {
+  background-color: #94AFAD;
+  height: fit-content;
+  width: 100%;
+  border-radius: 12px;
+  padding: 1rem;
+}

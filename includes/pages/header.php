@@ -16,6 +16,5 @@
     <!-- <script src="assets/javascript/script.js"></script> -->
     <script src="./script-nav.js"></script>
     <script src="./script-slider.js"></script>
-</head>
 <body>
     <main>

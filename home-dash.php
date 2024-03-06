@@ -11,11 +11,9 @@ include "includes/pages/nav-head.php";
 ;?>
 
 <div class="calendar">
-    test
     <?php ;?>
 </div>
 <div class="calendar-daily">
-    test
     <?php ;?>
 </div>
 <div class="art-state">
