@@ -1,4 +1,5 @@
 <div class="nav-contain">
+    
     <div class="user">
         <h1>Nom Prénom PHP</h1>
     </div>
@@ -9,5 +10,5 @@
         </div>
         <input type="text" placeholder="Rechercher...">
     </div>
-    
+    <div class="home-btn"><a href="home-dash.php">Home</a></div>
 </div>

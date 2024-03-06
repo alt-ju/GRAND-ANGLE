@@ -191,14 +191,7 @@
     font-weight: 700;
   }
    
-  .plus{
-    width: 20px;
-    height: 20px;
-    background-color: var(--PRIMARY);
-  border-radius: 50%;
-  margin-left: 10px;
-  }
-   
+ 
   .plus:hover{
   background-color: var(--ACCENT1);
   }
@@ -265,21 +258,32 @@
     color: red;
   }
 
-
+  div.form-divs svg#add-pup {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--PRIMARY);
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+   
   
   /***********   list artist  ***********/
+
+  .container-list-artist {
+    grid-column: 2/12;
+    grid-row: 3/12;
+    overflow-y: scroll;
+  }
  
 .page-artist{
     background-color: var(--SECONDARY);
-    margin-top:100px;
-    width:850px;
-   
     margin-left: auto;
     margin-right: auto;
     border-radius: 12px;
   }
    
   .title-page-artist{
+    color: #94AFAD;
     font-family: var(--FONTTITLE);
     font-weight: 700;
     width:50%;
@@ -302,7 +306,7 @@
    
   .search-bar{
   width: 250px;
-  height:30px;
+  height:40px;
   border-radius: 4px;
   margin-right: 10PX;
   }
@@ -319,9 +323,9 @@
     padding: 0;
   }
   .plus{
-    background-color: var(--PRIMARY);
-    width: 20px;
-    height: 20px;
+    background-color: var(--ACCENT1);
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     justify-content: center;
     align-items: center;

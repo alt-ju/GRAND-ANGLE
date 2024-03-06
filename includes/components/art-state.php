@@ -22,7 +22,7 @@ $db = null;
             <div class="card swiper-slide">
                 <div class="image-content">
                     <div class="card-image">
-                        <img src=".<?= $oeuvre["chemin_Image"];?>" alt="" class="card-img">
+                        <img src="./artwork/<?= $oeuvre["chemin_Image"];?>" alt="" class="card-img">
                     </div>
                     <div clas="card-content">
                         <h2 class="name"><?= $oeuvre["libelle_Image"]?></h2>
