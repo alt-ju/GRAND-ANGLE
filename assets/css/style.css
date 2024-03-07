@@ -225,13 +225,14 @@
   }
 
   div.home-btn {
-    background-color: var(--ACCENT1);
+    background-color: transparent;
     padding: 0.75rem 1.25rem;
     border-radius: 50px;
+    border: 2px solid var(--ACCENT1)
   }
   
   div.home-btn a {
-    color: var(--FONTCOLOR2);
+    color: var(--ACCENT1);
   }
   
   /********* DASHBOARD HOME **********/

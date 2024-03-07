@@ -115,14 +115,14 @@ $services = $requete->fetchAll(PDO::FETCH_ASSOC);
           <label for="nom">Nom :</label>
         </div>
         <div class="form-divs">
-          <input type="text" id="nom" class="field-add-collab" name="nom" placeholder="Nom :">
+          <input type="text" id="nom" class="field-add-collab" name="nom" placeholder="Nom">
           <div class="red"><?php echo $errors['nom']; ?></div>
         </div>
         <div class="form-divs">
           <label for="prenom">Prenom :</label>
         </div>
         <div class="form-divs">
-          <input type="text" id="prenom" class="field-add-collab" name="prenom" placeholder="Prenom :">
+          <input type="text" id="prenom" class="field-add-collab" name="prenom" placeholder="Prenom">
           <div class="red"><?php echo $errors['prenom']; ?></div>
         </div>
 

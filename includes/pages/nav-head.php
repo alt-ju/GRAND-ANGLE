@@ -11,4 +11,5 @@
         <input type="text" placeholder="Rechercher...">
     </div>
     <div class="home-btn"><a href="home-dash.php">Home</a></div>
+    <div class="home-btn deconnexion"><a href="deconnexion.php">Déconnexion</a></div>
 </div>
