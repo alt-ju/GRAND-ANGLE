@@ -1,10 +1,7 @@
 <?php
 
-$title = "Ajouter un collaborateur";
-include "../pages/header.php";
-include "../pages/navbarr.php";
+require_once "./config/pdo.php";
 
-require_once "../../config/pdo.php";
 $nom = $prenom = $email = $pass= $service ='';
 $errors = array('nom'=>'','prenom'=>'','email'=>'','pass'=>'','service-select' =>'');
 
@@ -83,9 +80,8 @@ if(!array_filter($errors)){
 }
 $sqlService1 = "SELECT Id_Service,libelle_Service FROM service";
 $requete = $db -> query($sqlService1);
-  $services = $requete->fetchAll(PDO::FETCH_ASSOC);
+$services = $requete->fetchAll(PDO::FETCH_ASSOC);
  
- /*  require_once './config/pdo.php';  */
  $error= array('creat-service'=>'');
  if(isset($_POST['valid'])){
    if(empty($_POST['creat-service'])){
@@ -114,19 +110,19 @@ $requete = $db -> query($sqlService1);
 
 <div class="add-collab-contain">
       <form action="" method="POST" class="add-collab">
-        <h2 class="title-form">Ajouter un collaboratuer</h2>
+        <h2 class="title-form">Ajouter un collaborateur</h2>
         <div class="form-divs">
           <label for="nom">Nom :</label>
         </div>
         <div class="form-divs">
-          <input type="text" id="nom" class="field-add-collab" name="nom" placeholder="">
+          <input type="text" id="nom" class="field-add-collab" name="nom" placeholder="Nom :">
           <div class="red"><?php echo $errors['nom']; ?></div>
         </div>
         <div class="form-divs">
           <label for="prenom">Prenom :</label>
         </div>
         <div class="form-divs">
-          <input type="text" id="prenom" class="field-add-collab" name="prenom" placeholder="">
+          <input type="text" id="prenom" class="field-add-collab" name="prenom" placeholder="Prenom :">
           <div class="red"><?php echo $errors['prenom']; ?></div>
         </div>
 
@@ -156,7 +152,7 @@ $requete = $db -> query($sqlService1);
           <div class="red"><?php echo $errors['email']; ?></div>
         </div>
         <div class="form-divs">
-          <label for="pass">Mot De Pass :</label>
+          <label for="pass">Mot De Passe :</label>
         </div>
         <div class="form-divs">
           <input type="password" class="field-add-collab" id="pass" name="pass">
@@ -176,11 +172,11 @@ $requete = $db -> query($sqlService1);
               <label for="creat-service">Ajouter un service :</label>
             </div>
             <div class="form-divs">
-              <input type="text" name="creat-service" id="creat-service" class="field-add-service" />
+              <input type="text" name="creat-service" id="creat-service" class="field-add-service" value="" placeholder="Nom du service :"/>
             </div>
             <div class="red"></div>
             <div class="login-input">
-              <button type="submit" name="valid" class="valider-service" value="Valider"></button>
+              <button type="submit" name="valid" class="valider-service" value="Valider">Valider</button>
 
             </div>
           </form>
@@ -199,6 +195,4 @@ $requete = $db -> query($sqlService1);
 
 </script>
 
-</body>
-</html>
 

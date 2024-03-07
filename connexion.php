@@ -3,7 +3,6 @@
 $title = "Connexion";
 
 include "includes/pages/header.php";
-include "functions/filter.php";
 
 session_start();
 
@@ -84,3 +83,7 @@ if(!empty($_POST)) {
               <div class="red"></div>
       </form>
 </div>
+
+<?php 
+include "includes/pages/footer.php";
+;?>

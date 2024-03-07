@@ -10,6 +10,7 @@ $requeteArtNow = $db->query($sqlArtNow);
 $oeuvresNow = $requeteArtNow->fetchAll(PDO::FETCH_ASSOC);
 
 
+
 ;?>
 
 <div class="art-content-now">

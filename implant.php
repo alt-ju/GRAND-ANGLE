@@ -7,3 +7,7 @@ include "includes/pages/navbarr.php";
 
 
 ;?>
+
+<?php 
+include "includes/pages/footer.php";
+;?>

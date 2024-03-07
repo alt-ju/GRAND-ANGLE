@@ -7,7 +7,10 @@ include "includes/pages/nav-head.php";
 include "includes/pages/navbarr.php";
 
 require_once "./config/pdo.php";
-$sql = "SELECT artiste.*, dirart.* FROM artiste LEFT JOIN dirart ON artiste.id_DirArt = dirart.id_DirArt ORDER BY artiste.Id_Artiste ASC";
+$sql = "SELECT artiste.*, dirart.* 
+FROM artiste 
+LEFT JOIN dirart ON artiste.id_DirArt = dirart.id_DirArt 
+ORDER BY artiste.Nom_Artiste ASC";
 $requete = $db -> query($sql);
 $artists = $requete->fetchAll(PDO::FETCH_ASSOC);
 $db = null;
@@ -20,5 +23,7 @@ $db = null;
 
 </div>
 
-</body>
-</html>
+
+<?php 
+include "includes/pages/footer.php";
+;?>

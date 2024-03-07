@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/styleM.css">
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css">
     
     <!-- <script src="assets/javascript/script.js"></script> -->
     <script src="./script-nav.js"></script>

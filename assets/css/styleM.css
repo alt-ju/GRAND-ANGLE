@@ -4,6 +4,11 @@
     grid-row: 2/12;
     background-color: var(--SECONDARY);
     border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .page-exposition h2 {
+    color : #78908E;
   }
 
   .list-collab-contain {
@@ -93,6 +98,10 @@
   .list-collab tr:nth-of-type(even){
     background-color: #fff;
   }
+
+  td.svg-expo {
+    display: flex;
+  }
   
   .ctr-icon svg{
     fill: var(--FONTCOLOR2);
@@ -106,9 +115,16 @@
   }
   
   /***********   PAGE ADD COLLABORATEUR  et ADD SERVICE ***********/
+  
+  .add-collab-contain {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
   .add-collab{
     width: 1000px;
-    height:900px;
     margin-top:2%;
     margin-left:auto;
     margin-right: auto;
@@ -137,8 +153,8 @@
     border-radius: 25px;
     padding: 5px;
     margin: 15px 10px;
-    background-color: var(--PRIMARY);
-    color:var(--FONTCOLOR);
+    background-color: var(--ACCENT1);
+    color:var(--FONTCOLOR2);
     font-weight: 700;
   }
    
@@ -148,14 +164,16 @@
     font-family: var(--FONTTITLE);
     font-weight: 700;
   }
+
   .valider-service{
     width: 120px;
+    height: fit-content;
     border:none;
     border-radius: 25px;
     padding: 5px;
     margin: 10px 25px;
-    background-color: var(--PRIMARY);
-    color:var(--FONTCOLOR);
+    background-color: var(--ACCENT1);
+    color:var(--FONTCOLOR2);
     font-weight: 700;
   }
    
@@ -271,12 +289,29 @@
   
   /***********   list artist  ***********/
 
+  
+
   .container-list-artist {
     grid-column: 2/12;
     grid-row: 3/12;
     overflow-y: auto;
     height: 100%;
     width: 100%;
+    position: relative;
+  }
+
+  .search-bar-div {
+    display: flex;
+  }
+
+  .btn-dirart {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .expo-spe {
+    position: relative;
   }
  
 .page-artist{
@@ -300,27 +335,16 @@
   }
    
   .search-container{
-    width: 73%;
     margin-left: auto;
     margin-right: auto;
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
-   
-  .search-bar{
-  width: 250px;
-  height:40px;
-  border-radius: 4px;
-  margin-right: 10PX;
-  }
+
    
   .search-btn{
-    width: 40px;
-    position: absolute;
-    left:210px;
-    top:15%;
     background-color: transparent;
     border: none;
   }
@@ -385,9 +409,143 @@
       padding: 1rem 1.25rem;
       border-radius: 50px;
       border: none;
-      background-color: var(--ACCENT1);  
+      background-color: #78908E;  
     }
 
     .btn-dirart button a {
-      color: var(--FONTCOLOR2); 
+      color: var(--FONTCOLOR); 
     }
+
+/*********** Liste exposition ***********/
+
+  .tab-expo-contain {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+  }
+
+  .page-exposition{
+    background-color: var(--SECONDARY);
+    width:850px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+  }
+     
+  .title-page-expo{
+    font-family: var(--FONTTITLE);
+    font-weight: 700;
+    width:50%;
+    margin-left: auto;
+    margin-right:auto;
+    margin-bottom: 40px;
+    padding-top: 40px;
+    text-align: center;
+    font-size: 1.4rem;
+  }
+     
+  .search-container-expo{
+    margin-left: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+     
+  .search-btn{
+    width: 40px;
+    background-color: transparent;
+    border: none;
+  }
+
+  .search-btn svg{
+    padding: 0;
+  }
+
+  .plus{
+    background-color: var(--PRIMARY);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    fill: #fff;
+  }
+
+  .plus:hover{
+    background-color: var(--ACCENT1);
+    cursor: pointer;
+    fill: #252525;
+  }
+
+  .table-expo{
+    display: flex;
+    justify-content: center;
+  }
+     
+  .list-expo{
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+    min-width:500px;
+    text-align: center;
+    background-color: var(--BGCOLORPR);
+  }
+     
+  .list-expo thead{
+    background-color: var(--PRIMARY);
+    color: var(--FONTCOLOR);
+    font-weight: bold;
+    text-align: center;
+    border-top-left-radius: 25px;
+    border-top-left-radius: 25px;
+  }
+     
+  .list-expo th,td{
+    padding: 10px;
+  }
+     
+  .list-expo tbody,tr{
+    border: 1px solid #ddd;
+  }
+     
+  .list-expo tr:nth-of-type(even){
+    background-color: #fff;
+  }
+
+  input.search-bar {
+    width: 14rem;
+    border-radius: 12px;
+    padding: 0.5rem;
+  }
+
+
+/***********  form-add-dirart ***********/
+
+.form-add-dirart{
+  width:700px;
+  height: 500px;
+  margin-top:20px;
+  margin-left:auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--SECONDARY);
+  color: var(--FONTCOLOR2);
+  border-radius: 25px;
+  font-family: var(--FONTTEXT);
+  font-weight: 500;
+}
+ 
+.title-form-add-dirart{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  font-family: var(--FONTTITLE);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+      

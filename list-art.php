@@ -44,9 +44,9 @@ include "includes/pages/navbarr.php";
 
     document.addEventListener("DOMContentLoaded", function () {
         divPast.style.display = "none";
-        divNow.style.display = "flex";
-        divNext.style.display = "none";
-        nowBtn.classList.toggle('btnActive');
+        divNow.style.display = "none";
+        divNext.style.display = "flex";
+        nextBtn.classList.toggle('btnActive');
     });
 
     const pastBtn = document.getElementById('past')
@@ -82,5 +82,6 @@ include "includes/pages/navbarr.php";
 
 </script>
  
-</main>
-</body>
+<?php 
+include "includes/pages/footer.php";
+;?>

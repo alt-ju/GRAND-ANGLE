@@ -7,7 +7,6 @@ include "includes/pages/header.php";
 include "includes/pages/navbarr.php";
 include "includes/pages/nav-head.php";
 
-
 ;?>
 
 <div class="calendar">
@@ -20,5 +19,6 @@ include "includes/pages/nav-head.php";
     <?php include "includes/components/art-state.php";?>
 </div>
 
-</main>
-</body>
+<?php 
+include "includes/pages/footer.php";
+;?>
