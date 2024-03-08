@@ -624,6 +624,10 @@ div.oeuvre-unique-infos {
   gap: 1rem;
 }
 
+div.div-libelle-add-oeuvre label {
+  font-weight: 700;
+}
+
 div.div-photo-add-oeuvre {
   display: flex;
   justify-content: center;
@@ -691,8 +695,8 @@ div.multi {
   width: 100%;
 }
 
-div.input-dimensions input.dim-add-oeuvre {
-  width: 4rem;
+input.dim-add-oeuvre {
+  width: 6rem;
 }
 
 div.input-infos-supp {
