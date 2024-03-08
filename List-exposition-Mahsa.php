@@ -1,4 +1,6 @@
 <?php
+
+$title = "Liste des expositions";
 require_once "./config/pdo.php";
 
 include "includes/pages/header.php";
