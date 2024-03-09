@@ -33,7 +33,7 @@ $sql = "SELECT * FROM position";
 $requetePosition = $db->query($sql);
 $positions = $requetePosition->fetchAll(PDO::FETCH_ASSOC);
 
-$sql = "SELECT Nom_Artiste, Prenom_Artiste FROM artiste";
+$sql = "SELECT Id_Artiste, Nom_Artiste, Prenom_Artiste FROM artiste";
 $requeteArtiste = $db->query($sql);
 $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC);
 
@@ -73,36 +73,13 @@ if(!empty($_POST)) {
             $error = "Le prix ne doit contenir que des numéros";
         }
 
-        $sqlExpo = "SELECT Id_Exposition, libelle_Exposition FROM exposition WHERE libelle_Exposition = :libelle_Exposition";
-        $queryExpo = $db->prepare($sqlExpo);
-        $queryExpo->bindParam(":libelle_Exposition", $_POST["exposition"], PDO::PARAM_STR);
-        $queryExpo->execute();
-        $rowExpo = $queryExpo->fetch(PDO::FETCH_ASSOC);
-        $id_expo = $rowExpo["Id_Exposition"];
-
-        $sqlType = "SELECT Id_Type, libelle_Type FROM type_oeuvre WHERE libelle_Type = :libelle_Type";
-        $queryType = $db->prepare($sqlType);
-        $queryType->bindParam(":libelle_Type", $_POST['type'], PDO::PARAM_STR);
-        $queryType->execute();
-        $rowType = $queryType->fetch(PDO::PARAM_STR);
-        $id_type = $rowType['Id_Type'];
-
-        $sqlPos = "SELECT Id_Position, libelle_Position FROM position WHERE libelle_Position = :libelle_Position";
-        $queryPos = $db->prepare($sqlPos);
-        $queryPos->bindParam(":libelle_Position", $_POST["position"], PDO::PARAM_STR);
-        $queryPos->execute();
-        $rowPos = $queryPos->fetch(PDO::FETCH_ASSOC);
-        $id_pos = $rowPos["Id_Position"];
-
-        $sqlArtist = "SELECT Id_Artiste, Nom_Artiste, Prenom_Artiste FROM artiste WHERE Nom_Artiste = :Nom_Artiste AND Prenom_Artiste = :Prenom_Artiste";
-        $queryArtist = $db->prepare($sqlArtist);
-        $queryArtist->bindParam(":Nom_Artiste", $_POST["artiste"], PDO::PARAM_STR);
-        $queryArtist->bindParam(":Prenom_Artiste", $_POST["artiste"], PDO::PARAM_STR); 
-        $queryArtist->execute();
-        $rowArtist = $queryArtist->fetch(PDO::FETCH_ASSOC);
-        $id_artist = $rowArtist["Id_Artiste"];
+        if(isset($_POST["state"])) {
+            $_POST["state"] => 1;
+        } else {
+            $_POST["state"] => 0;
+        }
        
-        $sql = "INSERT INTO oeuvres(libelle_Oeuvre, hauteur_Oeuvre, largeur_Oeuvre, profondeur_Oeuvre, poids_Oeuvre, prix, Id_Exposition, Id_position, Id_Type, Id_Artiste) VALUES (:libelle_Oeuvre, :hauteur_Oeuvre, :largeur_Oeuvre, :profondeur_Oeuvre, :poids_Oeuvre, :prix, :Id_Exposition, :Id_Position, :Id_Type, :Id_Artiste)";
+        $sql = "INSERT INTO oeuvres(libelle_Oeuvre, hauteur_Oeuvre, largeur_Oeuvre, profondeur_Oeuvre, poids_Oeuvre, prix, etat_Oeuvre, Id_Exposition, Id_position, Id_Type, Id_Artiste) VALUES (:libelle_Oeuvre, :hauteur_Oeuvre, :largeur_Oeuvre, :profondeur_Oeuvre, :poids_Oeuvre, :prix, :etat_Oeuvre, :Id_Exposition, :Id_Position, :Id_Type, :Id_Artiste)";
         $query = $db->prepare($sql);
         $query->bindValue(":libelle_Oeuvre", $libelle, PDO::PARAM_STR);
         $query->bindValue(":hauteur_Oeuvre", $_POST["hauteur"], PDO::PARAM_STR);
@@ -110,31 +87,23 @@ if(!empty($_POST)) {
         $query->bindValue(":profondeur_Oeuvre", $_POST["profondeur"], PDO::PARAM_STR);
         $query->bindValue(":poids_Oeuvre", $_POST["poids"], PDO::PARAM_STR);
         $query->bindValue(":prix", $_POST["prix"], PDO::PARAM_STR);
-        $query->bindValue(":Id_Exposition", $id_expo, PDO::PARAM_STR);
-        $query->bindValue(":Id_Position", $id_pos, PDO::PARAM_STR);
-        $query->bindValue(":Id_Type", $id_type, PDO::PARAM_STR);
+        $query->bindValue(":etat_Oeuvre", $_POST["state"], PDO::PARAM_INT);
+        $query->bindValue(":Id_Exposition", $_POST["exposition"], PDO::PARAM_STR);
+        $query->bindValue(":Id_Position", $_POST["position"], PDO::PARAM_STR);
+        $query->bindValue(":Id_Type", $_POST["type"], PDO::PARAM_STR);
         $query->bindValue(":Id_Artiste", $_POST["artiste"], PDO::PARAM_STR);
         $query->execute();
 
         $idOeuvre = $db->lastInsertId();
 
-        if ($_FILES['imgOeuvre']['error'] === 0) {
-            $tmp_path = $_FILES['imgOeuvre']['tmp_name'];
-            // $filename = uniqid() . '.' . pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
-            $filename = $_FILES['imgOeuvre']['name'];
-            $destination = 'artwork/' . $filename;
-            move_uploaded_file($tmp_path, $destination);
+        $sql = "INSERT INTO image(libelle_Image, chemin_Image, Id_oeuvre) VALUES (:libelle_Image, :chemin_Image, :Id_Oeuvre)";
+        $query = $db->prepare($sql);
+        $query->bindValue(":libelle_Image", $_POST['libelleImg'], PDO::PARAM_STR); 
+        $query->bindValue(":chemin_Image", $_POST['imgOeuvre'], PDO::PARAM_STR); 
+        $query->bindValue(":Id_Oeuvre", $idOeuvre, PDO::PARAM_STR);
+        $query->execute();
 
-            $sql = "INSERT INTO images(libelle_image, chemin_Image, Id_oeuvre) VALUES (:libelleImg, :imgOeuvre, '$idOeuvre')";
-            $query = $db->prepare($sql);
-            $query = bindValue(":libelle_image", $_POST['libelleImg'], PDO::PARAM_STR); 
-            $query = bindValue(":chemin_image", $_POST['imgOeuvre'], PDO::PARAM_STR); 
-            $query = bindValue(":Id_Oeuvre", '$idOeuvre', PDO::PARAM_STR);
-            $query->execute();
-
-            $idImage = $db->lastInsertId();
-        
-        }
+        $idImage = $db->lastInsertId();
 
         echo "Great";
 
@@ -163,6 +132,7 @@ if(!empty($_POST)) {
                 </div>
                 <div class="container-img-oeuvre">
                     <span>*</span>
+                    <img src="../assets/img/imgvide.webp" alt="">
                     <input type="file" name="imgOeuvre" id="imgOeuvre" accept="image/*">
                     <!-- <div class="add-img-plus">
                         <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
@@ -196,7 +166,7 @@ if(!empty($_POST)) {
                 <div class="select-type-add-oeuvre">
                     <select name="type" id="type">
                         <?php foreach($types as $type) :?>
-                        <option value="<?php echo $type["libelle_Type"]?>"><?php echo $type["libelle_Type"]?></option>
+                        <option value="<?php echo$type["Id_Type"]?>"><?php echo $type["libelle_Type"]?></option>
                         <?php endforeach;?>
                     </select>
                     <span>*</span>
@@ -211,7 +181,7 @@ if(!empty($_POST)) {
                 <div class="select-type-add-oeuvre">
                     <select name="exposition" id="exposition">
                         <?php foreach($expositions as $exposition) :?>
-                        <option value="<?php echo $exposition["libelle_Exposition"]?>"><?php echo $exposition["libelle_Exposition"]?></option>
+                        <option value="<?php echo $exposition["Id_Exposition"]?>"><?php echo $exposition["libelle_Exposition"]?></option>
                         <?php endforeach;?>
                     </select>
                     <span>*</span>
@@ -225,7 +195,7 @@ if(!empty($_POST)) {
                 <div class="select-type-add-oeuvre">
                     <select name="position" id="position">
                         <?php foreach($positions as $position) :?>
-                        <option value="<?php echo $position["libelle_Position"]?>"><?php echo $position["libelle_Position"]?></option>
+                        <option value="<?php echo $position["Id_Position"]?>"><?php echo $position["libelle_Position"]?></option>
                         <?php endforeach;?>
                     </select>
                     <span>*</span>
@@ -250,6 +220,11 @@ if(!empty($_POST)) {
                     <div class="info-prix-add">
                         <input type="text"  class="dim-add-oeuvre" name="prix" id="prix" value="" placeholder="Prix">
                     </div>
+                </div>
+
+                <div>
+                    <label for="state">Livrée</label>
+                    <input type="checkbox" name="state" id="state">
                 </div>
                 
             </div>
