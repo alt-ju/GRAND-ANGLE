@@ -73,11 +73,20 @@ if(!empty($_POST)) {
             $error = "Le prix ne doit contenir que des numéros";
         }
 
-        if(isset($_POST["state"])) {
-            $_POST["state"] => 1;
+        if(isset($_POST["state"]) && $_POST["state"]) {
+            $_POST["state"] = 1;
+            
         } else {
-            $_POST["state"] => 0;
+            $_POST["state"] = 0;
         }
+
+        /* if ($_FILES['imgOeuvre']['error'] === 0) {
+            $tmp_path = $_FILES['imgOeuvre']['tmp_name'];
+            $filename = uniqid() . '.' . pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
+            $destination = 'assets/images/img_cards/' . $filename;
+            move_uploaded_file($tmp_path, $destination);
+        
+        } */
        
         $sql = "INSERT INTO oeuvres(libelle_Oeuvre, hauteur_Oeuvre, largeur_Oeuvre, profondeur_Oeuvre, poids_Oeuvre, prix, etat_Oeuvre, Id_Exposition, Id_position, Id_Type, Id_Artiste) VALUES (:libelle_Oeuvre, :hauteur_Oeuvre, :largeur_Oeuvre, :profondeur_Oeuvre, :poids_Oeuvre, :prix, :etat_Oeuvre, :Id_Exposition, :Id_Position, :Id_Type, :Id_Artiste)";
         $query = $db->prepare($sql);
@@ -132,23 +141,25 @@ if(!empty($_POST)) {
                 </div>
                 <div class="container-img-oeuvre">
                     <span>*</span>
-                    <img src="../assets/img/imgvide.webp" alt="">
-                    <input type="file" name="imgOeuvre" id="imgOeuvre" accept="image/*">
-                    <!-- <div class="add-img-plus">
-                        <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-                    </div> -->
-                    <div>
-                        <input type="text" name="libelleImg" id="libelleImg" placeholder="Libellé de l'image">
+                    <div class="image-svg-container">
+                        <img src="assets/img/imgvide.webp" alt="">
+                        <img id="preview-image" src="" alt="">
+                        <!-- <div class="add-img-plus">
+                            <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                        </div> -->
                     </div>
                 </div>
                 <div class="arrow-right-btn">
                     <button><svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></button>
                 </div>
             </div>
-
+            <div>
+                <input type="file" name="imgOeuvre" id="imgOeuvre" accept="image/*">
+                <input type="text" name="libelleImg" id="libelleImg" placeholder="Libellé de l'image">
+            </div>
             <div class="div-infos-oeuvre">
-                
                 <div class="select-type-add-oeuvre">
+                    <label for="artiste">Artiste :</label>
                     <select name="artiste" id="artiste">
                         <?php foreach($artistes as $artiste) :?>
                         <option value="<?php echo $artiste["Id_Artiste"]?>"><?php echo $artiste["Nom_Artiste"]?> <?php echo $artiste["Prenom_Artiste"]?></option>
@@ -164,6 +175,7 @@ if(!empty($_POST)) {
                 </div>
             
                 <div class="select-type-add-oeuvre">
+                    <label for="type">Type d'oeuvre :</label>
                     <select name="type" id="type">
                         <?php foreach($types as $type) :?>
                         <option value="<?php echo$type["Id_Type"]?>"><?php echo $type["libelle_Type"]?></option>
@@ -179,6 +191,7 @@ if(!empty($_POST)) {
                 </div>
 
                 <div class="select-type-add-oeuvre">
+                    <label for="exposition">Exposition: </label>
                     <select name="exposition" id="exposition">
                         <?php foreach($expositions as $exposition) :?>
                         <option value="<?php echo $exposition["Id_Exposition"]?>"><?php echo $exposition["libelle_Exposition"]?></option>
@@ -193,6 +206,7 @@ if(!empty($_POST)) {
                     </div>
                 </div>
                 <div class="select-type-add-oeuvre">
+                    <label for="position">Position :</label>
                     <select name="position" id="position">
                         <?php foreach($positions as $position) :?>
                         <option value="<?php echo $position["Id_Position"]?>"><?php echo $position["libelle_Position"]?></option>
@@ -242,7 +256,7 @@ if(!empty($_POST)) {
                     <h2>Dernière modification faite par :</h2>
                     <span>Nom Prénom Collaborateur</span>
                 </div>
-                <textarea name="description" id="description" cols="40" rows="20"></textarea>
+                <textarea name="description" id="description" cols="40" rows="10"></textarea>
             </div>
             <div class="div-select-langue">
                 <select name="langues" id="langues">
@@ -283,6 +297,22 @@ if(!empty($_POST)) {
     </div>
 </div>
 </div>
+
+<script>
+    const inputFile = doucment.querySelector(".div-photo-add-oeuvre input[type=file]");
+
+    inputFile.addEventListener("change" function (event) {
+        const file = event.target.file[0];
+        const reader = new FileReader();
+        reader.addEventListener('load', function () {
+            const previewImage = document.querySelector('img#preview-image');
+            previewImage.src = reader.result,
+            previewImage.style.display = "block";
+        });
+
+        reader.readAsDataUrl(file);
+    })
+</script>
 
 
 <?php 

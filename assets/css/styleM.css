@@ -1,6 +1,6 @@
 /***********   GESTION des collaborateur ***********/
 .gestion{
-    grid-column: 2/12;
+    grid-column: 2/13;
     grid-row: 2/12;
     background-color: var(--SECONDARY);
     border-radius: 12px;

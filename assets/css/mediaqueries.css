@@ -1,0 +1,12 @@
+@media (max-width: 820px) {
+
+    .gestion {
+        grid-column: 2/13;
+    }
+    
+
+    div.col {
+        grid-column:1/13;
+        overflow-y:scroll;
+    }
+}

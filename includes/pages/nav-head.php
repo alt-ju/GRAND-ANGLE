@@ -1,7 +1,22 @@
+<?php
+
+session_start();
+
+include "./config/pdo.php";
+
+$id = $_SESSION['user']['id'];
+
+$sql = "SELECT id_Collaborateur, nom_Collaborateur, Prenom_Collaborateur FROM collaborateur";
+$requete = $db->query($sql);
+$collaborateurs = $requete->fetchAll(PDO::FETCH_ASSOC);
+;?>
+
 <div class="nav-contain">
     
     <div class="user">
-        <h1>Nom Prénom PHP</h1>
+        <?php if(isset($_SESSION['id'])) :?>
+        <h1><?php $user["Prenom_Collaborateur"] $user["Nom_Collaborateur"]</h1>
+        <?php endif;?>
     </div>
    
     <div class="searchbar"> 
