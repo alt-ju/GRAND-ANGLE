@@ -44,12 +44,13 @@ if(!empty($_POST)) {
     $_SESSION["user"] = [
       "id" => $user["id_Collaborateur"],
       "nom" => $user["Nom_Collaborateur"],
-      "prenom" => $user["Prenom_Collaborateur"],
+      "prenom" => $user["prenom_Collaborateur"],
       "email" => $user["Email_Collaborateur"],
       "roles" => $rolesArray
     ];
 
     header("Location: home-dash.php");
+    exit;
 
   } else {
     die("NOPE");

@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 $title = "Mon tableau de bord";
 
 

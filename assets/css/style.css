@@ -844,3 +844,57 @@ div.consultations {
   border-radius: 10px;
 }
 
+/*********** CONTENU ENRICHI  ***********/
+
+div.background {
+  background-color: transparent;
+}
+
+div.contenu-content {
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 10px;
+}
+
+div.contenu-container-sec {
+  background-color: var(--SECONDARY);
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+div.contenu-enrichi-video,
+div.contenu-enrichi-audio {
+  background-color: var(--SECONDARY);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+div.contenu-enrichi-video {
+   grid-column : 1/7;
+}
+
+div.contenu-enrichi-audio {
+  grid-column : 7/13;
+}
+
+div.box-contenu-enrichi {
+  display: flex;
+  background-color: #78908E;
+  height: fit-content;
+  width: 100%;
+}
+
+div.delete-contenu {
+  width: fit-content;
+}
+
+div.delete-contenu a svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: var(--FONTCOLOR2);
+}
