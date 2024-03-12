@@ -1,47 +1,3 @@
-<?php 
-
-$sql = "SELECT * FROM langue";
-$requeteLangue = $db->query($sql);
-$langues = $requeteLangue->fetchAll(PDO::FETCH_ASSOC);
-
-
-$sql = "SELECT oeuvres.Id_Oeuvre, oeuvres.libelle_Oeuvre, artiste.Nom_Artiste, artiste.Prenom_Artiste
-        FROM oeuvres 
-        JOIN artiste ON oeuvres.Id_Artiste = artiste.Id_Artiste";
-$requeteOeuvre = $db->query($sql);
-$oeuvres = $requeteOeuvre->fetchAll(PDO::FETCH_ASSOC);
-
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-
-if(!empty($_POST["description-submit"])) {
-    if(isset($_POST["description"], $_POST["langues"], $_POST["oeuvre"], $_POST["libelleContenu"], $_POST["auteur"])
-    && !empty($_POST["description"]) && !empty($_POST["langues"]) && !empty($_POST["libelleContenu"]) && !empty($_POST["auteur"]) && !empty($_POST["oeuvre"])) {
-
-        $description = filtrage($_POST["description"]);
-
-        $sqlDescr = "INSERT INTO contenu(description_Contenu, Auteur_Contenu, libelle_contenu, Id_oeuvre, Id_Langue) VALUES (:description_Contenu, :Auteur_Contenu, :libelle_contenu, :Id_oeuvre, :Id_Langue)";
-        $query = $db->prepare($sqlDescr);
-        $query->bindValue(":description_Contenu", $_POST["description"], PDO::PARAM_STR);
-        $query->bindValue(":Auteur_Contenu", $_POST["auteur"], PDO::PARAM_STR);
-        $query->bindValue(":libelle_contenu", $_POST["libelleContenu"], PDO::PARAM_STR);
-        $query->bindValue(":Id_oeuvre", $_POST["oeuvreConc"], PDO::PARAM_INT);
-        $query->bindValue(":Id_Langue", $_POST["langues"], PDO::PARAM_INT);
-        $query->execute();
-
-        $idDesc = $db->lastInsertId();
-
-        echo "Done";
-    } else {
-        die("Wrong");
-    }
-}
-
-}
-
-
-;?>
-
-
 <form action="" method="POST">
     <div class="add-oeuvre-descr">
         <div class="add-description">
@@ -89,19 +45,4 @@ if(!empty($_POST["description-submit"])) {
             <input type="submit" name="description-submit" id="description-submit" value="Valider">
         </div>  
     </div>   
-</form>   
-            
-        <div class="oeuvre-contenu-supp">
-            <div class="btn-page-contenu">
-                <button><a href="contenu-enrichi.php">Voir le contenu enrichi</a></button>
-            </div>
-            <div class="div-qrcode">
-
-            </div>
-            <div class="compteur-consult">
-
-            </div>
-            <div class="consultations">
-                <p>Nombre de consultations : 0</p>
-            </div>
-        </div>
+</form> 

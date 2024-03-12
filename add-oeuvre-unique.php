@@ -24,8 +24,8 @@ function filtrage($data) {
     <div class="oeuvre-unique-contain">
 
         <div class="oeuvre-unique-infos col">
-            <?php include "includes/components/add-oeuvre-infos.php" ;?>
-        </div>
+        <?php include "includes/components/add-oeuvre-infos.php" ;?>
+        </div> 
 
         <div class="oeuvre-unique-contenu col">
             <?php include "includes/components/add-oeuvre-description.php" ;?>
