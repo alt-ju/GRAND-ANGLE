@@ -19,7 +19,20 @@ $positions = $requetePosition->fetchAll(PDO::FETCH_ASSOC);
 
 $sql = "SELECT Id_Artiste, Nom_Artiste, Prenom_Artiste FROM artiste";
 $requeteArtiste = $db->query($sql);
-$artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC);
+$artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC); 
+
+/* function fetchAllFromTable($db, $table, $columns = '*')
+{
+    $sql = "SELECT $columns FROM $table";
+    $query = $db->query($sql);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+ 
+$expositions = fetchAllFromTable($db, 'exposition');
+$types = fetchAllFromTable($db, 'type_oeuvre');
+$positions = fetchAllFromTable($db, 'position');
+$artistes = fetchAllFromTable($db, 'artiste', 'Id_Artiste, Nom_Artiste, Prenom_Artiste');
+ */
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -65,6 +78,30 @@ if(!empty($_POST["infos-submit"])) {
        } else {
            $_POST["state"] = 0;
        }
+
+       /* if(empty($_POST["libelle"])) {
+        $erreur = "Ce champ est obligatoire.";
+       }
+
+       if(empty($_POST["imgOeuvre"])) {
+        $erreur = "Ce champ est obligatoire.";
+       }
+
+       if(empty($_POST["libelleImg"])) {
+        $erreur = "Ce champ est obligatoire.";
+       }
+
+       if(empty($_POST["type"])) {
+        $erreur = "Ce champ est obligatoire.";
+       }
+
+       if(empty($_POST["exposition"])) {
+        $erreur = "Ce champ est obligatoire.";
+       }
+
+       if(empty($_POST["position"])) {
+        $erreur = "Ce champ est obligatoire.";
+       } */
 
        /* if ($_FILES['imgOeuvre']['error'] === 0) {
            $tmp_path = $_FILES['imgOeuvre']['tmp_name'];
@@ -114,7 +151,7 @@ if(!empty($_POST["infos-submit"])) {
         <form action="" method="POST" enctype="multipart/form-data">
 
             <div class="div-libelle-add-oeuvre">
-                <label for="libelle">Libellé de l'oeuvre :</label>
+                <label for="libelle">Nom de l'oeuvre :</label>
                 <input type="text" name="libelle" id="libelle" class="field-add-oeuvre">
                 <span>*</span>
             </div>
@@ -124,7 +161,7 @@ if(!empty($_POST["infos-submit"])) {
                     <button><svg  viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></button>
                 </div>
                 <div class="container-img-oeuvre">
-                    <span>*</span>
+                    
                     <div class="image-svg-container">
                         <img src="assets/img/imgvide.webp" alt="">
                         <img id="preview-image" src="" alt="" >
@@ -138,6 +175,7 @@ if(!empty($_POST["infos-submit"])) {
                 </div>
             </div>
             <div>
+                <span>*</span>
                 <input type="file" name="imgOeuvre" id="imgOeuvre" accept="image/*">
                 <input type="text" name="libelleImg" id="libelleImg" placeholder="Libellé de l'image">
             </div>

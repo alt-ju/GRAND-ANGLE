@@ -50,7 +50,7 @@ if(!empty($_POST["description-submit"])) {
                 <span>Nom Prénom Collaborateur</span>
             </div>
             <div class="libelle-contenu">
-                <label for="libelleContenu">Libellé de la description</label>
+                <label for="libelleContenu">Nom de la description</label>
                 <input type="text" name="libelleContenu" id="libelleContenu">
             </div>
             <label for="description">Description  </label>

@@ -1,6 +1,6 @@
 <?php
 
-include "./config/pdo.php";
+require_once "./config/pdo.php";
 
 ;?>
 

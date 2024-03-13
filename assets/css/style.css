@@ -696,7 +696,6 @@ div.div-infos-oeuvre {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: center;
 }
 
 div.input-infos-oeuvre {
@@ -705,7 +704,6 @@ div.input-infos-oeuvre {
 
 div.multi {
   display: flex;
-  justify-content: space-evenly;
   width: 100%;
 }
 
@@ -730,7 +728,6 @@ div.position {
 div.select-type-add-oeuvre {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -897,4 +894,12 @@ div.delete-contenu a svg {
   width: 1.5rem;
   height: 1.5rem;
   fill: var(--FONTCOLOR2);
+}
+
+/******** UPDATE OEUVRE  *********/
+
+label.svg-add-img {
+  height: 1rem;
+  width: 1rem;
+  fill: #C1D734;
 }
