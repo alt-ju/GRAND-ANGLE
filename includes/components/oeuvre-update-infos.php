@@ -32,7 +32,106 @@ try {
     echo "Erreur de lors de la récupération du projet" . $e->getMessage();
 }
 
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $libelleOeuvre = $_POST['libelle'];
+    $img = $_FILES['imgOeuvre'];
+    $libelleImg = $_POST['libelleImg'];
+    $artiste = $_POST['artiste'];
+    $type = $_POST['type'];
+    $exposition = $_POST['exposition'];
+    $position = $_POST['position'];
+    $hauteur = $_POST['hauteur'];
+    $profondeur = $_POST['profondeur'];
+    $largeur = $_POST['largeur'];
+    $poids = $_POST['poids'];
+    $prix = $_POST['prix'];
+    $etat = isset($_POST['state']) ? 1 : 0;
 
+
+if (!empty($_FILES['imgOeuvre']['name'])) {
+    $cheminImage = './artwork/' . $_FILES['imgOeuvre']['name'];
+    move_uploaded_file($_FILES['imgOeuvre']['tmp_name'], $cheminImage);
+
+    $sql = ('UPDATE oeuvres SET oeuvres.libelle_Oeuvre = ?, oeuvres.hauteur_Oeuvre = ?, oeuvres.largeur_Oeuvre = ?, oeuvres.profondeur_Oeuvre = ?, oeuvres.poids_Oeuvre = ?, oeuvres.prix = ?, oeuvres.etat_Oeuvre = ?, oeuvres.Id_Exposition = ?, oeuvres.Id_Position = ?, oeuvres.Id_Type = ?, oeuvres.Id_Artiste = ? 
+    WHERE Id_oeuvre = ?');
+    try {
+        $requete = $db->prepare($sql);
+        $requete->execute([
+            $libelleOeuvre,
+            $hauteur, 
+            $largeur, 
+            $profondeur,
+            $poids,
+            $prix,
+            $etat,
+            $artiste,
+            $type,
+            $exposition, 
+            $position,
+            $id
+        ]);
+
+        $message = "Succès de la modification";
+    } catch (PDOException $e) {
+        echo 'Erreur lors de la mise à jour du projet 1' . $e->getMessage();
+        exit();
+    }
+
+    $sql = ('UPDATE image SET image.libelle_Image = ?, image.chemin_Image = ? WHERE Id_oeuvre = ?');
+    try {
+        $requeteImg = $db->prepare($sql);
+        $requeteImg->execute([
+            $libelleImg,
+            $_FILES['imgOeuvre']['name'],
+            $id
+        ]);
+
+        $message = "Succès de la modification";
+
+    } catch (PDOException $e) {
+        echo "Erreur lors de la mise à jour de l'image" . $e->getMessage();
+        exit();
+    }
+} else {
+    $sql2 = "UPDATE oeuvres SET libelle_Oeuvre = :libelle_Oeuvre, hauteur_Oeuvre = :hauteur_Oeuvre, largeur_Oeuvre = :largeur_Oeuvre, profondeur_Oeuvre = :profondeur_Oeuvre, prix = :prix, etat_Oeuvre = :etat_Oeuvre, Id_Exposition = :Id_Exposition, Id_Position = :Id_Position, Id_Type = :Id_Type, Id_Artiste = :Id_Artiste
+    WHERE Id_Oeuvre = :Id_Oeuvre";
+    try {
+        $requete2 = $db->prepare($sql2);
+        $requete2->execute([
+            ':libelle_Oeuvre' => $libelleOeuvre,
+            ':hauteur_Oeuvre' => $hauteur,
+            ':largeur_Oeuvre' => $largeur,
+            ':profondeur_Oeuvre' => $profondeur,
+            ':prix' => $prix,
+            ':etat_Oeuvre' => $etat,
+            ':Id_Exposition' => $exposition,
+            ':Id_Position' => $position,
+            ':Id_Type' => $type, 
+            ':Id_Artiste' => $artiste
+        ]);
+
+        $message = "La mise à jour du projet a bien été effectuée";
+
+        
+    } catch (PDOException $e) {
+        echo "Erreur lors de la mise à jour du projet 2" . $e->getMessage();
+        exit();
+    }
+
+    $sql2 = "UPDATE image SET libelle_Image = :libelle_Image, chemin_Image = :chemin_Image
+    WHERE Id_Oeuvre = :Id_Oeuvre";
+    try {
+        $requeteImg2 = $db->prepare($sql2);
+        $requeteImg2->execute([
+            ':libelle_Image' => $libelleImg,
+            ':chemin_Image' => $img
+        ]);
+    } catch (PDOException $e) {
+        echo "La mise à jour a bien été effectué " . $e->getMessage();
+        exit();
+    }
+}
+}
 
 ;?>
 

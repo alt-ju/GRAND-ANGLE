@@ -624,14 +624,25 @@ div.oeuvre-unique-infos {
   gap: 1rem;
 }
 
+div.oeuvre-unique-infos form div.select-type-add-oeuvre {
+  padding-top: 2rem;
+}
+
 div.div-libelle-add-oeuvre label {
   font-weight: 700;
+}
+
+.select-type-add-oeuvre label {
+    width: 8rem;
 }
 
 div.div-photo-add-oeuvre {
   display: flex;
   justify-content: center;
-  padding: 5%;
+}
+
+div.div-photo-add-oeuvre div {
+  height: fit-content;
 }
 
 div.arrow-left-btn,
@@ -698,10 +709,6 @@ div.div-infos-oeuvre {
   gap: 1rem;
 }
 
-div.input-infos-oeuvre {
-
-}
-
 div.multi {
   display: flex;
   width: 100%;
@@ -711,8 +718,8 @@ input.dim-add-oeuvre {
   width: 6rem;
 }
 
-div.input-infos-supp {
-  
+div.multi div {
+  padding-right: 1rem;
 }
 
 div.input-infos-supp input.infos-supp-input {
@@ -778,14 +785,18 @@ div.add-description div h2 {
 }
 
 div.add-oeuvre-descr {
-  width: 60%;
+  width: 100%;
+}
+
+div.add-oeuvre-descr label {
+  width : 8rem;
 }
 
 div.div-select-langue {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem;
+  padding-top: 2rem;
 }
 
 div.div-select-langue select {
@@ -811,8 +822,8 @@ div.add-langue-plus svg {
 
 div.btn-add-descr {
   display: flex;
-  justify-content: center;
-  padding-top: 0;
+  justify-content: flex-end;
+  padding-top: 1rem;
 }
 
 div.oeuvre-contenu-supp {
@@ -839,6 +850,15 @@ div.consultations {
   border: 2px solid var(--ACCENT1);
   padding: 1rem;
   border-radius: 10px;
+}
+
+div.div-select-oeuvre {
+  display: flex;
+  padding-top: 2rem;
+}
+
+div.auteur-contain {
+  padding-top: 2rem;
 }
 
 /*********** CONTENU ENRICHI  ***********/

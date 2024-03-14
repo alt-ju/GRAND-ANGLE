@@ -1,3 +1,18 @@
+<?php 
+
+$sql = "SELECT * FROM langue";
+$requeteLangue = $db->query($sql);
+$langues = $requeteLangue->fetchAll(PDO::FETCH_ASSOC);
+
+$sql = "SELECT oeuvres.Id_Oeuvre, oeuvres.libelle_Oeuvre, artiste.Nom_Artiste, artiste.Prenom_Artiste
+        FROM oeuvres 
+        JOIN artiste ON oeuvres.Id_Artiste = artiste.Id_Artiste";
+$requeteOeuvre = $db->query($sql);
+$oeuvres = $requeteOeuvre->fetchAll(PDO::FETCH_ASSOC);
+
+
+;?>
+
 <form action="" method="POST">
     <div class="add-oeuvre-descr">
         <div class="add-description">
@@ -46,3 +61,8 @@
         </div>  
     </div>   
 </form> 
+
+
+<script>
+    
+</script>

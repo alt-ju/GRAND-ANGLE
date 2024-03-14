@@ -2,9 +2,13 @@
 
 session_start();
 
+$title = "Modifier une oeuvre";
+
 include "includes/pages/header.php";
 include "includes/pages/nav-head.php";
 include "includes/pages/navbarr.php";
+
+$id = $_GET["id"];
 
 ;?>
 

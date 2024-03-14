@@ -21,25 +21,12 @@ $sql = "SELECT Id_Artiste, Nom_Artiste, Prenom_Artiste FROM artiste";
 $requeteArtiste = $db->query($sql);
 $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC); 
 
-/* function fetchAllFromTable($db, $table, $columns = '*')
-{
-    $sql = "SELECT $columns FROM $table";
-    $query = $db->query($sql);
-    return $query->fetchAll(PDO::FETCH_ASSOC);
-}
- 
-$expositions = fetchAllFromTable($db, 'exposition');
-$types = fetchAllFromTable($db, 'type_oeuvre');
-$positions = fetchAllFromTable($db, 'position');
-$artistes = fetchAllFromTable($db, 'artiste', 'Id_Artiste, Nom_Artiste, Prenom_Artiste');
- */
-
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if(!empty($_POST["infos-submit"])) {
-   if(isset($_POST["libelle"], $_POST["imgOeuvre"], $_POST["type"], $_POST["artiste"], $_POST["exposition"], $_POST["position"])
-   && !empty($_POST["libelle"]) && !empty($_POST["imgOeuvre"]) && !empty($_POST["type"]) && !empty($_POST["artiste"]) && !empty($_POST["exposition"]) && !empty($_POST["position"])
+   if(isset($_POST["libelle"], $_FILES["imgOeuvre"], $_POST["type"], $_POST["artiste"], $_POST["exposition"], $_POST["position"])
+   && !empty($_POST["libelle"]) && !empty($_FILES["imgOeuvre"]) && !empty($_POST["type"]) && !empty($_POST["artiste"]) && !empty($_POST["exposition"]) && !empty($_POST["position"])
    ){
        $libelle = filtrage($_POST["libelle"]);
        $libelleImg = filtrage($_POST["libelleImg"]);
@@ -78,47 +65,15 @@ if(!empty($_POST["infos-submit"])) {
        } else {
            $_POST["state"] = 0;
        }
-
-       /* if(empty($_POST["libelle"])) {
-        $erreur = "Ce champ est obligatoire.";
-       }
-
-       if(empty($_POST["imgOeuvre"])) {
-        $erreur = "Ce champ est obligatoire.";
-       }
-
-       if(empty($_POST["libelleImg"])) {
-        $erreur = "Ce champ est obligatoire.";
-       }
-
-       if(empty($_POST["type"])) {
-        $erreur = "Ce champ est obligatoire.";
-       }
-
-       if(empty($_POST["exposition"])) {
-        $erreur = "Ce champ est obligatoire.";
-       }
-
-       if(empty($_POST["position"])) {
-        $erreur = "Ce champ est obligatoire.";
-       } */
-
-       /* if ($_FILES['imgOeuvre']['error'] === 0) {
-           $tmp_path = $_FILES['imgOeuvre']['tmp_name'];
-           $filename = uniqid() . '.' . pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
-           $destination = 'artwork/' . $filename;
-           move_uploaded_file($tmp_path, $destination);
-       
-       }  */
       
        $sql = "INSERT INTO oeuvres(libelle_Oeuvre, hauteur_Oeuvre, largeur_Oeuvre, profondeur_Oeuvre, poids_Oeuvre, prix, etat_Oeuvre, Id_Exposition, Id_position, Id_Type, Id_Artiste) VALUES (:libelle_Oeuvre, :hauteur_Oeuvre, :largeur_Oeuvre, :profondeur_Oeuvre, :poids_Oeuvre, :prix, :etat_Oeuvre, :Id_Exposition, :Id_Position, :Id_Type, :Id_Artiste)";
        $query = $db->prepare($sql);
        $query->bindValue(":libelle_Oeuvre", $libelle, PDO::PARAM_STR);
-       $query->bindValue(":hauteur_Oeuvre", $_POST["hauteur"], PDO::PARAM_INT);
-       $query->bindValue(":largeur_Oeuvre", $_POST["largeur"], PDO::PARAM_INT);
-       $query->bindValue(":profondeur_Oeuvre", $_POST["profondeur"], PDO::PARAM_INT);
-       $query->bindValue(":poids_Oeuvre", $_POST["poids"], PDO::PARAM_INT);
-       $query->bindValue(":prix", $_POST["prix"], PDO::PARAM_INT);
+       $query->bindValue(":hauteur_Oeuvre", $_POST["hauteur"], PDO::PARAM_STR);
+       $query->bindValue(":largeur_Oeuvre", $_POST["largeur"], PDO::PARAM_STR);
+       $query->bindValue(":profondeur_Oeuvre", $_POST["profondeur"], PDO::PARAM_STR);
+       $query->bindValue(":poids_Oeuvre", $_POST["poids"], PDO::PARAM_STR);
+       $query->bindValue(":prix", $_POST["prix"], PDO::PARAM_STR);
        $query->bindValue(":etat_Oeuvre", $_POST["state"], PDO::PARAM_INT);
        $query->bindValue(":Id_Exposition", $_POST["exposition"], PDO::PARAM_INT);
        $query->bindValue(":Id_Position", $_POST["position"], PDO::PARAM_INT);
@@ -128,16 +83,19 @@ if(!empty($_POST["infos-submit"])) {
 
        $idOeuvre = $db->lastInsertId();
 
-       $sql = "INSERT INTO image(libelle_Image, chemin_Image, Id_oeuvre) VALUES (:libelle_Image, :chemin_Image, :Id_Oeuvre)";
-       $query = $db->prepare($sql);
-       $query->bindValue(":libelle_Image", $_POST['libelleImg'], PDO::PARAM_STR); 
-       $query->bindValue(":chemin_Image", $_POST['imgOeuvre'], PDO::PARAM_STR); 
-       $query->bindValue(":Id_Oeuvre", $idOeuvre, PDO::PARAM_INT);
-       $query->execute();
+       if(!empty($_FILES['imgOeuvre']['name'])) {
+        $cheminImage = './artwork/' . $_FILES['imgOeuvre']['name'];
+        move_uploaded_file($_FILES['imgOeuvre']['tmp_name'], $cheminImage);
 
-       $idImage = $db->lastInsertId();
+        $sql = "INSERT INTO image(libelle_Image, chemin_Image, Id_oeuvre) VALUES (:libelle_Image, :chemin_Image, :Id_Oeuvre)";
+        $query = $db->prepare($sql);
+        $query->bindValue(":libelle_Image", $_POST['libelleImg'], PDO::PARAM_STR); 
+        $query->bindValue(":chemin_Image", $_FILES['imgOeuvre']['name']); 
+        $query->bindValue(":Id_Oeuvre", $idOeuvre, PDO::PARAM_INT);
+        $query->execute();
 
-       echo "Great";
+        $idImage = $db->lastInsertId();
+       }
 
    } else {
        die('oups');
@@ -163,7 +121,7 @@ if(!empty($_POST["infos-submit"])) {
                 <div class="container-img-oeuvre">
                     
                     <div class="image-svg-container">
-                        <img src="assets/img/imgvide.webp" alt="">
+                        <!-- <img src="assets/img/imgvide.webp" alt=""> -->
                         <img id="preview-image" src="" alt="" >
                         <!-- <div class="add-img-plus">
                             <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
@@ -174,7 +132,7 @@ if(!empty($_POST["infos-submit"])) {
                     <button><svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></button>
                 </div>
             </div>
-            <div>
+            <div class="add-ipt">
                 <span>*</span>
                 <input type="file" name="imgOeuvre" id="imgOeuvre" accept="image/*">
                 <input type="text" name="libelleImg" id="libelleImg" placeholder="Libellé de l'image">
@@ -271,14 +229,14 @@ if(!empty($_POST["infos-submit"])) {
         </form>
     
 <script>
-    const inputFile = document.querySelector(".div-photo-add-oeuvre input[type=file]");
+    const inputFile = document.querySelector(".add-ipt input[type=file]");
 
     inputFile.addEventListener("change" function (event) {
-        const file = event.target.file[0];
+        const file = event.target.files[0];
         const reader = new FileReader();
         reader.addEventListener('load', function () {
             const previewImage = document.querySelector('img#preview-image');
-            previewImage.src = reader.result,
+            previewImage.src = reader.result;
             previewImage.style.display = "block";
         });
 

@@ -14,8 +14,8 @@ $oeuvres = $requeteOeuvre->fetchAll(PDO::FETCH_ASSOC);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if(!empty($_POST["description-submit"])) {
-    if(isset($_POST["description"], $_POST["langues"], $_POST["oeuvre"], $_POST["libelleContenu"], $_POST["auteur"])
-    && !empty($_POST["description"]) && !empty($_POST["langues"]) && !empty($_POST["libelleContenu"]) && !empty($_POST["auteur"]) && !empty($_POST["oeuvre"])) {
+    if(isset($_POST["description"], $_POST["langues"], $_POST["oeuvreConc"], $_POST["libelleContenu"], $_POST["auteur"])
+    && !empty($_POST["description"]) && !empty($_POST["langues"]) && !empty($_POST["libelleContenu"]) && !empty($_POST["auteur"]) && !empty($_POST["oeuvreConc"])) {
 
         $description = filtrage($_POST["description"]);
 
@@ -96,9 +96,6 @@ if(!empty($_POST["description-submit"])) {
                 <button><a href="contenu-enrichi.php">Voir le contenu enrichi</a></button>
             </div>
             <div class="div-qrcode">
-
-            </div>
-            <div class="compteur-consult">
 
             </div>
             <div class="consultations">
