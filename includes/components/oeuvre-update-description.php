@@ -2,20 +2,43 @@
 
 $id = $_GET["id"];
 
-$sql = "SELECT Id_Langue, libelle_Langue FROM langue
+$sqlfr = "SELECT Id_Langue, libelle_Langue FROM langue
 WHERE Id_Langue = 1";
+$requeteLangue = $db->query($sqlfr);
+$langueFr = $requeteLangue->fetch();
+$fr = $langueFr['Id_Langue'];
+
+$sqlen = "SELECT Id_Langue, libelle_Langue FROM langue
+WHERE Id_Langue = 2";
+$requeteLangue = $db->query($sqlen);
+$langueEn = $requeteLangue->fetch();
+$en = $langueEn['Id_Langue'];
+
+$sqlde = "SELECT Id_Langue, libelle_Langue FROM langue
+WHERE Id_Langue = 3";
+$requeteLangue = $db->query($sqlde);
+$langueDe = $requeteLangue->fetch();
+$en = $langueDe['Id_Langue'];
+
+$sqlfa = "SELECT Id_Langue, libelle_Langue FROM langue
+WHERE Id_Langue = 4";
+$requeteLangue = $db->query($sqlfa);
+$langueFa = $requeteLangue->fetch();
+$fa = $langueFa['Id_Langue'];
+
+$sqlch = "SELECT Id_Langue, libelle_Langue FROM langue
+WHERE Id_Langue = 6";
+$requeteLangue = $db->query($sqlch);
+$langueCh = $requeteLangue->fetch();
+$ch = $langueCh['Id_Langue'];
+
+$sql = "SELECT * FROM langue";
 $requeteLangue = $db->query($sql);
-$langues = $requeteLangue->fetch();
-$fr = $langues['Id_Langue'];
-
-
-echo $fr;
-
+$langues = $requeteLangue->fetchAll(PDO::FETCH_ASSOC);
 
 $sql = "SELECT * FROM contenu";
 $requeteContenu = $db->query($sql);
 $contenu = $requeteContenu->fetchAll(PDO::FETCH_ASSOC);
-
 
 $sql = "SELECT oeuvres.Id_Oeuvre, oeuvres.libelle_Oeuvre, artiste.Nom_Artiste, artiste.Prenom_Artiste
         FROM oeuvres 
