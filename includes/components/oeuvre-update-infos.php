@@ -46,13 +46,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $poids = $_POST['poids'];
     $prix = $_POST['prix'];
     $etat = isset($_POST['state']) ? 1 : 0;
+    $flash = 'flash_temp';
 
 
 if (!empty($_FILES['imgOeuvre']['name'])) {
     $cheminImage = './artwork/' . $_FILES['imgOeuvre']['name'];
     move_uploaded_file($_FILES['imgOeuvre']['tmp_name'], $cheminImage);
 
-    $sql = ('UPDATE oeuvres SET oeuvres.libelle_Oeuvre = ?, oeuvres.hauteur_Oeuvre = ?, oeuvres.largeur_Oeuvre = ?, oeuvres.profondeur_Oeuvre = ?, oeuvres.poids_Oeuvre = ?, oeuvres.prix = ?, oeuvres.etat_Oeuvre = ?, oeuvres.Id_Exposition = ?, oeuvres.Id_Position = ?, oeuvres.Id_Type = ?, oeuvres.Id_Artiste = ? 
+    $sql = ('UPDATE oeuvres SET oeuvres.libelle_Oeuvre = ?, oeuvres.hauteur_Oeuvre = ?, oeuvres.largeur_Oeuvre = ?, oeuvres.profondeur_Oeuvre = ?, oeuvres.poids_Oeuvre = ?, oeuvres.prix = ?, oeuvres.etat_Oeuvre = ?, oeuvres.Id_Exposition = ?, oeuvres.Id_Position = ?, oeuvres.Id_Type = ?, oeuvres.Id_Artiste = ?, oeuvres.chemin_Flashcode = ? 
     WHERE Id_oeuvre = ?');
     try {
         $requete = $db->prepare($sql);
@@ -68,6 +69,7 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
             $type,
             $exposition, 
             $position,
+            $flash,
             $id
         ]);
 
@@ -93,7 +95,7 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
         exit();
     }
 } else {
-    $sql2 = "UPDATE oeuvres SET libelle_Oeuvre = :libelle_Oeuvre, hauteur_Oeuvre = :hauteur_Oeuvre, largeur_Oeuvre = :largeur_Oeuvre, profondeur_Oeuvre = :profondeur_Oeuvre, prix = :prix, etat_Oeuvre = :etat_Oeuvre, Id_Exposition = :Id_Exposition, Id_Position = :Id_Position, Id_Type = :Id_Type, Id_Artiste = :Id_Artiste
+    $sql2 = "UPDATE oeuvres SET libelle_Oeuvre = :libelle_Oeuvre, hauteur_Oeuvre = :hauteur_Oeuvre, largeur_Oeuvre = :largeur_Oeuvre, profondeur_Oeuvre = :profondeur_Oeuvre, prix = :prix, etat_Oeuvre = :etat_Oeuvre, Id_Exposition = :Id_Exposition, Id_Position = :Id_Position, Id_Type = :Id_Type, Id_Artiste = :Id_Artiste, chemin_flashcode = :chemin_Flashcode
     WHERE Id_Oeuvre = :Id_Oeuvre";
     try {
         $requete2 = $db->prepare($sql2);
@@ -107,7 +109,8 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
             ':Id_Exposition' => $exposition,
             ':Id_Position' => $position,
             ':Id_Type' => $type, 
-            ':Id_Artiste' => $artiste
+            ':Id_Artiste' => $artiste,
+            ':chemin_Flashcode' => $flash
         ]);
 
         $message = "La mise à jour du projet a bien été effectuée";

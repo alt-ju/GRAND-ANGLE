@@ -273,6 +273,10 @@ div.art-state {
 
 /********* ART STATE **********/
 
+.image-content h2 {
+  font-weight: 800;
+}
+
 .slide-container{
   max-width: 1120px;
   width: 100%;

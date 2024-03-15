@@ -6,6 +6,7 @@ JOIN image ON oeuvres.Id_oeuvre = image.Id_oeuvre
 JOIN artiste ON artiste.Id_Artiste = oeuvres.Id_Artiste
 JOIN exposition ON oeuvres.Id_Exposition = exposition.Id_Exposition 
 WHERE exposition.Date_Debut > CURRENT_DATE()
+AND exposition.Date_Debut <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY)
 GROUP BY exposition.libelle_Exposition, oeuvres.etat_Oeuvre, oeuvres.libelle_Oeuvre, Image.chemin_Image, artiste.Nom_Artiste, artiste.Prenom_Artiste
 ";
 $requeteArtNext = $db->query($sqlArtNext);

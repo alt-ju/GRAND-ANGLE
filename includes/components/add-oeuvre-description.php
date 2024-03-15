@@ -30,7 +30,6 @@ if(!empty($_POST["description-submit"])) {
 
         $idDesc = $db->lastInsertId();
 
-        echo "Done";
     } else {
         die("Wrong");
     }

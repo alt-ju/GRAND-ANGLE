@@ -16,6 +16,7 @@ $oeuvresNow = $requeteArtNow->fetchAll(PDO::FETCH_ASSOC);
 <div class="art-content-now">
     <div class="expo-content-now">
         <div class="container-cards-art-now">
+            
             <?php forEach($oeuvresNow as $oeuvreNow) :?>
                 <div class="card-art-now-expo">
                     <div class="card-row1">

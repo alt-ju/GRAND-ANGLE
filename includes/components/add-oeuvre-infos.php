@@ -65,8 +65,10 @@ if(!empty($_POST["infos-submit"])) {
        } else {
            $_POST["state"] = 0;
        }
+
+       $flash = "flash_temp";
       
-       $sql = "INSERT INTO oeuvres(libelle_Oeuvre, hauteur_Oeuvre, largeur_Oeuvre, profondeur_Oeuvre, poids_Oeuvre, prix, etat_Oeuvre, Id_Exposition, Id_position, Id_Type, Id_Artiste) VALUES (:libelle_Oeuvre, :hauteur_Oeuvre, :largeur_Oeuvre, :profondeur_Oeuvre, :poids_Oeuvre, :prix, :etat_Oeuvre, :Id_Exposition, :Id_Position, :Id_Type, :Id_Artiste)";
+       $sql = "INSERT INTO oeuvres(libelle_Oeuvre, hauteur_Oeuvre, largeur_Oeuvre, profondeur_Oeuvre, poids_Oeuvre, prix, etat_Oeuvre, Id_Exposition, Id_position, Id_Type, Id_Artiste, chemin_Flashcode) VALUES (:libelle_Oeuvre, :hauteur_Oeuvre, :largeur_Oeuvre, :profondeur_Oeuvre, :poids_Oeuvre, :prix, :etat_Oeuvre, :Id_Exposition, :Id_Position, :Id_Type, :Id_Artiste, :chemin_Flashcode)";
        $query = $db->prepare($sql);
        $query->bindValue(":libelle_Oeuvre", $libelle, PDO::PARAM_STR);
        $query->bindValue(":hauteur_Oeuvre", $_POST["hauteur"], PDO::PARAM_STR);
@@ -79,6 +81,7 @@ if(!empty($_POST["infos-submit"])) {
        $query->bindValue(":Id_Position", $_POST["position"], PDO::PARAM_INT);
        $query->bindValue(":Id_Type", $_POST["type"], PDO::PARAM_INT);
        $query->bindValue(":Id_Artiste", $_POST["artiste"], PDO::PARAM_INT);
+       $query->bindValue(":chemin_Flashcode", $flash, PDO::PARAM_STR);
        $query->execute();
 
        $idOeuvre = $db->lastInsertId();
@@ -96,6 +99,8 @@ if(!empty($_POST["infos-submit"])) {
 
         $idImage = $db->lastInsertId();
        }
+
+       
 
    } else {
        die('oups');
