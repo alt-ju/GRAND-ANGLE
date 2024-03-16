@@ -18,7 +18,7 @@ $sqlde = "SELECT Id_Langue, libelle_Langue FROM langue
 WHERE Id_Langue = 3";
 $requeteLangue = $db->query($sqlde);
 $langueDe = $requeteLangue->fetch();
-$en = $langueDe['Id_Langue'];
+$de = $langueDe['Id_Langue'];
 
 $sqlfa = "SELECT Id_Langue, libelle_Langue FROM langue
 WHERE Id_Langue = 4";
@@ -32,13 +32,77 @@ $requeteLangue = $db->query($sqlch);
 $langueCh = $requeteLangue->fetch();
 $ch = $langueCh['Id_Langue'];
 
+
+if(!isset($_GET['langues'])) {
+    $_GET['langues'] = $fr;
+} 
+
+
+$id_langue = $_GET['langues'];
+
+$sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
+FROM contenu
+WHERE contenu.Id_oeuvre = :Id_oeuvre
+AND contenu.Id_langue = :Id_Langue";
+$requeteContenuLang = $db->prepare($sql);
+$requeteContenuLang->bindValue(":Id_oeuvre", $id, PDO::PARAM_INT);
+$requeteContenuLang->bindValue(":Id_Langue", $id_langue, PDO::PARAM_INT);
+$contenu = $requeteContenuLang->fetchAll(PDO::FETCH_ASSOC);
+
+
 $sql = "SELECT * FROM langue";
 $requeteLangue = $db->query($sql);
 $langues = $requeteLangue->fetchAll(PDO::FETCH_ASSOC);
 
-$sql = "SELECT * FROM contenu";
+/* $sql = "SELECT id_Contenu, description_Contenu, Auteur_Contenu, libelle_contenu, Id_oeuvre, Id_Langue FROM contenu WHERE Id_oeuvre = :id";
 $requeteContenu = $db->query($sql);
-$contenu = $requeteContenu->fetchAll(PDO::FETCH_ASSOC);
+$contenu = $requeteContenu->fetchAll(PDO::FETCH_ASSOC); */
+
+/* $sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
+FROM contenu
+WHERE contenu.Id_oeuvre = :Id_oeuvre
+AND contenu.Id_langue = 1";
+$requeteContFr = $db->prepare($sql);
+$requeteContFr->bindValue(":Id_oeuvre", $id, PDO::PARAM_INT);
+$contenuFr = $requeteContFr->fetch();
+
+$sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
+FROM contenu
+WHERE contenu.Id_oeuvre = :id
+AND contenu.Id_langue = 2";
+$requeteContEn = $db->prepare($sql);
+$requeteContEn->bindValue(":id", $id, PDO::PARAM_INT);
+$contenuEn = $requeteContEn->fetch();
+
+$sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
+FROM contenu
+WHERE contenu.Id_oeuvre = :id
+AND contenu.Id_langue = 3";
+$requeteContDe = $db->prepare($sql);
+$requeteContDe->bindValue(":id", $id, PDO::PARAM_INT);
+$contenuDe = $requeteContDe->fetch();
+
+$sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
+FROM contenu
+WHERE contenu.Id_oeuvre = :id
+AND contenu.Id_langue = 4";
+$requeteContFa = $db->prepare($sql);
+$requeteContFa->bindValue(":id", $id, PDO::PARAM_INT);
+$contenuFa = $requeteContFa->fetch();
+
+$sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
+FROM contenu
+WHERE contenu.Id_oeuvre = :id
+AND contenu.Id_langue = 6";
+$requeteContCh = $db->prepare($sql);
+$requeteContCh->bindValue(":id", $id, PDO::PARAM_INT);
+$contenuCh = $requeteContCh->fetch();
+ */
+
+/* $array_langues = array($contenuFr, $contenuEn, $contenuDe, $contenuFa, $contenuCh); */ 
+
+
+
 
 $sql = "SELECT oeuvres.Id_Oeuvre, oeuvres.libelle_Oeuvre, artiste.Nom_Artiste, artiste.Prenom_Artiste
         FROM oeuvres 
@@ -72,12 +136,11 @@ try {
                 <span>Nom Prénom Collaborateur</span>
             </div>
             <div class="libelle-contenu">
-                <label for="libelleContenu"></label>
+                <label for="libelleContenu">Nom de la description : </label>
                 <input type="text" name="libelleContenu" id="libelleContenu">
             </div>
             <label for="description">Description :</label>
-            
-            <textarea name="description" id="description" cols="40" rows="10"></textarea>
+            <textarea name="description" id="description" cols="40" rows="10"><?php if(isset($_GET['langues'])) {echo isset($contenu['description_Contenu']) ? $contenu['description_Contenu'];} ?></textarea>
         </div>
 
         <div class="div-select-oeuvre">
