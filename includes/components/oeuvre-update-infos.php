@@ -136,132 +136,185 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
 }
 }
 
+
+if(!empty($_POST['submit-type'])) {
+    if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
+        $sql = "INSERT INTO type_oeuvre(libelle_type) VALUES(:libelle_Type)";
+        $query = $db->prepare($sql);
+        $query->bindValue(":libelle_Type", $_POST['libelle_Type'], PDO::PARAM_STR);
+        $query->execute();
+
+        $idType = $db->lastInsertId();
+    } else {
+        die("L'ajout n'a pas fonctionné");
+    }
+}
+
+
 ;?>
 
 
 
 <form action="" method="POST" enctype="multipart/form-data">
 
-            <div class="div-libelle-add-oeuvre">
-                <label for="libelle">Libellé de l'oeuvre :</label>
-                <input type="text" name="libelle" id="libelle" class="field-add-oeuvre" value="<?php echo $oeuvre["libelle_Oeuvre"]?>">
-                <span>*</span>
+            <div id="container-princip-type">
+                <div class="box-add-type">
+                    <div class="close-add-type">
+                        <svg id="close-type-btn" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                    </div>
+                    <div class="container-add-type">
+                        <h3>Ajouter un type d'oeuvre</h3>
+                        <form method="POST">
+                            <label for="add-type">Nom du type d'oeuvre :</label>
+                            <input type="text" id="add-type" name="add-type">
+                            <div class="button-add-type">
+                                <button type="submit" id="submit-type" name="submit-type">Valider</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
-            <div class="div-photo-add-oeuvre">
-                <div class="arrow-left-btn">
-                    <button><svg  viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></button>
-                </div>
-                <div class="container-img-oeuvre">
+            <div id="blur-container">
+
+                <div class="div-libelle-add-oeuvre">
+                    <label for="libelle">Libellé de l'oeuvre :</label>
+                    <input type="text" name="libelle" id="libelle" class="field-add-oeuvre" value="<?php echo $oeuvre["libelle_Oeuvre"]?>">
                     <span>*</span>
-                    <div class="image-svg-container">
-                        <img src="artwork/<?php echo $oeuvre["chemin_Image"];?>" alt="">
-                        <img id="preview-image" src="" alt="">
-                    </div>
-                </div>
-                <div class="arrow-right-btn">
-                    <button><svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></button>
-                </div>
-            </div>
-            <div>
-                <label class="svg-add-img" for="imgOeuvre">
-                    <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-                </label>
-                <input type="file" name="imgOeuvre" id="imgOeuvre" accept="image/*">
-                <input type="text" name="libelleImg" id="libelleImg" placeholder="Libellé de l'image" value="<?= $oeuvre["libelle_Image"];?>">
-            </div>
-            <div class="div-infos-oeuvre">
-                <div class="select-type-add-oeuvre">
-                    <label for="artiste">Artiste :</label>
-                    <select name="artiste" id="artiste">
-                        <?php foreach($artistes as $artiste) :?>
-                        <option value="<?= $artiste["Id_Artiste"]?>" <?= ($artiste["Id_Artiste"] == $oeuvre["Id_Artiste"]) ? 'selected' : ''?>><?php echo $artiste["Nom_Artiste"]?> <?php echo $artiste["Prenom_Artiste"]?></option>
-                        <?php endforeach;?>
-                    </select>
-                    <span>*</span>
-                    <div class="add-type-plus">
-                        <a href="#">
-                            <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-                            <span>Créer</span>
-                        </a>
-                    </div>
-                </div>
-            
-                <div class="select-type-add-oeuvre">
-                    <label for="type">Type d'oeuvre :</label>
-                    <select name="type" id="type">
-                        <?php foreach($types as $type) :?>
-                        <option value="<?= $type["Id_Type"]?>" <?= ($type["Id_Type"] == $oeuvre["Id_Type"]) ? 'selected' : ''?>><?= $type["libelle_Type"]?></option>
-                        <?php endforeach;?>
-                    </select>
-                    <span>*</span>
-                    <div class="add-type-plus">
-                        <a href="#">
-                            <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-                            <span>Créer</span>
-                        </a>
-                    </div>
                 </div>
 
-                <div class="select-type-add-oeuvre">
-                    <label for="exposition">Exposition: </label>
-                    <select name="exposition" id="exposition">
-                        <?php foreach($expositions as $exposition) :?>
-                        <option value="<?= $exposition["Id_Exposition"]?>" <?= ($exposition["Id_Exposition"] == $oeuvre["Id_Exposition"]) ? 'selected' : ''?>><?= $exposition["libelle_Exposition"]?></option>
-                        <?php endforeach;?>
-                    </select>
-                    <span>*</span>
-                    <div class="add-type-plus">
-                        <a href="#">
-                            <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-                            <span>Créer</span>
-                        </a>
+                <div class="div-photo-add-oeuvre">
+                    <div class="arrow-left-btn">
+                        <button><svg  viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></button>
+                    </div>
+                    <div class="container-img-oeuvre">
+                        <span>*</span>
+                        <div class="image-svg-container">
+                            <img src="artwork/<?php echo $oeuvre["chemin_Image"];?>" alt="">
+                            <img id="preview-image" src="" alt="">
+                        </div>
+                    </div>
+                    <div class="arrow-right-btn">
+                        <button><svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></button>
                     </div>
                 </div>
-                <div class="select-type-add-oeuvre">
-                    <label for="position">Position :</label>
-                    <select name="position" id="position">
-                        <?php foreach($positions as $position) :?>
-                        <option value="<?= $position["Id_Position"]?>" <?= ($position["Id_Position"] == $oeuvre["Id_Position"]) ? 'selected' : ''?>><?= $position["libelle_Position"]?></option>
-                        <?php endforeach;?>
-                    </select>
-                    <span>*</span>
-                </div>
-                
-                <div class="input-dimensions multi">
-                    <div class="haut-oeuvre-add position">
-                        <label for="hauteur">Hauteur :</label>
-                        <input type="text" class="dim-add-oeuvre" name="hauteur" id="hauteur" value="<?= $oeuvre["hauteur_Oeuvre"]?>">
-                    </div>
-                    <div class="larg-oeuvre-add position">
-                        <label for="largeur">Largeur :</label>
-                        <input type="text" class="dim-add-oeuvre" name="largeur" id="largeur" value="<?= $oeuvre["largeur_Oeuvre"]?>">
-                    </div>
-                    <div class="prof-oeuvre-add position">
-                        <label for="profondeur">Profondeur :</label>
-                        <input type="text" class="dim-add-oeuvre" name="profondeur" id="profondeur" value="<?= $oeuvre["profondeur_Oeuvre"]?>">
-                    </div>
-                </div>
-
-                <div class="input-infos-supp multi">
-                    <div class="info-poids-add">
-                        <label for="poids">Poids :</label>
-                        <input type="text"  class="dim-add-oeuvre" name="poids" id="poids" value="<?= $oeuvre["poids_Oeuvre"]?>">
-                    </div>
-                    <div class="info-prix-add">
-                        <label for="prix">Prix :</label>
-                        <input type="text"  class="dim-add-oeuvre" name="prix" id="prix" value="<?= $oeuvre["prix"]?>">
-                    </div>
-                </div>
-
                 <div>
-                    <label for="state">Livrée</label>
-                    <input type="checkbox" name="state" id="state">
+                    <label class="svg-add-img" for="imgOeuvre">
+                        <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                    </label>
+                    <input type="file" name="imgOeuvre" id="imgOeuvre" accept="image/*">
+                    <input type="text" name="libelleImg" id="libelleImg" placeholder="Libellé de l'image" value="<?= $oeuvre["libelle_Image"];?>">
                 </div>
+                <div class="div-infos-oeuvre">
+                    <div class="select-type-add-oeuvre">
+                        <label for="artiste">Artiste :</label>
+                        <select name="artiste" id="artiste">
+                            <?php foreach($artistes as $artiste) :?>
+                            <option value="<?= $artiste["Id_Artiste"]?>" <?= ($artiste["Id_Artiste"] == $oeuvre["Id_Artiste"]) ? 'selected' : ''?>><?php echo $artiste["Nom_Artiste"]?> <?php echo $artiste["Prenom_Artiste"]?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <span>*</span>
+                        <div class="add-type-plus">
+                            <a href="#">
+                                <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                                <span>Créer</span>
+                            </a>
+                        </div>
+                    </div>
                 
-            </div>
+                    <div class="select-type-add-oeuvre">
+                        <label for="type">Type d'oeuvre :</label>
+                        <select name="type" id="type">
+                            <?php foreach($types as $type) :?>
+                            <option value="<?= $type["Id_Type"]?>" <?= ($type["Id_Type"] == $oeuvre["Id_Type"]) ? 'selected' : ''?>><?= $type["libelle_Type"]?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <span>*</span>
+                        <div class="add-type-plus">
+                            <div id="add-type-btn">
+                                <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                                <span>Créer</span>
+                            </div>    
+                        </div>
+                    </div>
 
-            <div class="btn-submit-add-oeuvre">
-                <input type="submit" name="infos-submit" id="infos-submit" value="Valider">
-            </div>
+                    <div class="select-type-add-oeuvre">
+                        <label for="exposition">Exposition: </label>
+                        <select name="exposition" id="exposition">
+                            <?php foreach($expositions as $exposition) :?>
+                            <option value="<?= $exposition["Id_Exposition"]?>" <?= ($exposition["Id_Exposition"] == $oeuvre["Id_Exposition"]) ? 'selected' : ''?>><?= $exposition["libelle_Exposition"]?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <span>*</span>
+                        <div class="add-type-plus">
+                            <a href="#">
+                                <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                                <span>Créer</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="select-type-add-oeuvre">
+                        <label for="position">Position :</label>
+                        <select name="position" id="position">
+                            <?php foreach($positions as $position) :?>
+                            <option value="<?= $position["Id_Position"]?>" <?= ($position["Id_Position"] == $oeuvre["Id_Position"]) ? 'selected' : ''?>><?= $position["libelle_Position"]?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <span>*</span>
+                    </div>
+                    
+                    <div class="input-dimensions multi">
+                        <div class="haut-oeuvre-add position">
+                            <label for="hauteur">Hauteur :</label>
+                            <input type="text" class="dim-add-oeuvre" name="hauteur" id="hauteur" value="<?= $oeuvre["hauteur_Oeuvre"]?>">
+                        </div>
+                        <div class="larg-oeuvre-add position">
+                            <label for="largeur">Largeur :</label>
+                            <input type="text" class="dim-add-oeuvre" name="largeur" id="largeur" value="<?= $oeuvre["largeur_Oeuvre"]?>">
+                        </div>
+                        <div class="prof-oeuvre-add position">
+                            <label for="profondeur">Profondeur :</label>
+                            <input type="text" class="dim-add-oeuvre" name="profondeur" id="profondeur" value="<?= $oeuvre["profondeur_Oeuvre"]?>">
+                        </div>
+                    </div>
+
+                    <div class="input-infos-supp multi">
+                        <div class="info-poids-add">
+                            <label for="poids">Poids :</label>
+                            <input type="text"  class="dim-add-oeuvre" name="poids" id="poids" value="<?= $oeuvre["poids_Oeuvre"]?>">
+                        </div>
+                        <div class="info-prix-add">
+                            <label for="prix">Prix :</label>
+                            <input type="text"  class="dim-add-oeuvre" name="prix" id="prix" value="<?= $oeuvre["prix"]?>">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="state">Livrée</label>
+                        <input type="checkbox" name="state" id="state">
+                    </div>
+                    
+                </div>
+
+                <div class="btn-submit-add-oeuvre">
+                    <input type="submit" name="infos-submit" id="infos-submit" value="Valider">
+                </div>
+            </div>                  
+            
+            
         </form>
+<script>
+
+    const boxAddType = document.getElementById('container-princip-type');
+    const container = document.getElementById('blur-container');
+
+    document.getElementById("add-type-btn").addEventListener('click', function () {
+        boxAddType.style.display = 'block';
+        container.classList.add('blur');
+    });
+
+    document.getElementById('close-type-btn').addEventListener('click', function () {
+        boxAddType.style.display = 'none';
+        container.classList.remove('blur');
+    });
+</script>

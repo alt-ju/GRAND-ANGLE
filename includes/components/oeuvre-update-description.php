@@ -140,7 +140,7 @@ try {
                 <input type="text" name="libelleContenu" id="libelleContenu">
             </div>
             <label for="description">Description :</label>
-            <textarea name="description" id="description" cols="40" rows="10"><?php if(isset($_GET['langues'])) {echo isset($contenu['description_Contenu']) ? $contenu['description_Contenu'];} ?></textarea>
+            <textarea name="description" id="description" cols="40" rows="10"><?php if(isset($_GET['langues'])) {echo isset($contenu['description_Contenu']);} ?></textarea>
         </div>
 
         <div class="div-select-oeuvre">

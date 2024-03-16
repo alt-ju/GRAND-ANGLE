@@ -9,6 +9,19 @@
         grid-column:1/13;
         overflow-y:scroll;
     }
+
+    /* ADD TYPE OEUVRE LIGHTBOX */
+
+   div.box-add-type {
+        height: 250px;
+    }
+
+    div.box-add-type h3 {
+        padding-top: 1rem;
+    }
+
 }
+
+
 
 /* 820 */

@@ -695,6 +695,14 @@ div.container-img-oeuvre img {
   border-radius: 50%;
 }
 
+div#add-type-btn {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 div.add-img-plus {
   position: absolute;
   bottom: 10px;
@@ -922,8 +930,80 @@ div.delete-contenu a svg {
 
 /******** UPDATE OEUVRE  *********/
 
+.blur {
+  filter: blur(5px); 
+}
+
 label.svg-add-img {
   height: 1rem;
   width: 1rem;
   fill: #C1D734;
+}
+
+div#container-princip-type {
+  display: none;
+  position: absolute;
+  margin: 10%;
+  width: 80%;
+  z-index: 99;
+}
+
+div.box-add-type {
+  height: 450px;
+  background-color: #78908E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  position: relative;
+}
+
+div.close-add-type {
+  height: fit-content;
+  width: fit-content;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+div.close-add-type svg {
+  width: 2rem;
+  height: 2rem;;
+  fill: var(--FONTCOLOR2);
+  cursor: pointer;
+}
+
+div.container-add-type {
+  width: 70%;
+  margin: auto;
+}
+
+div.box-add-type h3 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding-bottom: 50px;
+}
+
+div.box-add-type form {
+  padding-bottom: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+form input {
+  margin-top: 1rem;
+  width: 350px;
+}
+
+div.button-add-type {
+  display: flex;
+  justify-content: flex-end;
+  padding: 3rem;
+}
+
+div.button-add-type button {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  background-color: #C1D734;
+  border-radius: 50px;
 }
