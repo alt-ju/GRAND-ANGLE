@@ -6,6 +6,8 @@ include "includes/pages/header.php";
 
 session_start();
 
+$error = '';
+
 if(isset($_SESSION["user"])) {
   header("Location: home-dash.php");
   exit;
@@ -28,15 +30,12 @@ if(!empty($_POST)) {
     $query->execute();
     $user = $query->fetch();
 
-    $passUser = $user["Pass_Collaborateur"];
-    $passField = $_POST["pass"];
-
     if(!$user) {
-      die("Adresse");
+      $error = "L'email ou le mot de passe est incorrect";
     }
 
-    if($passUser !== $passField) {
-      die("mot de passe");
+    if(!password_verify($_POST['pass'], $user['pass'])) {
+      $error = "L'email ou le mot de passe est incorrect";
     }
 
     $rolesArray = json_decode($user["roles"], true);
@@ -81,7 +80,7 @@ if(!empty($_POST)) {
               <div class="from-divs login-input" >
                 <input type="submit" class="input-sub-login" value="Confirm identity">
               </div>
-              <div class="red"></div>
+              <div class="red"><?= $error ?></div>
       </form>
 </div>
 

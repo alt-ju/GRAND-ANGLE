@@ -33,6 +33,25 @@ try {
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+    if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
+        $sql = "INSERT INTO type_oeuvre(libelle_Type) VALUES(:libelle_Type)";
+        $query = $db->prepare($sql);
+        $query->bindValue(":libelle_Type", $_POST['add-type'], PDO::PARAM_STR);
+        $query->execute();
+    
+        $idType = $db->lastInsertId();
+    
+        echo ("Done");
+    } else {
+        die("L'ajout n'a pas fonctionné");
+    } 
+
+if (!empty($_FILES['imgOeuvre']['name'])) {
+    $cheminImage = './artwork/' . $_FILES['imgOeuvre']['name'];
+    move_uploaded_file($_FILES['imgOeuvre']['tmp_name'], $cheminImage);
+
     $libelleOeuvre = $_POST['libelle'];
     $img = $_FILES['imgOeuvre'];
     $libelleImg = $_POST['libelleImg'];
@@ -47,11 +66,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $prix = $_POST['prix'];
     $etat = isset($_POST['state']) ? 1 : 0;
     $flash = 'flash_temp';
-
-
-if (!empty($_FILES['imgOeuvre']['name'])) {
-    $cheminImage = './artwork/' . $_FILES['imgOeuvre']['name'];
-    move_uploaded_file($_FILES['imgOeuvre']['tmp_name'], $cheminImage);
 
     $sql = ('UPDATE oeuvres SET oeuvres.libelle_Oeuvre = ?, oeuvres.hauteur_Oeuvre = ?, oeuvres.largeur_Oeuvre = ?, oeuvres.profondeur_Oeuvre = ?, oeuvres.poids_Oeuvre = ?, oeuvres.prix = ?, oeuvres.etat_Oeuvre = ?, oeuvres.Id_Exposition = ?, oeuvres.Id_Position = ?, oeuvres.Id_Type = ?, oeuvres.Id_Artiste = ?, oeuvres.chemin_Flashcode = ? 
     WHERE Id_oeuvre = ?');
@@ -136,19 +150,6 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
 }
 }
 
-
-if(!empty($_POST['submit-type'])) {
-    if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
-        $sql = "INSERT INTO type_oeuvre(libelle_type) VALUES(:libelle_Type)";
-        $query = $db->prepare($sql);
-        $query->bindValue(":libelle_Type", $_POST['libelle_Type'], PDO::PARAM_STR);
-        $query->execute();
-
-        $idType = $db->lastInsertId();
-    } else {
-        die("L'ajout n'a pas fonctionné");
-    }
-}
 
 
 ;?>

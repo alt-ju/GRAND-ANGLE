@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <a href="./implant.php"><span class="hidden-items show">Implantation</span></a>
-                </div> 
+                </div>
                 <div class="items">
                     <li>
                         <a href="./gestion_des_collaborateur.php">

@@ -273,10 +273,10 @@ div.art-state {
 
 /********* ART STATE **********/
 
-.image-content h2 {
+/* .image-content h2 {
   font-weight: 800;
 }
-
+ */
 .slide-container{
   max-width: 1120px;
   width: 100%;
@@ -941,7 +941,7 @@ label.svg-add-img {
 }
 
 div#container-princip-type {
-  display: none;
+  display: none; 
   position: absolute;
   margin: 10%;
   width: 80%;

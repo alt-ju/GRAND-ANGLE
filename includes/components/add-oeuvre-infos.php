@@ -22,7 +22,23 @@ $requeteArtiste = $db->query($sql);
 $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC); 
 
 
+
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
+        $sql = "INSERT INTO type_oeuvre(libelle_Type) VALUES(:libelle_Type)";
+        $query = $db->prepare($sql);
+        $query->bindValue(":libelle_Type", $_POST['add-type'], PDO::PARAM_STR);
+        $query->execute();
+
+        $idType = $db->lastInsertId();
+
+        echo ("Done");
+    } else {
+        die("L'ajout n'a pas fonctionné");
+    }
+
 
 if(!empty($_POST["infos-submit"])) {
    if(isset($_POST["libelle"], $_FILES["imgOeuvre"], $_POST["type"], $_POST["artiste"], $_POST["exposition"], $_POST["position"])
@@ -113,6 +129,27 @@ if(!empty($_POST["infos-submit"])) {
 
         <form action="" method="POST" enctype="multipart/form-data">
 
+         <div id="container-princip-type">
+                <div class="box-add-type">
+                    <div class="close-add-type">
+                        <svg id="close-type-btn" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                    </div>
+                    <div class="container-add-type">
+                        <h3>Ajouter un type d'oeuvre</h3>
+                        <form method="POST">
+                            <label for="add-type">Nom du type d'oeuvre :</label>
+                            <input type="text" id="add-type" name="add-type">
+                            <div class="button-add-type">
+                                <button type="submit" id="submit-type" name="submit-type">Valider</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        <div id="blur-container">
+
             <div class="div-libelle-add-oeuvre">
                 <label for="libelle">Nom de l'oeuvre :</label>
                 <input type="text" name="libelle" id="libelle" class="field-add-oeuvre">
@@ -168,10 +205,10 @@ if(!empty($_POST["infos-submit"])) {
                     </select>
                     <span>*</span>
                     <div class="add-type-plus">
-                        <a href="#">
+                        <div id="add-type-btn">
                             <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
                             <span>Créer</span>
-                        </a>
+                        </div>
                     </div>
                 </div>
 
@@ -231,12 +268,13 @@ if(!empty($_POST["infos-submit"])) {
             <div class="btn-submit-add-oeuvre">
                 <input type="submit" name="infos-submit" id="infos-submit" value="Valider">
             </div>
+        </div>
         </form>
     
 <script>
     const inputFile = document.querySelector(".add-ipt input[type=file]");
 
-    inputFile.addEventListener("change" function (event) {
+    inputFile.addEventListener("change", function (event) {
         const file = event.target.files[0];
         const reader = new FileReader();
         reader.addEventListener('load', function () {
@@ -247,5 +285,25 @@ if(!empty($_POST["infos-submit"])) {
 
         reader.readAsDataUrl(file);
     })
+
+
 </script>
+
+<script>
+
+const boxAddType = document.getElementById('container-princip-type');
+    const container = document.getElementById('blur-container');
+
+    document.getElementById("add-type-btn").addEventListener('click', function () {
+        boxAddType.style.display = 'block';
+        container.classList.add('blur');
+    });
+
+    document.getElementById('close-type-btn').addEventListener('click', function () {
+        boxAddType.style.display = 'none';
+        container.classList.remove('blur');
+    });
+</script>
+
+
 
