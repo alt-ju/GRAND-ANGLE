@@ -127,7 +127,7 @@ if(!empty($_POST["infos-submit"])) {
 
 ;?>
 
-        <form action="" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data">
 
          <div id="container-princip-type">
                 <div class="box-add-type">
@@ -269,7 +269,7 @@ if(!empty($_POST["infos-submit"])) {
                 <input type="submit" name="infos-submit" id="infos-submit" value="Valider">
             </div>
         </div>
-        </form>
+    </form>
     
 <script>
     const inputFile = document.querySelector(".add-ipt input[type=file]");
