@@ -32,91 +32,32 @@ $requeteLangue = $db->query($sqlch);
 $langueCh = $requeteLangue->fetch();
 $ch = $langueCh['Id_Langue'];
 
-
 if(!isset($_GET['langues'])) {
     $_GET['langues'] = $fr;
 } 
-
+ 
+$langueArray = array($fr, $en, $de, $fa, $ch);
 
 $id_langue = $_GET['langues'];
 
-$sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
-FROM contenu
-WHERE contenu.Id_oeuvre = :Id_oeuvre
-AND contenu.Id_langue = :Id_Langue";
-$requeteContenuLang = $db->prepare($sql);
-$requeteContenuLang->bindValue(":Id_oeuvre", $id, PDO::PARAM_INT);
-$requeteContenuLang->bindValue(":Id_Langue", $id_langue, PDO::PARAM_INT);
-$contenu = $requeteContenuLang->fetchAll(PDO::FETCH_ASSOC);
+$sqlLangues = "SELECT langue.Id_Langue, langue.libelle_Langue, oeuvres.Id_oeuvre, oeuvres.libelle_Oeuvre, contenu.libelle_Contenu, contenu.description_Contenu, contenu.Auteur_Contenu
+FROM oeuvres 
+JOIN contenu ON oeuvres.Id_oeuvre = contenu.Id_oeuvre
+JOIN langue ON contenu.Id_Langue = langue.Id_Langue
+WHERE oeuvres.Id_oeuvre = :Id_oeuvre
+AND contenu.Id_langue = :Id_langue";
+$requeteLangues = $db->prepare($sqlLangues);
+$requeteLangues->bindValue(":Id_oeuvre", $id, PDO::PARAM_INT);
+$requeteLangues->bindValue(":Id_langue", $id_langue, PDO::PARAM_INT);
+$requeteLangues->execute();
+$languesTest = $requeteLangues->fetch();
 
 
-$sql = "SELECT * FROM langue";
+/* $sql = "SELECT * FROM langue";
 $requeteLangue = $db->query($sql);
-$langues = $requeteLangue->fetchAll(PDO::FETCH_ASSOC);
-
-/* $sql = "SELECT id_Contenu, description_Contenu, Auteur_Contenu, libelle_contenu, Id_oeuvre, Id_Langue FROM contenu WHERE Id_oeuvre = :id";
-$requeteContenu = $db->query($sql);
-$contenu = $requeteContenu->fetchAll(PDO::FETCH_ASSOC); */
-
-/* $sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
-FROM contenu
-WHERE contenu.Id_oeuvre = :Id_oeuvre
-AND contenu.Id_langue = 1";
-$requeteContFr = $db->prepare($sql);
-$requeteContFr->bindValue(":Id_oeuvre", $id, PDO::PARAM_INT);
-$contenuFr = $requeteContFr->fetch();
-
-$sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
-FROM contenu
-WHERE contenu.Id_oeuvre = :id
-AND contenu.Id_langue = 2";
-$requeteContEn = $db->prepare($sql);
-$requeteContEn->bindValue(":id", $id, PDO::PARAM_INT);
-$contenuEn = $requeteContEn->fetch();
-
-$sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
-FROM contenu
-WHERE contenu.Id_oeuvre = :id
-AND contenu.Id_langue = 3";
-$requeteContDe = $db->prepare($sql);
-$requeteContDe->bindValue(":id", $id, PDO::PARAM_INT);
-$contenuDe = $requeteContDe->fetch();
-
-$sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
-FROM contenu
-WHERE contenu.Id_oeuvre = :id
-AND contenu.Id_langue = 4";
-$requeteContFa = $db->prepare($sql);
-$requeteContFa->bindValue(":id", $id, PDO::PARAM_INT);
-$contenuFa = $requeteContFa->fetch();
-
-$sql = "SELECT contenu.description_Contenu, contenu.Auteur_Contenu, contenu.libelle_contenu, contenu.Id_oeuvre, contenu.Id_Langue
-FROM contenu
-WHERE contenu.Id_oeuvre = :id
-AND contenu.Id_langue = 6";
-$requeteContCh = $db->prepare($sql);
-$requeteContCh->bindValue(":id", $id, PDO::PARAM_INT);
-$contenuCh = $requeteContCh->fetch();
- */
-
-/* $array_langues = array($contenuFr, $contenuEn, $contenuDe, $contenuFa, $contenuCh); */ 
+$langues = $requeteLangue->fetchAll(PDO::FETCH_ASSOC); */
 
 
-
-
-$sql = "SELECT oeuvres.Id_oeuvre, oeuvres.libelle_Oeuvre, artiste.Nom_Artiste, artiste.Prenom_Artiste
-        FROM oeuvres 
-        JOIN artiste ON oeuvres.Id_Artiste = artiste.Id_Artiste
-        WHERE oeuvres.Id_oeuvre = :id";
-
-try {
-    $requete = $db->prepare($sql);
-    $requete->bindValue(":id", $id, PDO::PARAM_INT);
-    $requete->execute();
-    $oeuvre = $requete->fetch();
-} catch (PDOException $e) {
-    echo "Erreur de lors de la récupération du projet" . $e->getMessage();
-}
 
 /* if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $libelleDescription = $_POST['libelleContenu'];
@@ -137,18 +78,16 @@ try {
             </div>
             <div class="libelle-contenu">
                 <label for="libelleContenu">Nom de la description : </label>
-                <input type="text" name="libelleContenu" id="libelleContenu">
+                <input type="text" name="libelleContenu" id="libelleContenu" value="<?= $languesTest['libelle_Contenu']?>">
             </div>
             <label for="description">Description :</label>
-            <textarea name="description" id="description" cols="40" rows="10"><?php if(isset($_GET['langues'])) {echo isset($contenu['description_Contenu']);} ?></textarea>
+            <textarea name="description" id="description" cols="40" rows="10"><?php echo $languesTest['description_Contenu'] ;?></textarea>
         </div>
 
         <div class="div-select-oeuvre">
             <label for="oeuvreConc">Oeuvre concernée : </label>
             <select name="oeuvreConc" id="oeuvreConc">
-                <?php foreach($oeuvres as $oeuvre) :?>
-                <option value="<?= $oeuvre["Id_oeuvre"] ?>"><?= $oeuvre["libelle_Oeuvre"]?> - <?= $oeuvre["Nom_Artiste"] ?> <?= $oeuvre["Prenom_Artiste"] ?></option>
-                <?php endforeach ;?>
+                <option value="<?= $languesTest['Id_oeuvre'] ?>"><?= $languesTest['libelle_Oeuvre']?></option>
             </select>
         </div>
                 
@@ -156,7 +95,7 @@ try {
             <form action="" method="GET" id="select-lang">
                 <label for="langues">Langues : </label>
                 <select name="langues" id="langues" onchange="selectLang();">
-                    <?php foreach($langues as $langue) :?>
+                    <?php foreach($languesTest as $langue) :?>
                     <option id="<?= $langue["Id_Langue"] ?>" type="radio" value="<?= $langue["Id_Langue"] ?>" <?php if(isset($_GET['langues']) && $_GET['langues'] == $langue['Id_Langue']) {echo 'selected';} ?>> <?= $langue["libelle_Langue"] ?></option>
                     <?php endforeach; ?>
                 </select>
@@ -171,7 +110,7 @@ try {
         </div>
         <div class="auteur-contain">
             <label for="auteur">Auteur :</label>
-            <input type="text" name="auteur" id="auteur">
+            <input type="text" name="auteur" id="auteur" value="<?= $languesTest['Auteur_Contenu']?>">
         </div>
         <div class="btn-submit-add-oeuvre btn-add-descr">
             <input type="submit" name="description-submit" id="description-submit" value="Valider">

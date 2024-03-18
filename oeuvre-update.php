@@ -8,6 +8,8 @@ include "includes/pages/header.php";
 include "includes/pages/nav-head.php";
 include "includes/pages/navbarr.php";
 
+require_once "config/pdo.php";
+
 ;?>
 
 <div class="gestion gestion-add-oeuvre">
