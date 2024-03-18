@@ -104,10 +104,10 @@ $contenuCh = $requeteContCh->fetch();
 
 
 
-$sql = "SELECT oeuvres.Id_Oeuvre, oeuvres.libelle_Oeuvre, artiste.Nom_Artiste, artiste.Prenom_Artiste
+$sql = "SELECT oeuvres.Id_oeuvre, oeuvres.libelle_Oeuvre, artiste.Nom_Artiste, artiste.Prenom_Artiste
         FROM oeuvres 
         JOIN artiste ON oeuvres.Id_Artiste = artiste.Id_Artiste
-        WHERE oeuvres.Id_Oeuvre = :id";
+        WHERE oeuvres.Id_oeuvre = :id";
 
 try {
     $requete = $db->prepare($sql);
@@ -147,7 +147,7 @@ try {
             <label for="oeuvreConc">Oeuvre concernée : </label>
             <select name="oeuvreConc" id="oeuvreConc">
                 <?php foreach($oeuvres as $oeuvre) :?>
-                <option id="<?= $oeuvre["Id_Oeuvre"]?>" value="<?= $oeuvre["Id_Oeuvre"] ?>"><?= $oeuvre["libelle_Oeuvre"]?> - <?= $oeuvre["Nom_Artiste"] ?> <?= $oeuvre["Prenom_Artiste"] ?></option>
+                <option value="<?= $oeuvre["Id_oeuvre"] ?>"><?= $oeuvre["libelle_Oeuvre"]?> - <?= $oeuvre["Nom_Artiste"] ?> <?= $oeuvre["Prenom_Artiste"] ?></option>
                 <?php endforeach ;?>
             </select>
         </div>

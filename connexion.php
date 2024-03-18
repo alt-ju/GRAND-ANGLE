@@ -39,8 +39,8 @@ if(!empty($_POST)) {
     }
 
     $rolesArray = json_decode($user["roles"], true);
-
-    $_SESSION["user"] = [
+    
+    $_SESSION["admin"] = [
       "id" => $user["id_Collaborateur"],
       "nom" => $user["Nom_Collaborateur"],
       "prenom" => $user["prenom_Collaborateur"],

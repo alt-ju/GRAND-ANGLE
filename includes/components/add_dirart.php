@@ -66,7 +66,7 @@ if(!array_filter($errors)){
 
         $sqladdDir = "INSERT INTO dirart (nom_DirArt,prenom_DirArt,email_DirArt, tel_DirArt) VALUES (:nom_DirArt,:prenom_DirArt,:email_DirArt, :tel_DirArt)";
         $queryDirArt = $db->prepare($sqladdDir);
-        $queryDirArt->bindValue(":nom_DirArt", $nom, PDO<::PARAM_STR);
+        $queryDirArt->bindValue(":nom_DirArt", $nom, PDO::PARAM_STR);
         $queryDirArt->bindValue(":prenom_DirArt", $prenom , PDO::PARAM_STR);
         $queryDirArt->bindValue(":email_DirArt", $_POST["email"]);
         $queryDirArt->bindValue(":tel_DirArt", $tel, PDO::PARAM_STR);
