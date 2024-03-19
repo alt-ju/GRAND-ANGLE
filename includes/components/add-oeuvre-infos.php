@@ -270,6 +270,10 @@ if(!empty($_POST["infos-submit"])) {
             </div>
         </div>
     </form>
+
+    <div class="delete">
+        <a href="#">Supprimer l'oeuvre</a>
+    </div>
     
 <script>
     const inputFile = document.querySelector(".add-ipt input[type=file]");

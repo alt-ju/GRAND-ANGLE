@@ -35,7 +35,7 @@ try {
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
-    if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
+/*     if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
         $sql = "INSERT INTO type_oeuvre(libelle_Type) VALUES(:libelle_Type)";
         $query = $db->prepare($sql);
         $query->bindValue(":libelle_Type", $_POST['add-type'], PDO::PARAM_STR);
@@ -45,6 +45,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     
         echo ("Done");
     } 
+     */
 if(!empty($_POST['infos-submit'])){
 if (!empty($_FILES['imgOeuvre']['name'])) {
     $cheminImage = './artwork/' . $_FILES['imgOeuvre']['name'];

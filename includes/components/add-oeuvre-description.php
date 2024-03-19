@@ -45,8 +45,7 @@ if(!empty($_POST["description-submit"])) {
     <div class="add-oeuvre-descr">
         <div class="add-description">
             <div>
-                <h2>Dernière modification faite par :</h2>
-                <span>Nom Prénom Collaborateur</span>
+                <h2>Ajouter une description ou une traduction :</h2>
             </div>
             <div class="libelle-contenu">
                 <label for="libelleContenu">Nom de la description</label>

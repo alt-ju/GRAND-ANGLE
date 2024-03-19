@@ -873,6 +873,11 @@ div.auteur-contain {
   padding-top: 2rem;
 }
 
+div.delete {
+  display: inline-block;
+  background-color: #78908E;
+}
+
 /*********** CONTENU ENRICHI  ***********/
 
 div.background {
