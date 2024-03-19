@@ -35,7 +35,7 @@ $ch = $langueCh['Id_Langue'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    if(isset($_POST['fr-description-submit']) && !empty($_POST['fr-description-submit'])) {
+    if(isset($_POST['fr-description-submit'])) {
         $sqlDesc = "UPDATE contenu SET contenu.description_Contenu = :description, contenu.Auteur_Contenu = :auteur, contenu.libelle_contenu = :libelle
         WHERE contenu.Id_oeuvre = :id_oeuvre
         AND contenu.Id_langue = :id_langue";
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
-    } elseif (isset($_POST['en-description-submit']) && !empty($_POST['en-description-submit'])) {
+    } elseif (isset($_POST['en-description-submit'])) {
         $sqlDesc = "UPDATE contenu SET contenu.description_Contenu = :description, contenu.Auteur_Contenu = :auteur, contenu.libelle_contenu = :libelle
         WHERE contenu.Id_oeuvre = :id_oeuvre
         AND contenu.Id_langue = :id_langue";
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         
         
-    } elseif (isset($_POST['de-description-submit']) && !empty($_POST['de-description-submit'])) {
+    } elseif (isset($_POST['de-description-submit'])) {
         $sqlDesc = "UPDATE contenu SET contenu.description_Contenu = :description, contenu.Auteur_Contenu = :auteur, contenu.libelle_contenu = :libelle
         WHERE contenu.Id_oeuvre = :id_oeuvre
         AND contenu.Id_langue = :id_langue";
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo 'erreur' . $e->getMessage();
             exit();
         }
-    } elseif (isset($_POST['fa-description-submit']) && !empty($_POST['fa-description-submit'])) {
+    } elseif (isset($_POST['fa-description-submit'])) {
         $sqlDesc = "UPDATE contenu SET contenu.description_Contenu = :description, contenu.Auteur_Contenu = :auteur, contenu.libelle_contenu = :libelle
         WHERE contenu.Id_oeuvre = :id_oeuvre
         AND contenu.Id_langue = :id_langue";
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
         
-    } elseif (isset($_POST['ch-description-submit']) && !empty($_POST['ch-description-submit'])) {
+    } elseif (isset($_POST['ch-description-submit'])) {
         $sqlDesc = "UPDATE contenu SET contenu.description_Contenu = :description, contenu.Auteur_Contenu = :auteur, contenu.libelle_contenu = :libelle
         WHERE contenu.Id_oeuvre = :id_oeuvre
         AND contenu.Id_langue = :id_langue";

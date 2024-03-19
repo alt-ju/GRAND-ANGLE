@@ -22,32 +22,31 @@ $requeteArtiste = $db->query($sql);
 $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC); 
 
 
-
-
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
-        $sql = "INSERT INTO type_oeuvre(libelle_Type) VALUES(:libelle_Type)";
-        $query = $db->prepare($sql);
-        $query->bindValue(":libelle_Type", $_POST['add-type'], PDO::PARAM_STR);
-        $query->execute();
-
-        $idType = $db->lastInsertId();
-
-        echo ("Done");
-    } else {
-        die("L'ajout n'a pas fonctionné");
-    }
-
-
-if(!empty($_POST["infos-submit"])) {
-   if(isset($_POST["libelle"], $_FILES["imgOeuvre"], $_POST["type"], $_POST["artiste"], $_POST["exposition"], $_POST["position"])
-   && !empty($_POST["libelle"]) && !empty($_FILES["imgOeuvre"]) && !empty($_POST["type"]) && !empty($_POST["artiste"]) && !empty($_POST["exposition"]) && !empty($_POST["position"])
-   ){
+        /* if(!empty($_POST)) {
+            if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
+            $sql = "INSERT INTO type_oeuvre(libelle_Type) VALUES(:libelle_Type)";
+            $query = $db->prepare($sql);
+            $query->bindValue(":libelle_Type", $_POST['add-type'], PDO::PARAM_STR);
+            $query->execute();
+            
+            $idType = $db->lastInsertId();
+            
+            echo ("Done");
+        } else {
+            die("L'ajout n'a pas fonctionné");
+        } 
+        } */
+            
+    if(isset($_POST["infos-submit"])) {
+        if(isset($_POST["libelle"], $_FILES["imgOeuvre"], $_POST["type"], $_POST["artiste"], $_POST["exposition"], $_POST["position"])
+        && !empty($_POST["libelle"]) && !empty($_FILES["imgOeuvre"]) && !empty($_POST["type"]) && !empty($_POST["artiste"]) && !empty($_POST["exposition"]) && !empty($_POST["position"])
+        ){
+            
+            var_dump($_POST);
        $libelle = filtrage($_POST["libelle"]);
        $libelleImg = filtrage($_POST["libelleImg"]);
 
-       if(strlen($libelle) >= 150) {
+        if(strlen($libelle) >= 150) {
            $error["libelle"] = "Le libellé est trop long";
        }
 
@@ -73,7 +72,7 @@ if(!empty($_POST["infos-submit"])) {
 
        if(!numInt($_POST["prix"])) {
            $error = "Le prix ne doit contenir que des numéros";
-       }
+       } 
 
        if(isset($_POST["state"]) && $_POST["state"]) {
            $_POST["state"] = 1;
@@ -85,7 +84,8 @@ if(!empty($_POST["infos-submit"])) {
        $flash = "flash_temp";
       
        $sql = "INSERT INTO oeuvres(libelle_Oeuvre, hauteur_Oeuvre, largeur_Oeuvre, profondeur_Oeuvre, poids_Oeuvre, prix, etat_Oeuvre, Id_Exposition, Id_position, Id_Type, Id_Artiste, chemin_Flashcode) VALUES (:libelle_Oeuvre, :hauteur_Oeuvre, :largeur_Oeuvre, :profondeur_Oeuvre, :poids_Oeuvre, :prix, :etat_Oeuvre, :Id_Exposition, :Id_Position, :Id_Type, :Id_Artiste, :chemin_Flashcode)";
-       $query = $db->prepare($sql);
+       try{
+        $query = $db->prepare($sql);
        $query->bindValue(":libelle_Oeuvre", $libelle, PDO::PARAM_STR);
        $query->bindValue(":hauteur_Oeuvre", $_POST["hauteur"], PDO::PARAM_STR);
        $query->bindValue(":largeur_Oeuvre", $_POST["largeur"], PDO::PARAM_STR);
@@ -100,6 +100,13 @@ if(!empty($_POST["infos-submit"])) {
        $query->bindValue(":chemin_Flashcode", $flash, PDO::PARAM_STR);
        $query->execute();
 
+       echo 'done';
+       } catch (PDOException $e) {
+        echo "erreur sql" . $e->getMessage();
+       }
+       
+
+       
        $idOeuvre = $db->lastInsertId();
 
        if(!empty($_FILES['imgOeuvre']['name'])) {
@@ -123,32 +130,39 @@ if(!empty($_POST["infos-submit"])) {
    }
 }
 
-}
-
 ;?>
-
-    <form action="" method="POST" enctype="multipart/form-data">
-
-         <div id="container-princip-type">
+            <!-- <div id="container-princip-type">
                 <div class="box-add-type">
                     <div class="close-add-type">
                         <svg id="close-type-btn" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
                     </div>
                     <div class="container-add-type">
                         <h3>Ajouter un type d'oeuvre</h3>
-                        <form method="POST">
+                        <form action="traitement-infos.php" method="POST">
                             <label for="add-type">Nom du type d'oeuvre :</label>
                             <input type="text" id="add-type" name="add-type">
                             <div class="button-add-type">
-                                <button type="submit" id="submit-type" name="submit-type">Valider</button>
+                                <button type="submit" id="submit-type">Valider</button>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
+            </div>  -->
 
+    <form action="" method="POST" enctype="multipart/form-data">
 
         <div id="blur-container">
+            <!-- <div class="delete-panel">
+                <div class="container-delete">
+                    <div class="info-delete">
+                        <p>Voulez-vous vraiment supprimer l'oeuvre ?</p>
+                        <div>
+                            <button id="confirm-delete">Oui, supprimer maintenant</button>
+                            <button id="cancel-delete">Non, peut-être plus tard</button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
 
             <div class="div-libelle-add-oeuvre">
                 <label for="libelle">Nom de l'oeuvre :</label>
@@ -157,9 +171,6 @@ if(!empty($_POST["infos-submit"])) {
             </div>
 
             <div class="div-photo-add-oeuvre">
-                <div class="arrow-left-btn">
-                    <button><svg  viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></button>
-                </div>
                 <div class="container-img-oeuvre">
                     
                     <div class="image-svg-container">
@@ -169,9 +180,6 @@ if(!empty($_POST["infos-submit"])) {
                             <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
                         </div> -->
                     </div>
-                </div>
-                <div class="arrow-right-btn">
-                    <button><svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></button>
                 </div>
             </div>
             <div class="add-ipt">
@@ -266,16 +274,16 @@ if(!empty($_POST["infos-submit"])) {
             </div>
 
             <div class="btn-submit-add-oeuvre">
-                <input type="submit" name="infos-submit" id="infos-submit" value="Valider">
+                <button type="submit" name="infos-submit" id="infos-submit">Valider</button>
             </div>
         </div>
     </form>
 
     <div class="delete">
-        <a href="#">Supprimer l'oeuvre</a>
+        <a href="#" class="delete-oeuvre-link link" data-id="<?= $oeuvre['Id_Oeuvre']?>">Supprimer l'oeuvre</a>
     </div>
     
-<script>
+<!-- <script>
     const inputFile = document.querySelector(".add-ipt input[type=file]");
 
     inputFile.addEventListener("change", function (event) {
@@ -291,7 +299,7 @@ if(!empty($_POST["infos-submit"])) {
     })
 
 
-</script>
+</script> -->
 
 <script>
 
@@ -310,4 +318,9 @@ const boxAddType = document.getElementById('container-princip-type');
 </script>
 
 
-
+<!-- <script>
+    const deleteOeuvre = document.querySelectorAll(".delete-project-link");
+        deleteLinks.forEach(function(deleteLink){
+            const
+        })
+</script> -->

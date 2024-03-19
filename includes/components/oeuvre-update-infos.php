@@ -32,10 +32,7 @@ try {
     echo "Erreur de lors de la récupération du projet" . $e->getMessage();
 }
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-
-/*     if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
+/* if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
         $sql = "INSERT INTO type_oeuvre(libelle_Type) VALUES(:libelle_Type)";
         $query = $db->prepare($sql);
         $query->bindValue(":libelle_Type", $_POST['add-type'], PDO::PARAM_STR);
@@ -45,12 +42,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     
         echo ("Done");
     } 
-     */
-if(!empty($_POST['infos-submit'])){
-if (!empty($_FILES['imgOeuvre']['name'])) {
-    $cheminImage = './artwork/' . $_FILES['imgOeuvre']['name'];
-    move_uploaded_file($_FILES['imgOeuvre']['tmp_name'], $cheminImage);
+       */
 
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['infos-submit'])) {
+     
     $libelleOeuvre = $_POST['libelle'];
     $img = $_FILES['imgOeuvre'];
     $libelleImg = $_POST['libelleImg'];
@@ -65,6 +60,11 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
     $prix = $_POST['prix'];
     $etat = isset($_POST['state']) ? 1 : 0;
     $flash = 'flash_temp';
+    $ancienneImage = $oeuvre['chemin_Image'];
+
+if (!empty($_FILES['imgOeuvre']['name'])) {
+    $cheminImage = './artwork/' . $_FILES['imgOeuvre']['name'];
+    move_uploaded_file($_FILES['imgOeuvre']['tmp_name'], $cheminImage);
 
     $sql = ('UPDATE oeuvres SET oeuvres.libelle_Oeuvre = ?, oeuvres.hauteur_Oeuvre = ?, oeuvres.largeur_Oeuvre = ?, oeuvres.profondeur_Oeuvre = ?, oeuvres.poids_Oeuvre = ?, oeuvres.prix = ?, oeuvres.etat_Oeuvre = ?, oeuvres.Id_Exposition = ?, oeuvres.Id_Position = ?, oeuvres.Id_Type = ?, oeuvres.Id_Artiste = ?, oeuvres.chemin_Flashcode = ? 
     WHERE Id_oeuvre = ?');
@@ -78,11 +78,11 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
             $poids,
             $prix,
             $etat,
-            $artiste,
-            $type,
             $exposition, 
             $position,
-            $flash,
+            $type,
+            $artiste,
+            $flash, 
             $id
         ]);
 
@@ -108,7 +108,7 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
         exit();
     }
 } else {
-    $sql2 = "UPDATE oeuvres SET libelle_Oeuvre = :libelle_Oeuvre, hauteur_Oeuvre = :hauteur_Oeuvre, largeur_Oeuvre = :largeur_Oeuvre, profondeur_Oeuvre = :profondeur_Oeuvre, prix = :prix, etat_Oeuvre = :etat_Oeuvre, Id_Exposition = :Id_Exposition, Id_Position = :Id_Position, Id_Type = :Id_Type, Id_Artiste = :Id_Artiste, chemin_flashcode = :chemin_Flashcode
+    $sql2 = "UPDATE oeuvres SET libelle_Oeuvre = :libelle_Oeuvre, hauteur_Oeuvre = :hauteur_Oeuvre, largeur_Oeuvre = :largeur_Oeuvre, profondeur_Oeuvre = :profondeur_Oeuvre, prix = :prix, etat_Oeuvre = :etat_Oeuvre, Id_Exposition = :Id_Exposition, Id_Position = :Id_Position, Id_Type = :Id_Type, Id_Artiste = :Id_Artiste, chemin_flashcode = :chemin_Flashcode 
     WHERE Id_Oeuvre = :Id_Oeuvre";
     try {
         $requete2 = $db->prepare($sql2);
@@ -123,7 +123,8 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
             ':Id_Position' => $position,
             ':Id_Type' => $type, 
             ':Id_Artiste' => $artiste,
-            ':chemin_Flashcode' => $flash
+            ':chemin_Flashcode' => $flash,
+            ':Id_Oeuvre' => $id
         ]);
 
         $message = "La mise à jour du projet a bien été effectuée";
@@ -140,7 +141,8 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
         $requeteImg2 = $db->prepare($sql2);
         $requeteImg2->execute([
             ':libelle_Image' => $libelleImg,
-            ':chemin_Image' => $img
+            ':chemin_Image' => $ancienneImage,
+            ':Id_Oeuvre' => $id
         ]);
     } catch (PDOException $e) {
         echo "La mise à jour a bien été effectué " . $e->getMessage();
@@ -148,17 +150,12 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
     }
 }
 }
-}
 
 
 
 ;?>
 
-
-
-<form action="" method="POST" enctype="multipart/form-data">
-
-            <div id="container-princip-type">
+          <!--   <div id="container-princip-type">
                 <div class="box-add-type">
                     <div class="close-add-type">
                         <svg id="close-type-btn" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
@@ -175,6 +172,10 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
                     </div>
                 </div>
             </div>
+ -->
+
+
+<form action="" method="POST" enctype="multipart/form-data">
 
             <div id="blur-container">
 
@@ -185,18 +186,12 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
                 </div>
 
                 <div class="div-photo-add-oeuvre">
-                    <div class="arrow-left-btn">
-                        <button><svg  viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></button>
-                    </div>
                     <div class="container-img-oeuvre">
                         <span>*</span>
                         <div class="image-svg-container">
                             <img src="artwork/<?php echo $oeuvre["chemin_Image"];?>" alt="">
                             <img id="preview-image" src="" alt="">
                         </div>
-                    </div>
-                    <div class="arrow-right-btn">
-                        <button><svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></button>
                     </div>
                 </div>
                 <div>
@@ -289,10 +284,14 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
                             <input type="text"  class="dim-add-oeuvre" name="prix" id="prix" value="<?= $oeuvre["prix"]?>">
                         </div>
                     </div>
-
+                    
                     <div>
                         <label for="state">Livrée</label>
-                        <input type="checkbox" name="state" id="state">
+                        <?php if($oeuvre['etat_Oeuvre'] == 1) :?>
+                            <input type="checkbox" name="state" id="state" checked>
+                        <?php else :?>
+                            <input type="checkbox" name="state" id="state">
+                        <?php endif;?>
                     </div>
                     
                 </div>

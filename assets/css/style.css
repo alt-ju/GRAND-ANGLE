@@ -649,27 +649,6 @@ div.div-photo-add-oeuvre div {
   height: fit-content;
 }
 
-div.arrow-left-btn,
-div.arrow-right-btn {
-  display: flex;
-  align-items: center;
-}
-
-
-div.arrow-left-btn button,
-div.arrow-right-btn button {
-  height: fit-content;
-  background-color: transparent;
-  border: none;
-}
-
-div.arrow-left-btn button svg,
-div.arrow-right-btn button svg {
-  height: 2rem;
-  width: 2rem;
-  fill: var(--FONTCOLOR2);
-}
-
 div.container-img-oeuvre {
   position: relative;
   width: fit-content;
@@ -855,9 +834,7 @@ div.btn-page-contenu button a {
 }
 
 div.consultations {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+  
   width: fit-content;
   border: 2px solid var(--ACCENT1);
   padding: 1rem;
@@ -876,6 +853,12 @@ div.auteur-contain {
 div.delete {
   display: inline-block;
   background-color: #78908E;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+}
+
+div.delete a {
+  color: var(--FONTCOLOR);
 }
 
 /*********** CONTENU ENRICHI  ***********/
@@ -1034,3 +1017,10 @@ div.update-description-by-btn {
   min-height: 90%;
 }
 
+
+/*********** DELETE ***********/
+
+div.delete-panel {
+  height: 100%;
+  width: 100%;
+}

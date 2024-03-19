@@ -11,32 +11,32 @@ $sql = "SELECT oeuvres.Id_Oeuvre, oeuvres.libelle_Oeuvre, artiste.Nom_Artiste, a
 $requeteOeuvre = $db->query($sql);
 $oeuvres = $requeteOeuvre->fetchAll(PDO::FETCH_ASSOC);
 
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-if(!empty($_POST["description-submit"])) {
-    if(isset($_POST["description"], $_POST["langues"], $_POST["oeuvreConc"], $_POST["libelleContenu"], $_POST["auteur"])
-    && !empty($_POST["description"]) && !empty($_POST["langues"]) && !empty($_POST["libelleContenu"]) && !empty($_POST["auteur"]) && !empty($_POST["oeuvreConc"])) {
-
-        $description = filtrage($_POST["description"]);
-
-        $sqlDescr = "INSERT INTO contenu(description_Contenu, Auteur_Contenu, libelle_contenu, Id_oeuvre, Id_Langue) VALUES (:description_Contenu, :Auteur_Contenu, :libelle_contenu, :Id_oeuvre, :Id_Langue)";
-        $query = $db->prepare($sqlDescr);
-        $query->bindValue(":description_Contenu", $_POST["description"], PDO::PARAM_STR);
-        $query->bindValue(":Auteur_Contenu", $_POST["auteur"], PDO::PARAM_STR);
-        $query->bindValue(":libelle_contenu", $_POST["libelleContenu"], PDO::PARAM_STR);
-        $query->bindValue(":Id_oeuvre", $_POST["oeuvreConc"], PDO::PARAM_INT);
-        $query->bindValue(":Id_Langue", $_POST["langues"], PDO::PARAM_INT);
-        $query->execute();
-
-        $idDesc = $db->lastInsertId();
-
-    } else {
-        die("Wrong");
+    if(isset($_POST['description-submit'])) {
+        if(isset($_POST["description"], $_POST["langues"], $_POST["oeuvreConc"], $_POST["libelleContenu"], $_POST["auteur"])
+        && !empty($_POST["description"]) && !empty($_POST["langues"]) && !empty($_POST["libelleContenu"]) && !empty($_POST["auteur"]) && !empty($_POST["oeuvreConc"])) {
+    
+            $description = filtrage($_POST["description"]);
+    
+            $sqlDescr = "INSERT INTO contenu(description_Contenu, Auteur_Contenu, libelle_contenu, Id_oeuvre, Id_Langue) VALUES (:description_Contenu, :Auteur_Contenu, :libelle_contenu, :Id_oeuvre, :Id_Langue)";
+            $query = $db->prepare($sqlDescr);
+            $query->bindValue(":description_Contenu", $_POST["description"], PDO::PARAM_STR);
+            $query->bindValue(":Auteur_Contenu", $_POST["auteur"], PDO::PARAM_STR);
+            $query->bindValue(":libelle_contenu", $_POST["libelleContenu"], PDO::PARAM_STR);
+            $query->bindValue(":Id_oeuvre", $_POST["oeuvreConc"], PDO::PARAM_INT);
+            $query->bindValue(":Id_Langue", $_POST["langues"], PDO::PARAM_INT);
+            $query->execute();
+    
+            $idDesc = $db->lastInsertId();
+    
+        } else {
+            die("Wrong");
+        }
     }
-}
-
-}
-
+    
+    }
 
 ;?>
 
