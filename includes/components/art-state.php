@@ -20,9 +20,11 @@ $oeuvres = $requete->fetchAll(PDO::FETCH_ASSOC);
         <?php forEach($oeuvres as $oeuvre) : ?>
             <div class="card swiper-slide">
                 <div class="image-content">
-                    <h2><?= $oeuvre["libelle_Exposition"] ;?></h2>
+                    <h2><?= $oeuvre["libelle_Exposition"] ?></h2>
                     <div class="card-image">
-                        <img src="./artwork/<?= $oeuvre["chemin_Image"];?>" alt="" class="card-img">
+                        <a href="oeuvre-update.php?id=<?= $oeuvre['Id_oeuvre']?>">
+                            <img src="./artwork/<?= $oeuvre["chemin_Image"];?>" alt="" class="card-img">
+                        </a>
                     </div>
                     <div clas="card-content">
                         <h3 class="name"><?= $oeuvre["libelle_Image"]?></h3>

@@ -44,10 +44,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $idType = $db->lastInsertId();
     
         echo ("Done");
-    } else {
-        die("L'ajout n'a pas fonctionné");
     } 
-
+if(!empty($_POST['infos-submit'])){
 if (!empty($_FILES['imgOeuvre']['name'])) {
     $cheminImage = './artwork/' . $_FILES['imgOeuvre']['name'];
     move_uploaded_file($_FILES['imgOeuvre']['tmp_name'], $cheminImage);
@@ -149,6 +147,7 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
     }
 }
 }
+}
 
 
 
@@ -179,7 +178,7 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
             <div id="blur-container">
 
                 <div class="div-libelle-add-oeuvre">
-                    <label for="libelle">Libellé de l'oeuvre :</label>
+                    <label for="libelle">Nom de l'oeuvre :</label>
                     <input type="text" name="libelle" id="libelle" class="field-add-oeuvre" value="<?php echo $oeuvre["libelle_Oeuvre"]?>">
                     <span>*</span>
                 </div>
