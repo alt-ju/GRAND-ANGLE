@@ -494,9 +494,10 @@ div.card-art-now-expo {
   padding: 2rem;
   margin: 2rem;
   width: 450px;
-  height: fit-content;
+  height: 300px;
   border-radius: 10px;
   gap: 1rem; 
+  position: relative;
 }
 
 div.card-row1 h2 {
@@ -1021,6 +1022,31 @@ div.update-description-by-btn {
 /*********** DELETE ***********/
 
 div.delete-panel {
-  height: 100%;
+  height: 236px;
+  width: 386px;
+  z-index: 200;
+  position: absolute;
+  background-color: #C1D734;
+  border-radius: 8px;
+  box-shadow: 0 0 7px #00000069;
+  display: none;
+}
+
+div.info-delete button {
+  padding: 0.5rem 1.25rem;
+  min-width: fit-content;
+  border-radius: 50px;
+}
+
+div.container-delete {
   width: 100%;
+  height: 100%;
+}
+
+div.info-delete {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }

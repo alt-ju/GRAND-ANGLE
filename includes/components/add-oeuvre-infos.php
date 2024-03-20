@@ -152,17 +152,6 @@ $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC);
     <form action="" method="POST" enctype="multipart/form-data">
 
         <div id="blur-container">
-            <!-- <div class="delete-panel">
-                <div class="container-delete">
-                    <div class="info-delete">
-                        <p>Voulez-vous vraiment supprimer l'oeuvre ?</p>
-                        <div>
-                            <button id="confirm-delete">Oui, supprimer maintenant</button>
-                            <button id="cancel-delete">Non, peut-être plus tard</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
 
             <div class="div-libelle-add-oeuvre">
                 <label for="libelle">Nom de l'oeuvre :</label>
@@ -316,11 +305,3 @@ const boxAddType = document.getElementById('container-princip-type');
         container.classList.remove('blur');
     });
 </script>
-
-
-<!-- <script>
-    const deleteOeuvre = document.querySelectorAll(".delete-project-link");
-        deleteLinks.forEach(function(deleteLink){
-            const
-        })
-</script> -->

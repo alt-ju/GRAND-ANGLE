@@ -19,6 +19,19 @@ $oeuvresNow = $requeteArtNow->fetchAll(PDO::FETCH_ASSOC);
             
             <?php forEach($oeuvresNow as $oeuvreNow) :?>
                 <div class="card-art-now-expo">
+
+                    <div class="delete-panel" id="delete-project-overlay-<?= $oeuvreNow['Id_oeuvre'] ?>">
+                        <div class="container-delete">
+                            <div class="info-delete">
+                                <p>Voulez-vous vraiment supprimer l'oeuvre ?</p>
+                                <div>
+                                    <button id="confirm-delete-now" data-oeuvre-id="<?= $oeuvreNow['Id_oeuvre']?>">Oui, supprimer</button>
+                                    <button id="cancel-delete-now">Non, pas maintenant</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card-row1">
                         <h2><?= $oeuvreNow["libelle_Exposition"];?></h2>
                     </div>
@@ -38,7 +51,7 @@ $oeuvresNow = $requeteArtNow->fetchAll(PDO::FETCH_ASSOC);
                                     </a>
                                 </div>
                                 <div class="delete-art-ongoing">
-                                    <a href="">
+                                    <a href="#" class="delete-oeuvre-link link" data-id="<?= $oeuvreNow['Id_oeuvre']?>">
                                         <svg viewBox="0 0 448 512"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
                                     </a>
                                 </div>
@@ -54,3 +67,45 @@ $oeuvresNow = $requeteArtNow->fetchAll(PDO::FETCH_ASSOC);
         <button type="button" id="add-oeuvre-expo-now"><a href="./add-oeuvre-unique.php">Ajouter une oeuvre</a><svg viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg></button>
     </div>
 </div>
+
+<script>
+    const nowDeleteLinks = document.querySelectorAll(".delete-oeuvre-link");
+        nowDeleteLinks.forEach(function(nowDeleteLink){
+            const oeuvreCard = nowDeleteLink.closest('.card-art-now-expo');
+            const modal = oeuvreCard.querySelector('.delete-panel');
+            const confirmBtn = modal.querySelector("#confirm-delete-now");
+            const cancelBtn = modal.querySelector("#cancel-delete-now");
+
+            nowDeleteLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                modal.style.display = 'block';
+            })
+
+            cancelBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                modal.style.display = 'none';
+            })
+
+            confirmBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                const oeuvreId = this.getAttribute('data-oeuvre-id');
+                console.log(oeuvreId);
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'delete.php');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function(){
+                    if(xhr.status === 200) {
+                        const oeuvreCard = nowDeleteLink.closest('.card-art-now-expo');
+                        oeuvreCard.parentNode.removeChild(oeuvreCard);
+                    } else {
+                        console.error('Erreur lors de la suppression du projet');
+                    }
+                };
+
+                xhr.send('Id_oeuvre=' + oeuvreId);
+                
+            })
+
+
+        })
+</script>
