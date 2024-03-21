@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if(isset($_POST['fr-description-submit'])) {
         $sqlDesc = "UPDATE contenu SET contenu.description_Contenu = :description, contenu.Auteur_Contenu = :auteur, contenu.libelle_contenu = :libelle
-        WHERE contenu.Id_oeuvre = :id_oeuvre
+        WHERE contenu.Id_Oeuvres = :id_oeuvre
         AND contenu.Id_langue = :id_langue";
         try{
             $requeteDesc = $db->prepare($sqlDesc);
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     } elseif (isset($_POST['en-description-submit'])) {
         $sqlDesc = "UPDATE contenu SET contenu.description_Contenu = :description, contenu.Auteur_Contenu = :auteur, contenu.libelle_contenu = :libelle
-        WHERE contenu.Id_oeuvre = :id_oeuvre
+        WHERE contenu.Id_Oeuvres = :id_oeuvre
         AND contenu.Id_langue = :id_langue";
         try{
            $requeteDesc = $db->prepare($sqlDesc);
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
     } elseif (isset($_POST['de-description-submit'])) {
         $sqlDesc = "UPDATE contenu SET contenu.description_Contenu = :description, contenu.Auteur_Contenu = :auteur, contenu.libelle_contenu = :libelle
-        WHERE contenu.Id_oeuvre = :id_oeuvre
+        WHERE contenu.Id_Oeuvres = :id_oeuvre
         AND contenu.Id_langue = :id_langue";
         try{
             $requeteDesc = $db->prepare($sqlDesc);
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
     } elseif (isset($_POST['ch-description-submit'])) {
         $sqlDesc = "UPDATE contenu SET contenu.description_Contenu = :description, contenu.Auteur_Contenu = :auteur, contenu.libelle_contenu = :libelle
-        WHERE contenu.Id_oeuvre = :id_oeuvre
+        WHERE contenu.Id_Oeuvres = :id_oeuvre
         AND contenu.Id_langue = :id_langue";
         try{
             $requeteDesc = $db->prepare($sqlDesc);

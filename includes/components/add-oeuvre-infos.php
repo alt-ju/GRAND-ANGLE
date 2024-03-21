@@ -21,8 +21,8 @@ $sql = "SELECT Id_Artiste, Nom_Artiste, Prenom_Artiste FROM artiste";
 $requeteArtiste = $db->query($sql);
 $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC); 
 
-
-        /* if(!empty($_POST)) {
+    if(isset($_POST['submit-type'])) {
+        if(!empty($_POST)) {
             if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
             $sql = "INSERT INTO type_oeuvre(libelle_Type) VALUES(:libelle_Type)";
             $query = $db->prepare($sql);
@@ -30,19 +30,19 @@ $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC);
             $query->execute();
             
             $idType = $db->lastInsertId();
-            
-            echo ("Done");
+        
         } else {
             die("L'ajout n'a pas fonctionné");
         } 
-        } */
-            
+        }
+    }
+
+
     if(isset($_POST["infos-submit"])) {
         if(isset($_POST["libelle"], $_FILES["imgOeuvre"], $_POST["type"], $_POST["artiste"], $_POST["exposition"], $_POST["position"])
         && !empty($_POST["libelle"]) && !empty($_FILES["imgOeuvre"]) && !empty($_POST["type"]) && !empty($_POST["artiste"]) && !empty($_POST["exposition"]) && !empty($_POST["position"])
         ){
             
-            var_dump($_POST);
        $libelle = filtrage($_POST["libelle"]);
        $libelleImg = filtrage($_POST["libelleImg"]);
 
@@ -113,7 +113,7 @@ $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC);
         $cheminImage = './artwork/' . $_FILES['imgOeuvre']['name'];
         move_uploaded_file($_FILES['imgOeuvre']['tmp_name'], $cheminImage);
 
-        $sql = "INSERT INTO image(libelle_Image, chemin_Image, Id_oeuvre) VALUES (:libelle_Image, :chemin_Image, :Id_Oeuvre)";
+        $sql = "INSERT INTO image(libelle_Image, chemin_Image, Id_Oeuvres) VALUES (:libelle_Image, :chemin_Image, :Id_Oeuvre)";
         $query = $db->prepare($sql);
         $query->bindValue(":libelle_Image", $_POST['libelleImg'], PDO::PARAM_STR); 
         $query->bindValue(":chemin_Image", $_FILES['imgOeuvre']['name']); 
@@ -123,31 +123,29 @@ $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC);
         $idImage = $db->lastInsertId();
        }
 
-       
-
    } else {
        die('oups');
    }
 }
 
 ;?>
-            <!-- <div id="container-princip-type">
+            <div id="container-princip-type">
                 <div class="box-add-type">
                     <div class="close-add-type">
                         <svg id="close-type-btn" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
                     </div>
                     <div class="container-add-type">
                         <h3>Ajouter un type d'oeuvre</h3>
-                        <form action="traitement-infos.php" method="POST">
+                        <form action="" method="POST">
                             <label for="add-type">Nom du type d'oeuvre :</label>
                             <input type="text" id="add-type" name="add-type">
                             <div class="button-add-type">
-                                <button type="submit" id="submit-type">Valider</button>
+                                <button type="submit" name="submit-type" id="submit-type">Valider</button>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>  -->
+            </div> 
 
     <form action="" method="POST" enctype="multipart/form-data">
 
@@ -163,17 +161,14 @@ $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC);
                 <div class="container-img-oeuvre">
                     
                     <div class="image-svg-container">
-                        <!-- <img src="assets/img/imgvide.webp" alt=""> -->
-                        <img id="preview-image" src="" alt="" >
-                        <!-- <div class="add-img-plus">
-                            <svg  viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-                        </div> -->
+                    <img id="preview-img" src="./assets/img/imgvide.webp" alt="Affiche de l'exposition" class="preview-image">  
                     </div>
                 </div>
             </div>
             <div class="add-ipt">
                 <span>*</span>
-                <input type="file" name="imgOeuvre" id="imgOeuvre" accept="image/*">
+                <label for="imgOeuvre">Image :</label>
+                <input type="file" name="imgOeuvre" id="imgOeuvre" accept="image/*" onchange="previewImage(this)">
                 <input type="text" name="libelleImg" id="libelleImg" placeholder="Libellé de l'image">
             </div>
             <div class="div-infos-oeuvre">
@@ -268,28 +263,6 @@ $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </form>
 
-    <div class="delete">
-        <a href="#" class="delete-oeuvre-link link" data-id="<?= $oeuvre['Id_Oeuvre']?>">Supprimer l'oeuvre</a>
-    </div>
-    
-<!-- <script>
-    const inputFile = document.querySelector(".add-ipt input[type=file]");
-
-    inputFile.addEventListener("change", function (event) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.addEventListener('load', function () {
-            const previewImage = document.querySelector('img#preview-image');
-            previewImage.src = reader.result;
-            previewImage.style.display = "block";
-        });
-
-        reader.readAsDataUrl(file);
-    })
-
-
-</script> -->
-
 <script>
 
 const boxAddType = document.getElementById('container-princip-type');
@@ -304,4 +277,19 @@ const boxAddType = document.getElementById('container-princip-type');
         boxAddType.style.display = 'none';
         container.classList.remove('blur');
     });
+</script>
+
+<script>
+    function previewImage(input) {
+        const imgElement = document.getElementById('preview-img');
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+            imgElement.src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]); 
+        } else {
+            imgElement.src = "placeholder.jpg"; 
+        }
+}
 </script>

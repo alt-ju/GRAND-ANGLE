@@ -1,66 +1,85 @@
 <?php
-
-$title = "Connexion";
-
-include "includes/pages/header.php";
-
 session_start();
-
-$error = '';
-
-if(isset($_SESSION["user"])) {
-  header("Location: home-dash.php");
-  exit;
-}
-
-if(!empty($_POST)) {
-  if(isset($_POST["email"], $_POST["pass"])
-  && !empty($_POST["email"])
-  && !empty($_POST["pass"])
-  ){
-
-    if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-      die("Adresse email ou mot de passe incorrect");
-    }
-
-    require_once "config/pdo.php";
-    $sql = "SELECT * FROM collaborateur WHERE Email_Collaborateur = :email";
-    $query = $db->prepare($sql);
-    $query->bindValue(":email", $_POST["email"], PDO::PARAM_STR);
-    $query->execute();
-    $user = $query->fetch();
-
-    if(!$user) {
-      $error = "L'email ou le mot de passe est incorrect";
-    }
-
-    if(!password_verify($_POST['pass'], $user['pass'])) {
-      $error = "L'email ou le mot de passe est incorrect";
-    }
-
-    $rolesArray = json_decode($user["roles"], true);
-    
-    $_SESSION["admin"] = [
-      "id" => $user["id_Collaborateur"],
-      "nom" => $user["Nom_Collaborateur"],
-      "prenom" => $user["prenom_Collaborateur"],
-      "email" => $user["Email_Collaborateur"],
-      "roles" => $rolesArray
-    ];
-
+if (isset($_SESSION["user"])) {
     header("Location: home-dash.php");
     exit;
-
-  } else {
-    die("NOPE");
-  }
 }
+$titre = "Connexion User";
 
-;?>
+
+
+if (!empty($_POST)) {
+    if (
+        isset($_POST["email"], $_POST["pass"])
+        && !empty($_POST["email"])
+        && !empty($_POST["pass"])
+    ) {
+        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+            /* $error = "Email ou mot de passe incorrect";
+   */
+        }
+
+        require_once "config/pdo.php";
+        $sql = "SELECT * FROM collaborateur WHERE Email_Collaborateur=:email";
+        $query = $db->prepare($sql);
+        $query->bindValue(":email", $_POST["email"], PDO::PARAM_STR);
+        $query->execute();
+        $user = $query->fetch();
+
+        if (!$user) {
+            /* $error = "Email ou mot de passe incorrect"; */
+  
+        }
+
+        if (!password_verify($_POST["pass"], $user["Pass_Collaborateur"])) {
+          /* $error = "Email ou mot de passe incorrect";
+ */
+        }
+
+        $rolesArray = json_decode($user["roles"], true);
+        
+        if(in_array("ADMIN", $rolesArray)) {
+            $_SESSION["admin"] = [
+                "id" => $user["id_Collaborateur"],
+                "nom" => $user["Nom_Collaborateur"],
+                "prenom" => $user["prenom_Collaborateur"],
+                "email" => $user["Email_Collaborateur"],
+                "roles" => $rolesArray
+            ];
+
+            header("Location: home-dash.php");
+            
+        } else {
+            header("Location: connexion.php");
+        }
+
+
+        if(in_array("USER", $rolesArray)) {
+          $_SESSION["user"] = [
+            "id" => $user["id_Collaborateur"],
+            "nom" => $user["Nom_Collaborateur"],
+            "prenom" => $user["prenom_Collaborateur"],
+            "email" => $user["Email_Collaborateur"],
+            "roles" => $rolesArray
+        ];
+
+            header("Location: home-dash.php");
+          
+        } else {
+            header("Location: connexion.php");
+        }
+        
+    } else {
+        die("Oups!! Wrong Way Bob !");
+    }
+}
+include "includes/pages/header.php";
+
+?>
 
 <div class="content-bienvenue">
 
-    <h1 class="bienvenu">Bienvenue dans votre logiciel de gestion</h1>
+    <h1 class="bienvenu">Bienvenue dans votre application de gestion</h1>
     
       <form class="form-login" method="POST" action="">
               <div class="from-divs">
@@ -80,7 +99,7 @@ if(!empty($_POST)) {
               <div class="from-divs login-input" >
                 <input type="submit" class="input-sub-login" value="Confirm identity">
               </div>
-              <div class="red"><?= $error ?></div>
+              <div class="red"><?php if(!empty($error)) {echo $error;} ;?></div>
       </form>
 </div>
 

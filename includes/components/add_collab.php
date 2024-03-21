@@ -85,11 +85,11 @@ $services = $requete->fetchAll(PDO::FETCH_ASSOC);
  $error= array('creat-service'=>'');
  if(isset($_POST['valid'])){
    if(empty($_POST['creat-service'])){
-   $errors['creat-service']= 'Le Nom du service est obligatoire. ';
+   $error['creat-service']= 'Le Nom du service est obligatoire. ';
    }else{ 
    $servicee = $_POST['creat-service'];
-   if(!preg_match('/^[a-zA-Z\s]+$/',$nom)){
-    $errors['creat-service']= 'Le Nom du service est obligatoire.';
+   if(!preg_match('/^[a-zA-Z\s]+$/', $servicee)){
+    $error['creat-service']= 'Le Nom du service est obligatoire.';
   }
  }
     

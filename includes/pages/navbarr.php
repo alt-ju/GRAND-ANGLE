@@ -39,6 +39,7 @@
                     </li>
                     <a href="./implant.php"><span class="hidden-items show">Implantation</span></a>
                 </div>
+                <?php if(isset($_SESSION['ADMIN'])):?>
                 <div class="items">
                     <li>
                         <a href="./gestion_des_collaborateur.php">
@@ -47,6 +48,7 @@
                     </li>
                     <a href="./gestion_des_collaborateur.php"><span class="hidden-items show">Collaborateurs</span></a>
                 </div>
+                <?php endif ;?>
             </div>  
         </ul>
         

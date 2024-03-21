@@ -1,14 +1,14 @@
 <?php 
 
 require_once "./config/pdo.php";
-$sql = "SELECT oeuvres.Id_oeuvre, oeuvres.etat_Oeuvre, image.libelle_Image, image.chemin_Image, exposition.libelle_Exposition, exposition.Date_Debut, artiste.Id_Artiste
+$sql = "SELECT oeuvres.Id_Oeuvres, oeuvres.etat_Oeuvre, image.libelle_Image, image.chemin_Image, exposition.libelle_Exposition, exposition.Date_Debut, artiste.Id_Artiste
 FROM oeuvres
-JOIN image ON oeuvres.Id_oeuvre = image.Id_oeuvre
+JOIN image ON oeuvres.Id_Oeuvres = image.Id_Oeuvres
 JOIN artiste ON artiste.Id_Artiste = oeuvres.Id_Artiste
 JOIN exposition ON oeuvres.Id_Exposition = exposition.Id_Exposition 
 WHERE CURRENT_DATE() < exposition.Date_Debut
 AND exposition.Date_Debut <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY)
-GROUP BY oeuvres.Id_oeuvre, oeuvres.etat_Oeuvre, image.libelle_Image, image.chemin_Image, exposition.libelle_Exposition, exposition.Date_Debut, artiste.Id_Artiste";
+GROUP BY oeuvres.Id_Oeuvres, oeuvres.etat_Oeuvre, image.libelle_Image, image.chemin_Image, exposition.libelle_Exposition, exposition.Date_Debut, artiste.Id_Artiste";
 $requete = $db->query($sql);
 $oeuvres = $requete->fetchAll(PDO::FETCH_ASSOC);
 
@@ -22,7 +22,7 @@ $oeuvres = $requete->fetchAll(PDO::FETCH_ASSOC);
                 <div class="image-content">
                     <h2><?= $oeuvre["libelle_Exposition"] ?></h2>
                     <div class="card-image">
-                        <a href="oeuvre-update.php?id=<?= $oeuvre['Id_oeuvre']?>">
+                        <a href="oeuvre-update.php?id=<?= $oeuvre['Id_Oeuvres']?>">
                             <img src="./artwork/<?= $oeuvre["chemin_Image"];?>" alt="" class="card-img">
                         </a>
                     </div>

@@ -3,7 +3,7 @@
 define("DBHOST", "localhost");
 define("DBUSER", "root");
 define("DBPASS", "root");
-define("DBNAME", "grandanglelast");
+define("DBNAME", "GRANDANGLEFINAL");
 
 $dsn = "mysql:dbname=".DBNAME.";host=".DBHOST;
 

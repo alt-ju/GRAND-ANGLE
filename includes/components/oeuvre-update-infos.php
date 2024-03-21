@@ -18,10 +18,10 @@ $sql = "SELECT Id_Artiste, Nom_Artiste, Prenom_Artiste FROM artiste";
 $requeteArtiste = $db->query($sql);
 $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC);
 
-$sql = "SELECT oeuvres.Id_oeuvre, oeuvres.libelle_Oeuvre, oeuvres.hauteur_Oeuvre, oeuvres.largeur_Oeuvre, oeuvres.profondeur_Oeuvre, oeuvres.poids_Oeuvre, oeuvres.prix, oeuvres.etat_Oeuvre, oeuvres.Id_Exposition, oeuvres.Id_Position, oeuvres.Id_Type, oeuvres.Id_Artiste, image.chemin_Image, image.libelle_Image
+$sql = "SELECT oeuvres.Id_Oeuvres, oeuvres.libelle_Oeuvre, oeuvres.hauteur_Oeuvre, oeuvres.largeur_Oeuvre, oeuvres.profondeur_Oeuvre, oeuvres.poids_Oeuvre, oeuvres.prix, oeuvres.etat_Oeuvre, oeuvres.Id_Exposition, oeuvres.Id_Position, oeuvres.Id_Type, oeuvres.Id_Artiste, image.chemin_Image, image.libelle_Image
 FROM oeuvres
-JOIN image ON oeuvres.Id_oeuvre = image.Id_oeuvre
-WHERE oeuvres.Id_oeuvre = :id";
+JOIN image ON oeuvres.Id_Oeuvres = image.Id_oeuvre
+WHERE oeuvres.Id_Oeuvres = :id";
 
 try {
     $requete = $db->prepare($sql);
@@ -32,7 +32,8 @@ try {
     echo "Erreur de lors de la récupération du projet" . $e->getMessage();
 }
 
-/* if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
+if(isset($_POST['submit-type'])) {
+    if(isset($_POST['add-type']) && !empty($_POST['add-type'])) {
         $sql = "INSERT INTO type_oeuvre(libelle_Type) VALUES(:libelle_Type)";
         $query = $db->prepare($sql);
         $query->bindValue(":libelle_Type", $_POST['add-type'], PDO::PARAM_STR);
@@ -42,7 +43,9 @@ try {
     
         echo ("Done");
     } 
-       */
+       
+}
+    
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['infos-submit'])) {
      
@@ -67,7 +70,7 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
     move_uploaded_file($_FILES['imgOeuvre']['tmp_name'], $cheminImage);
 
     $sql = ('UPDATE oeuvres SET oeuvres.libelle_Oeuvre = ?, oeuvres.hauteur_Oeuvre = ?, oeuvres.largeur_Oeuvre = ?, oeuvres.profondeur_Oeuvre = ?, oeuvres.poids_Oeuvre = ?, oeuvres.prix = ?, oeuvres.etat_Oeuvre = ?, oeuvres.Id_Exposition = ?, oeuvres.Id_Position = ?, oeuvres.Id_Type = ?, oeuvres.Id_Artiste = ?, oeuvres.chemin_Flashcode = ? 
-    WHERE Id_oeuvre = ?');
+    WHERE Id_Oeuvres = ?');
     try {
         $requete = $db->prepare($sql);
         $requete->execute([
@@ -92,7 +95,7 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
         exit();
     }
 
-    $sql = ('UPDATE image SET image.libelle_Image = ?, image.chemin_Image = ? WHERE Id_oeuvre = ?');
+    $sql = ('UPDATE image SET image.libelle_Image = ?, image.chemin_Image = ? WHERE Id_Oeuvres = ?');
     try {
         $requeteImg = $db->prepare($sql);
         $requeteImg->execute([
@@ -109,7 +112,7 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
     }
 } else {
     $sql2 = "UPDATE oeuvres SET libelle_Oeuvre = :libelle_Oeuvre, hauteur_Oeuvre = :hauteur_Oeuvre, largeur_Oeuvre = :largeur_Oeuvre, profondeur_Oeuvre = :profondeur_Oeuvre, prix = :prix, etat_Oeuvre = :etat_Oeuvre, Id_Exposition = :Id_Exposition, Id_Position = :Id_Position, Id_Type = :Id_Type, Id_Artiste = :Id_Artiste, chemin_flashcode = :chemin_Flashcode 
-    WHERE Id_Oeuvre = :Id_Oeuvre";
+    WHERE Id_Oeuvres = :Id_Oeuvre";
     try {
         $requete2 = $db->prepare($sql2);
         $requete2->execute([
@@ -136,7 +139,7 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
     }
 
     $sql2 = "UPDATE image SET libelle_Image = :libelle_Image, chemin_Image = :chemin_Image
-    WHERE Id_Oeuvre = :Id_Oeuvre";
+    WHERE Id_Oeuvres = :Id_Oeuvre";
     try {
         $requeteImg2 = $db->prepare($sql2);
         $requeteImg2->execute([
@@ -155,7 +158,7 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
 
 ;?>
 
-          <!--   <div id="container-princip-type">
+          <div id="container-princip-type">
                 <div class="box-add-type">
                     <div class="close-add-type">
                         <svg id="close-type-btn" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
@@ -172,7 +175,6 @@ if (!empty($_FILES['imgOeuvre']['name'])) {
                     </div>
                 </div>
             </div>
- -->
 
 
 <form action="" method="POST" enctype="multipart/form-data">

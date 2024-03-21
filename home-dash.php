@@ -10,8 +10,10 @@ include "includes/pages/nav-head.php";
 
 ;?>
 
+
 <div class="calendar">
-    <?php ;?>
+    
+    <?php echo ($_SESSION['user']) ;?>
 </div>
 <div class="calendar-daily">
     <?php ;?>
