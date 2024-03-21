@@ -19,7 +19,20 @@ $oeuvresNext = $requeteArtNext->fetchAll(PDO::FETCH_ASSOC);
     <div class="expo-content-now">
         <div class="container-cards-art-now">
             <?php forEach($oeuvresNext as $oeuvreNext) :?>
-                <div class="card-art-now-expo">
+                <div class="card-art-now-expo" id="<?= $oeuvreNext['Id_oeuvre'] ?>">
+
+                    <div class="delete-panel" id="delete-project-overlay-<?= $oeuvreNext['Id_oeuvre'] ?>">
+                        <div class="container-delete">
+                            <div class="info-delete">
+                                <p>Voulez-vous vraiment supprimer l'oeuvre ?</p>
+                                <div>
+                                    <button id="confirm-delete-next" data-oeuvreNext-id="<?= $oeuvreNext['Id_oeuvre']?>">Oui, supprimer</button>
+                                    <button id="cancel-delete-next">Non, pas maintenant</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card-row1">
                         <h2><?= $oeuvreNext["libelle_Exposition"];?></h2>
                     </div>
@@ -45,7 +58,7 @@ $oeuvresNext = $requeteArtNext->fetchAll(PDO::FETCH_ASSOC);
                                     </a>
                                 </div>
                                 <div class="delete-art-ongoing">
-                                    <a href="">
+                                <a href="#" class="delete-oeuvreNext-link link" data-id="<?= $oeuvreNext['Id_oeuvre']?>">
                                         <svg viewBox="0 0 448 512"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
                                     </a>
                                 </div>
@@ -62,4 +75,46 @@ $oeuvresNext = $requeteArtNext->fetchAll(PDO::FETCH_ASSOC);
            <a href="./add-oeuvre-unique.php">Ajouter une oeuvre</a><svg viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg></button>
     </div>
 </div>
+
+<script>
+    const nextDeleteLinks = document.querySelectorAll(".delete-oeuvreNext-link");
+        nextDeleteLinks.forEach(function(nextDeleteLink){
+            const oeuvreCard = nextDeleteLink.closest('.card-art-now-expo');
+            const modal = oeuvreCard.querySelector('.delete-panel');
+            const nextConfirmBtn = modal.querySelector("#confirm-delete-next");
+            const nextCancelBtn = modal.querySelector("#cancel-delete-next");
+
+            nextDeleteLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                modal.style.display = 'block';
+            })
+
+            nextCancelBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                modal.style.display = 'none';
+            })
+
+            nextConfirmBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                const oeuvreId = this.getAttribute('data-oeuvreNext-id');
+                console.log(oeuvreId);
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'delete.php');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function(){
+                    if(xhr.status === 200) {
+                        const oeuvreCard = nextDeleteLink.closest('.card-art-now-expo');
+                        oeuvreCard.parentNode.removeChild(oeuvreCard);
+                    } else {
+                        console.error('Erreur lors de la suppression du projet');
+                    }
+                };
+
+                xhr.send('Id_oeuvre=' + oeuvreId);
+                
+            })  
+
+
+        }) 
+</script>
 
