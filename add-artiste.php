@@ -1,5 +1,7 @@
 <?php 
 
+$titre = "Ajouter un artiste";
+
 session_start();
 
 include "includes/pages/header.php";

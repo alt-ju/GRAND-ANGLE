@@ -540,7 +540,9 @@
 /********** ADD EXPO  ***********/
 
 div.contain-form-add-expo {
-  
+  width: 80%;
+  margin: auto;
+  overflow-y: scroll;
 }
 
 .field-dh{
@@ -577,9 +579,7 @@ div.contain-form-add-expo {
   padding-bottom: 10px;
 }
  
- 
- 
-.upload-expo{
+/* /* .upload-expo{
   border:none;
   background-color: var(--BGCOLORPU);
   color: var(--FONTCOLOR);
@@ -592,16 +592,17 @@ div.contain-form-add-expo {
   font-weight: 500;
   font-family: var(--FONTTITLE);
   transition: all 0.3s ease;
-}
+}  */
  
- 
+  */
 .image-preview {
   width: 200px;
   height: 150px;
   margin-bottom: 10px;
 }
-.preview-image {
-  max-width: 100%;
+img.preview-image {
+  width: 200px;
+  height: 150px;
   height: auto;
 }
  

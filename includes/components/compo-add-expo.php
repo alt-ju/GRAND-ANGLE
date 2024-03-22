@@ -58,13 +58,13 @@ function filtrage($data) {
       $plan = $teaser = '';
 
       if (isset($_FILES['plan_upload']) && $_FILES['plan_upload']['error'] === UPLOAD_ERR_OK) {
-          $plan_path = 'assets/images/img_plan/' . $_FILES['plan_upload']['name'];
+          $plan_path = 'assets/img/' . $_FILES['plan_upload']['name'];
           move_uploaded_file($_FILES['plan_upload']['tmp_name'], $plan_path);
           $plan = $_FILES['plan_upload']['name'];
       }
   
       if (isset($_FILES['teaser_upload']) && $_FILES['teaser_upload']['error'] === UPLOAD_ERR_OK) {
-          $teaser_path = 'assets/images/img_teaser/' . $_FILES['teaser_upload']['name'];
+          $teaser_path = 'assets/img/' . $_FILES['teaser_upload']['name'];
           move_uploaded_file($_FILES['teaser_upload']['tmp_name'], $teaser_path);
           $teaser = $_FILES['teaser_upload']['name'];
       }
@@ -195,26 +195,27 @@ function filtrage($data) {
           <path
             d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
           </svg></a>
-        </div>    
+      </div>
+
       <div class="upload-pt">
           <div class="form-divs">
             <div class="file-add ">
-            <label for="plan_upload" class="lable-upload">Aperçu du plan de l'exposition :</label>
-  <img id="plan_preview" src="./assets/images/img_plan/igel-cover.jpg" alt="Plan de l'exposition" class="preview-image">
-  <input type="file" id="plan_upload" name="plan_upload" accept="image/*" class="upload-expo" onchange="previewPlanImage(this)">
-            </div>
+                <label for="plan_upload" class="lable-upload">Aperçu du plan de l'exposition :</label>
+                <img id="plan_preview" src="./assets/img/freud_strawberries.jpg" alt="Plan de l'exposition" class="preview-image">
+               <input type="file" id="plan_upload" name="plan_upload" accept="image/*" class="upload-expo" onchange="previewPlanImage(this)">
+           </div>
           </div>
           <div class="form-divs">
-            <div class="file-add ">
-            <label for="teaser_upload" class="lable-upload">Aperçu de l'affiche de l'exposition :</label>
-  <img id="teaser_preview" src="./assets/images/img_plan/igel-cover.jpg" alt="Affiche de l'exposition" class="preview-image">
-  <input type="file" id="teaser_upload" name="teaser_upload" accept="image/*" class="upload-expo" onchange="previewTeaserImage(this)">
-            </div>  
+              <div class="file-add ">
+                <label for="teaser_upload" class="lable-upload">Aperçu de l'affiche de l'exposition :</label>
+                <img id="teaser_preview" src="./assets/images/img_plan/igel-cover.jpg" alt="Affiche de l'exposition" class="preview-image">
+                <input type="file" id="teaser_upload" name="teaser_upload" accept="image/*" class="upload-expo" onchange="previewTeaserImage(this)">
+              </div>  
           </div>
         </div>
-    <div class="form-divs login-input">
-      <input type="submit" name="submit" class="input-sub-add-collab" value="Valider">
-            </div>
+        <div class="form-divs login-input">
+            <input type="submit" name="submit" class="input-sub-add-collab" value="Valider">
+        </div>
    
   </form>
 </div>
@@ -241,7 +242,7 @@ function filtrage($data) {
 
   <?php include "includes/pages/footer.php";?>
 
-  <script>
+<script>
   document.getElementById("add-pup").addEventListener("click" , function(){
     document.querySelector(".theme-pup").style.display="flex";
   })
@@ -260,9 +261,9 @@ function previewPlanImage(input) {
     reader.onload = function(e) {
       planImgElement.src = e.target.result;
     }
-    reader.readAsDataURL(input.files[0]); // Convert image to Data URL
+    reader.readAsDataURL(input.files[0]); 
   } else {
-    planImgElement.src = "placeholder.jpg"; // Set default placeholder image
+    planImgElement.src = "placeholder.jpg"; 
   }
 }
 
@@ -273,9 +274,9 @@ function previewTeaserImage(input) {
     reader.onload = function(e) {
       teaserImgElement.src = e.target.result;
     }
-    reader.readAsDataURL(input.files[0]); // Convert image to Data URL
+    reader.readAsDataURL(input.files[0]); 
   } else {
-    teaserImgElement.src = "placeholder.jpg"; // Set default placeholder image
+    teaserImgElement.src = "placeholder.jpg"; 
   }
 }
   </script>

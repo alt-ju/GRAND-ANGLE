@@ -8,7 +8,7 @@
 
         <div class="img-container-add-artiste">
             <div class="img-content-add-artiste">
-                <img id="preview-img" src="./assets/img/imgvide.webp" alt="">   
+                <img id="preview-img-artiste" src="./assets/img/imgvide.webp" alt="">  
             </div>
             <div class="input-photo-artiste">
                 <label for="photo-artiste">Photo de l'artiste :</label>

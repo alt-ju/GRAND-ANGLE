@@ -129,6 +129,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ;?>
 
+<div class="oeuvre-contenu-supp">
+    <div class="btn-page-contenu">
+        <button><a href="contenu-enrichi.php">Voir le contenu enrichi</a></button>
+    </div>
+    <div class="div-qrcode">
+        <button><a href="">Créer un QR Code</a></button>
+    </div>
+</div>
+
 <div class="btn-update-description">
     <div id="fr-btn" class="btn-langue">
         <button>Français</button>
@@ -144,12 +153,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     <div id="ch-btn" class="btn-langue">
         <button>Chinois</button>
-    </div>
-    <div class="add-langue-plus">
-        <a href="#">
-            <svg viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-            <span>Créer</span>
-        </a>
     </div>
 </div>
 

@@ -822,20 +822,18 @@ div.oeuvre-contenu-supp {
   width: 40%;
 }
 
-div.btn-page-contenu button {
-  width: 200px;
+div.oeuvre-contenu-supp button {
   padding: 1rem;
   border-radius: 50px;
   background-color: #78908E;
   border: none;
 }
 
-div.btn-page-contenu button a {
+div.oeuvre-contenu-supp button a {
   color: var(--FONTCOLOR);
 }
 
 div.consultations {
-  
   width: fit-content;
   border: 2px solid var(--ACCENT1);
   padding: 1rem;
@@ -860,6 +858,14 @@ div.delete {
 
 div.delete a {
   color: var(--FONTCOLOR);
+}
+
+div.oeuvre-contenu-supp {
+  display: flex;
+}
+
+div.oeuvre-contenu-supp div {
+  margin: 1rem 1rem 1rem 0;
 }
 
 /*********** CONTENU ENRICHI  ***********/
@@ -1059,6 +1065,10 @@ div.artiste-infos {
   width: 100%;
 }
 
+div.title-add-artiste {
+  padding-bottom: 1.5rem;
+}
+
 div.title-add-artiste h2 {
   font-family: var(--FONTTITLE);
   font-weight: 600;
@@ -1069,8 +1079,66 @@ div.img-container-add-artiste {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 2rem;
 }
 
-div.img-content-add-artist {
-  
+img#preview-img-artiste {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+
+div.div-bio {
+  display: flex;
+  flex-direction: column;
+}
+
+div.artiste-infos label {
+  width: 6rem;
+}
+
+input#tel-artiste {
+  width: 10rem;
+}
+
+div.div-btn-add-artiste {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+div.div-btn-add-artiste button {
+  padding: 0.5rem 1.25rem;
+  min-width: fit-content;
+  border-radius: 50px;
+  background-color: var(--ACCENT1);
+  border: none;
+}
+
+div.spe-add-artiste {
+  padding-bottom: 2rem;
+}
+
+div.div-bio {
+  display: inline-flex;
+  padding-bottom: 2rem;
+}
+
+div.div-bio label {
+  padding-bottom: 1rem;
+}
+
+div.submit-bio {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+div.submit-bio button {
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  min-width: fit-content;
+  background-color: var(--ACCENT1);
+  border: none;
 }

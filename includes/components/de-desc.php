@@ -24,7 +24,7 @@ $languesTest = $requeteLangues->fetch();
 ;?>
 
 
-<div id="de">
+<div class="de">
     <form action="" method="POST" class="form">
         <div class="add-oeuvre-descr">
             <div class="add-description">
