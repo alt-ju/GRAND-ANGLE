@@ -20,7 +20,7 @@ $artistes = $requeteArtiste->fetchAll(PDO::FETCH_ASSOC);
 
 $sql = "SELECT oeuvres.Id_Oeuvres, oeuvres.libelle_Oeuvre, oeuvres.hauteur_Oeuvre, oeuvres.largeur_Oeuvre, oeuvres.profondeur_Oeuvre, oeuvres.poids_Oeuvre, oeuvres.prix, oeuvres.etat_Oeuvre, oeuvres.Id_Exposition, oeuvres.Id_Position, oeuvres.Id_Type, oeuvres.Id_Artiste, image.chemin_Image, image.libelle_Image
 FROM oeuvres
-JOIN image ON oeuvres.Id_Oeuvres = image.Id_oeuvre
+JOIN image ON oeuvres.Id_Oeuvres = image.Id_Oeuvres
 WHERE oeuvres.Id_Oeuvres = :id";
 
 try {

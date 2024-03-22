@@ -8,9 +8,11 @@ require_once "./config/pdo.php";
     
     <div class="user">
         <?php if(isset($_SESSION['user'])) : ?>
-        <h1><?= $_SESSION["user"]["nom"] . " " . $_SESSION["user"]["prenom"];?></h1>
+            <h1><?= $_SESSION["user"]["nom"] . " " . $_SESSION["user"]["prenom"];?></h1>
+        <?php elseif(isset($_SESSION['admin'])) : ?>
+            <h1><?= $_SESSION["admin"]["nom"] . " " . $_SESSION["admin"]["prenom"];?></h1>
         <?php endif;?> 
-    </div>
+    </div> 
    
     <div class="searchbar"> 
         <div class="loupe">

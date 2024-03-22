@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once './config/pdo.php';
 
 include "includes/pages/header.php";

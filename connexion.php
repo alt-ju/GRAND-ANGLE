@@ -1,10 +1,12 @@
 <?php
+
 session_start();
+
 if (isset($_SESSION["user"])) {
     header("Location: home-dash.php");
     exit;
 }
-$titre = "Connexion User";
+$titre = "Connexion";
 
 
 
@@ -26,20 +28,24 @@ if (!empty($_POST)) {
         $query->execute();
         $user = $query->fetch();
 
-        if (!$user) {
-            /* $error = "Email ou mot de passe incorrect"; */
-  
-        }
+        if ($user && password_verify($_POST['pass'], $user['Pass_Collaborateur'])) {
+            
+            $rolesArray = json_decode($user["roles"], true);
+            
+            if(in_array("ADMIN", $rolesArray)) {
+                $_SESSION["admin"] = [
+                    "id" => $user["id_Collaborateur"],
+                    "nom" => $user["Nom_Collaborateur"],
+                    "prenom" => $user["prenom_Collaborateur"],
+                    "email" => $user["Email_Collaborateur"],
+                    "roles" => $rolesArray
+                ];
 
-        if (!password_verify($_POST["pass"], $user["Pass_Collaborateur"])) {
-          /* $error = "Email ou mot de passe incorrect";
- */
-        }
-
-        $rolesArray = json_decode($user["roles"], true);
-        
-        if(in_array("ADMIN", $rolesArray)) {
-            $_SESSION["admin"] = [
+                header("Location: home-dash.php");
+                exit;
+                
+            } elseif(in_array("USER", $rolesArray)){
+            $_SESSION["user"] = [
                 "id" => $user["id_Collaborateur"],
                 "nom" => $user["Nom_Collaborateur"],
                 "prenom" => $user["prenom_Collaborateur"],
@@ -47,31 +53,18 @@ if (!empty($_POST)) {
                 "roles" => $rolesArray
             ];
 
-            header("Location: home-dash.php");
-            
+                header("Location: home-dash.php");
+                exit;
+            } else {
+                header("Location: connexion.php");
+                exit;
+            }
         } else {
-            header("Location: connexion.php");
+            die("Email ou mot de passe incorrect");
         }
-
-
-        if(in_array("USER", $rolesArray)) {
-          $_SESSION["user"] = [
-            "id" => $user["id_Collaborateur"],
-            "nom" => $user["Nom_Collaborateur"],
-            "prenom" => $user["prenom_Collaborateur"],
-            "email" => $user["Email_Collaborateur"],
-            "roles" => $rolesArray
-        ];
-
-            header("Location: home-dash.php");
-          
-        } else {
-            header("Location: connexion.php");
-        }
-        
-    } else {
-        die("Oups!! Wrong Way Bob !");
     }
+        
+            
 }
 include "includes/pages/header.php";
 

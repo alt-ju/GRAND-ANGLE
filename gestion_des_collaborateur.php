@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 $title = "Gestion des collaborateurs";
 
 include "includes/pages/header.php";

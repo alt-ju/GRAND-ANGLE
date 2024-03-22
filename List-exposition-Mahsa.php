@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $title = "Liste des expositions";
 require_once "./config/pdo.php";
 

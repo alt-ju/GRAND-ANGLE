@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $title = "Ajouter un collaborateur";
 
 include "includes/pages/header.php";

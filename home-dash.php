@@ -13,10 +13,10 @@ include "includes/pages/nav-head.php";
 
 <div class="calendar">
     
-    <?php echo ($_SESSION['user']) ;?>
+    <?php include "includes/components/calendar.php";?>
 </div>
 <div class="calendar-daily">
-    <?php ;?>
+    <?php include "includes/components/list-event.php";?>
 </div>
 <div class="art-state">
     <?php include "includes/components/art-state.php";?>

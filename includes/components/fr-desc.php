@@ -8,11 +8,11 @@ $requeteLangue = $db->query($sqlfr);
 $langueFr = $requeteLangue->fetch();
 $fr = $langueFr['Id_Langue'];
 
-$sqlLangues = "SELECT langue.Id_Langue, langue.libelle_Langue, oeuvres.Id_oeuvre, oeuvres.libelle_Oeuvre, contenu.Id_Langue, contenu.libelle_contenu, contenu.description_Contenu, contenu.Auteur_Contenu
+$sqlLangues = "SELECT langue.Id_Langue, langue.libelle_Langue, oeuvres.Id_Oeuvres, oeuvres.libelle_Oeuvre, contenu.Id_Langue, contenu.libelle_contenu, contenu.description_Contenu, contenu.Auteur_Contenu
 FROM oeuvres 
-LEFT JOIN contenu ON oeuvres.Id_oeuvre = contenu.Id_oeuvre
+LEFT JOIN contenu ON oeuvres.Id_Oeuvres = contenu.Id_Oeuvres
 JOIN langue ON contenu.Id_Langue = langue.Id_Langue
-WHERE oeuvres.Id_oeuvre = :Id_oeuvre
+WHERE oeuvres.Id_Oeuvres = :Id_oeuvre
 AND contenu.Id_langue = :Id_langue";
 $requeteLangues = $db->prepare($sqlLangues);
 $requeteLangues->bindValue(":Id_oeuvre", $id, PDO::PARAM_INT);
@@ -29,7 +29,7 @@ $languesTest = $requeteLangues->fetch();
                 <div class="div-select-oeuvre">
                     <label for="oeuvreConcFr">Oeuvre concernée : </label>
                     <select name="oeuvreConcFr" id="oeuvreConcFr">
-                        <option value="<?= $languesTest['Id_oeuvre'] ?>"><?= $languesTest['libelle_Oeuvre']?></option>
+                        <option value="<?= $languesTest['Id_Oeuvres'] ?>"><?= $languesTest['libelle_Oeuvre']?></option>
                     </select>
                 </div>
                 <div class="libelle-contenu">

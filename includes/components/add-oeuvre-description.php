@@ -40,6 +40,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ;?>
 
+<div class="oeuvre-contenu-supp">
+            <div class="btn-page-contenu">
+                <button><a href="contenu-enrichi.php">Voir le contenu enrichi</a></button>
+            </div>
+            <div class="div-qrcode">
+
+            </div>
+        </div>
+
 
 <form action="" method="POST">
     <div class="add-oeuvre-descr">
@@ -89,14 +98,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>   
 </form>   
             
-        <div class="oeuvre-contenu-supp">
-            <div class="btn-page-contenu">
-                <button><a href="contenu-enrichi.php">Voir le contenu enrichi</a></button>
-            </div>
-            <div class="div-qrcode">
-
-            </div>
-            <div class="consultations">
-                <p>Nombre de consultations : 0</p>
-            </div>
-        </div>
+       

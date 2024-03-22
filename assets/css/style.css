@@ -1050,3 +1050,27 @@ div.info-delete {
   align-items: center;
   justify-content: space-evenly;
 }
+
+
+/********** ADD ARTISTE ***********/
+
+div.artiste-infos {
+  height: 100%;
+  width: 100%;
+}
+
+div.title-add-artiste h2 {
+  font-family: var(--FONTTITLE);
+  font-weight: 600;
+  color: #223533;
+}
+
+div.img-container-add-artiste {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.img-content-add-artist {
+  
+}

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $title = "Liste des directeurs artistiques";
 
 include "includes/pages/header.php";
