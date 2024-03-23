@@ -201,14 +201,14 @@ function filtrage($data) {
           <div class="form-divs">
             <div class="file-add ">
                 <label for="plan_upload" class="lable-upload">Aperçu du plan de l'exposition :</label>
-                <img id="plan_preview" src="./assets/img/freud_strawberries.jpg" alt="Plan de l'exposition" class="preview-image">
+                <img id="plan_preview" src="./assets/img/imgvide.webp" alt="Plan de l'exposition" class="preview-image">
                <input type="file" id="plan_upload" name="plan_upload" accept="image/*" class="upload-expo" onchange="previewPlanImage(this)">
            </div>
           </div>
           <div class="form-divs">
               <div class="file-add ">
                 <label for="teaser_upload" class="lable-upload">Aperçu de l'affiche de l'exposition :</label>
-                <img id="teaser_preview" src="./assets/images/img_plan/igel-cover.jpg" alt="Affiche de l'exposition" class="preview-image">
+                <img id="teaser_preview" src="./assets/img/imgvide.webp" alt="Affiche de l'exposition" class="preview-image">
                 <input type="file" id="teaser_upload" name="teaser_upload" accept="image/*" class="upload-expo" onchange="previewTeaserImage(this)">
               </div>  
           </div>

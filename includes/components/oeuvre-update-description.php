@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button><a href="contenu-enrichi.php">Voir le contenu enrichi</a></button>
     </div>
     <div class="div-qrcode">
-        <button><a href="">Créer un QR Code</a></button>
+        <button><a href="qr.php">Créer un QR Code</a></button>
     </div>
 </div>
 

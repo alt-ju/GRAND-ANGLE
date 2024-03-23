@@ -96,7 +96,7 @@ if(!array_filter($errors)){
     <div class="form-divs-artist">
         <label for="prenom" >Prenom du directeur artistique :<span class="star">*</span></label>
     </div>
-Jt
+
     <div class="form-divs-artist">
         <input type="text" id="prenom" class="field-add-artist"  name="prenom" value="<?php echo $prenom;?>" placeholder="">
         <div class="red"><?php echo $errors['prenom'];?></div>

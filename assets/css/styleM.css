@@ -279,6 +279,7 @@
   
   /***********   list artist  ***********/
 
+
   .container-list-artist {
     grid-column: 2/12;
     grid-row: 3/12;
@@ -960,3 +961,106 @@ transition: all 0.3s ease;
 background-color: var(--ACCENT1);
 color: var(--FONTCOLOR2);
 }
+
+/********* QR CODE  ********/
+
+.qr-container{
+  width: 100%;
+  height: 10%;
+  border: 1px solid #494eea;
+  outline: 0;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border-radius: 5px;
+}
+ 
+.qr-container button {
+  width: 150px;
+  height: 50px;
+  background:black;
+  color: #fff;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin: 20px 0;
+  font-weight: 500;
+}
+ 
+.qr-container button:hover{
+  background: var(--ACCENT1);
+  color: var(--FONTTEXT);
+}
+ 
+#qrText{
+  width:60%;
+}
+#imgBox{
+  width:250px;
+  border-radius: 5px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1s;
+}
+#imgBox img {
+  width: 100%;
+  padding: 10px;
+}
+#imgBox.show-img{
+  max-height: 400px;
+  margin: 10px;
+  border: 1px solid #d1d1d1;
+}
+.error {
+  animation: shake 0.1s linear 10;
+}
+@keyframes shake{
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+div.sizing-qr {
+  width: 60%;
+  height: fit-content;
+  margin: auto;
+  padding-top: 2rem;
+}
+ 
+@media print
+{
+  body {
+     font-size: 12pt;
+    }    
+  .hide-on-print {
+    display: none;
+  } }
+
+/********  ARTISTE *******/
+
+  .info-atists{
+    margin:5px 8px 0px 5px;
+    font-weight: bold;
+  }
+   
+  .artist-info-content{
+    padding: 10px;
+  }
+   
+  .artist-info-content p{
+    margin-left: 10px;
+    margin-top:2px;
+  }

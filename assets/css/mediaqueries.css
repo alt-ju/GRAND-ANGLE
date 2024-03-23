@@ -20,6 +20,17 @@
         padding-top: 1rem;
     }
 
+    div.container-principal {
+        flex-direction: column;
+    }
+
+    div.plan-grille {
+        margin: auto;
+    }
+
+    div.plan-visuel {
+        
+    }
 }
 
 

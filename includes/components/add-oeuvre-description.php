@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <button><a href="contenu-enrichi.php">Voir le contenu enrichi</a></button>
     </div>
     <div class="div-qrcode">
-        <button><a href="">Créer un QR Code</a></button>
+        <button><a href="qr.php">Créer un QR Code</a></button>
     </div>
 </div>
 
@@ -80,13 +80,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="<?php echo $langue["Id_Langue"] ;?>"><?php echo $langue["libelle_Langue"];?></option>
                 <?php endforeach; ?>
             </select>
-
-            <div class="add-langue-plus">
-                <a href="#">
-                    <svg viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-                    <span>Créer</span>
-                </a>
-            </div>
         </div>
         <div class="auteur-contain">
             <label for="auteur">Auteur :</label>

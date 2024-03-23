@@ -15,13 +15,13 @@ LEFT JOIN dirart ON artiste.id_DirArt = dirart.id_DirArt
 ORDER BY artiste.Nom_Artiste ASC";
 $requete = $db -> query($sql);
 $artists = $requete->fetchAll(PDO::FETCH_ASSOC);
-$db = null;
+
 
 ?>
 
-<div class="container-list-artist">
+<div class="gestion">
 
- <?php include "includes/components/artists.php";?>
+ <?php include "includes/components/artist.php";?>
 
 </div>
 

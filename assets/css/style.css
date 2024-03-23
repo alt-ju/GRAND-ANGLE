@@ -23,6 +23,14 @@
     grid-template-rows: repeat(12, 1fr);
   }
 
+  .button {
+    padding: 0.5rem 1.25rem;
+    min-width: fit-content;
+    border-radius: 25px;
+    border: none;
+    width: max-content;
+  }
+
 /***********   PAGE CONNEXION   ***********/
 
   .content-bienvenue {
@@ -428,10 +436,10 @@ div.btn-choose {
 button.expo-btn {
   width: 10rem;
   height: 2rem;
-  border: none;
-  background-color: #B1CDCB;
+  color: var(--ACCENT1);
+  background-color: transparent;
+  border: solid 1px var(--ACCENT1);
   border-radius: 50px;
-  color: var(--FONTCOLOR2);
 }
 
 button.expo-btn:hover {
@@ -443,11 +451,11 @@ button.expo-btn:hover {
 button.btnActive {
   width: 10rem;
   height: 2rem;
-  color: var(--ACCENT1);
-  background-color: transparent;
-  border: solid 1px var(--ACCENT1);
+  
+  border: none;
+  background-color: #B1CDCB;
   border-radius: 50px;
-
+  color: var(--FONTCOLOR2);
 }
 
 div.art-contain-by-btn {
@@ -493,7 +501,8 @@ div.card-art-now-expo {
   background-color: #78908E;
   padding: 2rem;
   margin: 2rem;
-  width: 450px;
+  width: 40%;
+  min-width: 500px;
   height: 300px;
   border-radius: 10px;
   gap: 1rem; 
@@ -533,6 +542,7 @@ div.content-infos-oeuvre-ongoing {
 
 div.infos-oeuvre-ongoing p {
   margin-bottom: 1rem;
+  height: fit-content;
 }
 
 p.libelle-art-now {
@@ -1029,7 +1039,7 @@ div.update-description-by-btn {
 
 div.delete-panel {
   height: 236px;
-  width: 386px;
+  width: 90%;
   z-index: 200;
   position: absolute;
   background-color: #C1D734;
@@ -1052,6 +1062,7 @@ div.container-delete {
 div.info-delete {
   display: flex;
   height: 100%;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -1141,4 +1152,125 @@ div.submit-bio button {
   min-width: fit-content;
   background-color: var(--ACCENT1);
   border: none;
+}
+
+/********* IMPLANTATION  **********/
+
+div.scroll-container-principal {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+div.scroll-plan-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden; 
+  justify-content: center;
+}
+
+div.container-principal {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  overflow-y: scroll;
+}
+
+div.container-principal h1 {
+  position: absolute;
+  top: 2rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+div.plan-visuel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+}
+
+div.scroll-plan-liste {
+  display: flex;
+  width: 20%;
+}
+
+div.plan-grille {
+
+}
+
+div.plan-grille img {
+  width: 100%;
+  height: 100%;
+}
+
+div.plan-list-print {
+  width: fit-content;
+  height: 100%;
+  padding: 3rem;
+  background-color: #fff;
+  overflow-y: scroll;
+  border-radius: 12px;
+}
+
+div.plan-list-print h2 {
+  font-weight: 600;
+}
+
+div.container-liste-oeuvres {
+  padding-top: 2rem;
+
+}
+
+div.search-bar-plan {
+  padding-bottom: 1rem;
+}
+
+div.search-bar-plan input {
+  width: 22rem;
+  height: 2rem;
+  border-radius: 50px;
+  border: solid 1px #78908E;
+  padding: 0.5rem;
+}
+
+div.oeuvres-implant-img img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+div.oeuvres-implant-position input {
+  width: 6rem;
+  height: 3rem;
+}
+
+div.oeuvres-implant {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  border-radius: 10px;
+  background-color: #78908E;
+  width: fit-content;
+  padding: 2rem;
+  width: 80%;
+  min-width: 80%;
+  margin: 0 auto 1rem auto;
+}
+
+div.oeuvres-implant p.libelle-oeuvre-implant {
+  font-weight: 600;
+}
+
+div.btn-print {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 2rem;
 }
