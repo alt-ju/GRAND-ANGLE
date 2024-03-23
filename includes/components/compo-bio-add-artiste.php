@@ -1,4 +1,13 @@
+<?php 
 
+require_once "config/pdo.php";
+
+$sql="SELECT artiste.Id_Artiste, artiste.Nom_Artiste, artiste.Prenom_Artiste
+FROM artiste";
+$query = $db->prepare($sql);
+$artisteConc = $query->fetchAll(PDO::FETCH_ASSOC);
+
+;?>
 
 <div class="bio-artiste-add">
     <form action=""  enctype="multipart/form-data">
@@ -60,6 +69,7 @@
         divFa.style.display = 'none';
         divCh.style.display = 'none';
         divFr.style.display = 'block';
+
     }) 
 
     const btnFr = document.getElementById('fr-btn')

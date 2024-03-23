@@ -15,11 +15,13 @@
             <textarea name="bio-de" id="bio-de" cols="40" rows="10"></textarea>
         </div>
         <div class="div-artiste-bio">
-        <p>Artiste concerné :</p>
+            <select name="" id="">
+                <option value="<?= $artisteConc['Id_Artiste']?>"><?= $artisteConc['Prenom_Artiste'] . " " . $artisteConc['Nom_Artiste']?></option>
+            </select>
         </div>
 
         <div class="submit-bio">
-            <button type="submit">Valider la biographie</button>
+            <button name="submit-bio-de" type="submit">Valider la biographie</button>
         </div>
     </form>
 </div>
