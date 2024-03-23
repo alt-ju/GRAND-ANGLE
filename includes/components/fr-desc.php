@@ -2,11 +2,11 @@
 
 $id = $_GET['id'];
 
-$sqlfr = "SELECT Id_Langue, libelle_Langue FROM langue
+/* $sqlfr = "SELECT Id_Langue, libelle_Langue FROM langue
 WHERE Id_Langue = 1";
 $requeteLangue = $db->query($sqlfr);
 $langueFr = $requeteLangue->fetch();
-$fr = $langueFr['Id_Langue'];
+$fr = $langueFr['Id_Langue']; */
 
 $sqlLangues = "SELECT langue.Id_Langue, langue.libelle_Langue, oeuvres.Id_Oeuvres, oeuvres.libelle_Oeuvre, contenu.Id_Langue, contenu.libelle_contenu, contenu.description_Contenu, contenu.Auteur_Contenu
 FROM oeuvres 

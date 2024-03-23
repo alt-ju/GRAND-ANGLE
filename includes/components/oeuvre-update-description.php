@@ -181,11 +181,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <script>
 
-    const divFr = document.getElementById('fr');
-    const divEn = document.getElementById('en');
-    const divDe = document.getElementById('de');
-    const divFa = document.getElementById('fa');
-    const divCh = document.getElementById('ch');
+    const divFr = document.querySelector('.fr');
+    const divEn = document.querySelector('.en');
+    const divDe = document.querySelector('.de');
+    const divFa = document.querySelector('.fa');
+    const divCh = document.querySelector('.ch');
 
    document.addEventListener("DOMContentLoaded", function() {
         divEn.style.display = 'none';

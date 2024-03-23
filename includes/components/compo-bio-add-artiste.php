@@ -1,43 +1,48 @@
-<div class="bio-artiste-add">
-    <div class="btn-update-description spe-add-artiste">
-        <div id="fr-btn" class="btn-langue">
-            <button>Français</button>
-        </div>
-        <div id="en-btn" class="btn-langue">
-            <button>Anglais</button>
-        </div>
-        <div id="de-btn" class="btn-langue">
-            <button>Allemand</button>
-        </div>
-        <div id="fa-btn" class="btn-langue">
-            <button>Farsi</button>
-        </div>
-        <div id="ch-btn" class="btn-langue">
-            <button>Chinois</button>
-        </div>
-    </div>
 
-    <div class="update-description-by-btn">
-        <div class="composant">
-            <?php include "includes/components/bio/fr-bio.php";?>
+
+<div class="bio-artiste-add">
+    <form action=""  enctype="multipart/form-data">
+      
+        <div class="btn-update-description spe-add-artiste">
+            <div id="fr-btn" class="btn-langue">
+                <button>Français</button>
+            </div>
+            <div id="en-btn" class="btn-langue">
+                <button>Anglais</button>
+            </div>
+            <div id="de-btn" class="btn-langue">
+                <button>Allemand</button>
+            </div>
+            <div id="fa-btn" class="btn-langue">
+                <button>Farsi</button>
+            </div>
+            <div id="ch-btn" class="btn-langue">
+                <button>Chinois</button>
+            </div>
+        </div>
+
+        <div class="update-description-by-btn">
+            <div class="composant">
+                <?php include "includes/components/bio/fr-bio.php";?>
+                </div>
+
+            <div class="composant">
+                <?php include "includes/components/bio/en-bio.php";?>
             </div>
 
-        <div class="composant">
-            <?php include "includes/components/bio/en-bio.php";?>
-        </div>
+            <div class="composant">
+                <?php include "includes/components/bio/de-bio.php";?>
+            </div>
 
-        <div class="composant">
-            <?php include "includes/components/bio/de-bio.php";?>
-        </div>
+            <div class="composant">
+                <?php include "includes/components/bio/fa-bio.php";?>
+            </div>
 
-        <div class="composant">
-            <?php include "includes/components/bio/fa-bio.php";?>
+            <div class="composant">
+                <?php include "includes/components/bio/ch-bio.php";?>
+            </div>
         </div>
-
-        <div class="composant">
-            <?php include "includes/components/bio/ch-bio.php";?>
-        </div>
-    </div>
+    </form>
 
 </div>
 

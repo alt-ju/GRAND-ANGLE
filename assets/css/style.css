@@ -1082,12 +1082,12 @@ div.img-container-add-artiste {
   padding-bottom: 2rem;
 }
 
-img#preview-img-artiste {
+div.img-content-add-artiste img {
   height: 100px;
   width: 100px;
   object-fit: cover;
   border-radius: 50px;
-}
+} 
 
 div.div-bio {
   display: flex;

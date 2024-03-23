@@ -1,5 +1,15 @@
 <div class="de">
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div class="img-container-add-artiste">
+            <div class="img-content-add-artiste">
+                <img id="preview-img-artiste-de" src="./assets/img/imgvide.webp" alt="">  
+            </div>
+            <div class="input-photo-artiste">
+                <label for="photo-artiste">Photo de l'artiste :</label>
+                <input type="file" id="photo-artiste" name="photo-artiste" accept="image/*">
+            </div>
+        </div>
+        
         <div class="div-bio">
             <label for="bio-de">Biographie de l'artiste :</label>
             <textarea name="bio-de" id="bio-de" cols="40" rows="10"></textarea>

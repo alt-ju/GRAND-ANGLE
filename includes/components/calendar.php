@@ -1,45 +1,51 @@
-<?php
-require_once "./config/pdo.php";
- 
-$sql = "SELECT *
-        FROM exposition";
-$requete = $db -> query($sql);
-$expos= $requete->fetchAll(PDO::FETCH_ASSOC);
- 
-?>
- 
 
-
-
-<div class="container-fluid">
+  <div class="container">
     <div class="row">
-        <div class="col-lg-6 mt-5 text-center">
-            <div id="calendar"></div>
-        </div>
+      <div class="col-lg-6">
+        <div id="calendar"></div>
+      </div>
     </div>
-</div>
+  </div>
+  <br> 
 
-<script >
- 
- document.addEventListener('DOMContentLoaded', function() {
- let calendarExpo = document.getElementById('calendar');
-  
- let calendar = new FullCalendar.Calendar(calendarExpo, {
- aspectRatio:1,
- contentHeight: '400px',
- initialView: 'dayGridMonth',
- events: [
- <?php foreach ($expos as $expo): ?>
- {
- title: '<?php echo ($expo['libelle_Exposition']); ?>',
- start: '<?php echo ($expo['Date_Debut']); ?>',
- end: '<?php echo ($expo['Date_Fin']); ?>'
- },
- <?php endforeach; ?>
- ]
- });
-  
- calendar.render();
- });
-  
+<?php
+
+require_once './config/pdo.php';
+
+$sql = 'SELECT libelle_Exposition, Date_Debut, Date_Fin FROM exposition';
+$requete = $db->query($sql);
+$expos = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+
+$events = [];
+foreach ($expos as $expo) {
+    $event = [
+        'title' => $expo['libelle_Exposition'],
+        'start' => date('Y-m-d', strtotime($expo['Date_Debut'])),
+        'end' => date('Y-m-d', strtotime($expo['Date_Fin']))
+    ];
+
+    if (!in_array($event, $events)) {
+      $events[] = $event;
+  }
+}
+
+$exposToJason = json_encode($events, JSON_UNESCAPED_UNICODE);
+
+file_put_contents('events.json', $exposToJason, LOCK_EX);
+?>
+
+
+
+ <script>
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            events: 'events.json',
+            eventRender: function(event, element) {
+            },
+            eventColor: 'green',
+            eventTextColor: 'white'
+        });
+    });
 </script>  
+
