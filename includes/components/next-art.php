@@ -16,7 +16,7 @@ $oeuvresNext = $requeteArtNext->fetchAll(PDO::FETCH_ASSOC);
 ;?>
 
 <div class="art-content-now">
-    <div class="expo-content-now">
+    <div id="rect" class="expo-content-now">
         <div class="container-cards-art-now">
             <?php forEach($oeuvresNext as $oeuvreNext) :?>
                 <div class="card-art-now-expo" id="<?= $oeuvreNext['Id_Oeuvres'] ?>">

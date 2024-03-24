@@ -2,19 +2,314 @@
 
 require_once "./config/pdo.php";
 
-$sqlArtConc = "SELECT * FROM artiste";
+$id = $_GET['id'];
+
+$sqlArtConc = "SELECT * FROM artiste
+WHERE artiste.Id_Artiste = :Id_Artiste";
 try {
-    $queryArtConc = $db->query($sqlArtConc);
-    $artisteConc = $queryArtConc->fetchAll(PDO::FETCH_ASSOC);
+    $queryArtConc = $db->prepare($sqlArtConc);
+    $queryArtConc->bindValue(":Id_Artiste", $id, PDO::PARAM_INT);
+    $queryArtConc->execute();
+    $artisteConc = $queryArtConc->fetch();
 } catch (PDOException $e) {
     echo 'erreur sql' . $e->getMessage();
+}
+
+$sqlfr = "SELECT Id_Langue, libelle_Langue FROM langue
+WHERE Id_Langue = 1";
+$requeteLangue = $db->query($sqlfr);
+$langueFr = $requeteLangue->fetch();
+$fr = $langueFr['Id_Langue'];
+
+$sqlen = "SELECT Id_Langue, libelle_Langue FROM langue
+WHERE Id_Langue = 2";
+$requeteLangue = $db->query($sqlen);
+$langueEn = $requeteLangue->fetch();
+$en = $langueEn['Id_Langue'];
+
+$sqlde = "SELECT Id_Langue, libelle_Langue FROM langue
+WHERE Id_Langue = 3";
+$requeteLangue = $db->query($sqlde);
+$langueDe = $requeteLangue->fetch();
+$de = $langueDe['Id_Langue'];
+
+$sqlfa = "SELECT Id_Langue, libelle_Langue FROM langue
+WHERE Id_Langue = 4";
+$requeteLangue = $db->query($sqlfa);
+$langueFa = $requeteLangue->fetch();
+$fa = $langueFa['Id_Langue'];
+
+$sqlch = "SELECT Id_Langue, libelle_Langue FROM langue
+WHERE Id_Langue = 6";
+$requeteLangue = $db->query($sqlch);
+$langueCh = $requeteLangue->fetch();
+$ch = $langueCh['Id_Langue'];
+
+$sqlBioFr = "SELECT bio_artist.description_artist, bio_artist.chemin_ImgArt, bio_artist.Id_Langue, bio_artist.Id_Artiste
+FROM bio_artist
+WHERE bio_artist.Id_Artiste = :Id_Artiste
+AND bio_artist.Id_Langue = :Id_Langue";
+$requeteBioFr = $db->prepare($sqlBioFr);
+$requeteBioFr->bindValue(":Id_Artiste", $id, PDO::PARAM_INT);
+$requeteBioFr->bindValue(":Id_Langue", $fr, PDO::PARAM_INT);
+$requeteBioFr->execute();
+$bioFr = $requeteBioFr->fetch();
+
+$ancienneImageFr = $bioFr['chemin_ImgArt'];
+
+$sqlBioEn = "SELECT bio_artist.description_artist, bio_artist.chemin_ImgArt, bio_artist.Id_Langue, bio_artist.Id_Artiste
+FROM bio_artist
+WHERE bio_artist.Id_Artiste = :Id_Artiste
+AND bio_artist.Id_Langue = :Id_Langue";
+$requeteBioEn = $db->prepare($sqlBioEn);
+$requeteBioEn->bindValue(":Id_Artiste", $id, PDO::PARAM_INT);
+$requeteBioEn->bindValue(":Id_Langue", $en, PDO::PARAM_INT);
+$requeteBioEn->execute();
+$bioEn = $requeteBioEn->fetch();
+
+$ancienneImageEn = $bioEn['chemin_ImgArt'];
+
+$sqlBioFa = "SELECT bio_artist.description_artist, bio_artist.chemin_ImgArt, bio_artist.Id_Langue, bio_artist.Id_Artiste
+FROM bio_artist
+WHERE bio_artist.Id_Artiste = :Id_Artiste
+AND bio_artist.Id_Langue = :Id_Langue";
+$requeteBioFa = $db->prepare($sqlBioFa);
+$requeteBioFa->bindValue(":Id_Artiste", $id, PDO::PARAM_INT);
+$requeteBioFa->bindValue(":Id_Langue", $fa, PDO::PARAM_INT);
+$requeteBioFa->execute();
+$bioFa = $requeteBioFa->fetch();
+
+$ancienneImageFa = $bioFa['chemin_ImgArt'];
+
+$sqlBioDe = "SELECT bio_artist.description_artist, bio_artist.chemin_ImgArt, bio_artist.Id_Langue, bio_artist.Id_Artiste
+FROM bio_artist
+WHERE bio_artist.Id_Artiste = :Id_Artiste
+AND bio_artist.Id_Langue = :Id_Langue";
+$requeteBioDe = $db->prepare($sqlBioDe);
+$requeteBioDe->bindValue(":Id_Artiste", $id, PDO::PARAM_INT);
+$requeteBioDe->bindValue(":Id_Langue", $de, PDO::PARAM_INT);
+$requeteBioDe->execute();
+$bioDe = $requeteBioDe->fetch();
+
+$ancienneImageDe = $bioDe['chemin_ImgArt'];
+
+$sqlBioCh = "SELECT bio_artist.description_artist, bio_artist.chemin_ImgArt, bio_artist.Id_Langue, bio_artist.Id_Artiste
+FROM bio_artist
+WHERE bio_artist.Id_Artiste = :Id_Artiste
+AND bio_artist.Id_Langue = :Id_Langue";
+$requeteBioCh = $db->prepare($sqlBioCh);
+$requeteBioCh->bindValue(":Id_Artiste", $id, PDO::PARAM_INT);
+$requeteBioCh->bindValue(":Id_Langue", $ch, PDO::PARAM_INT);
+$requeteBioCh->execute();
+$bioCh = $requeteBioCh->fetch();
+
+$ancienneImageCh = $bioCh['chemin_ImgArt'];
+
+
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    if(isset($_POST['submit-bio-fr'])) {
+
+        if(!empty($_FILES['photo-artiste-fr']['name'])) {
+            $img = $_FILES['photo-artiste-fr']['name'];
+            $cheminImage = './img-artiste/' . $_FILES['photo-artiste-fr']['name'];
+            move_uploaded_file($_FILES['photo-artiste-fr']['tmp_name'], $cheminImage);
+            
+            $sqlBio = "UPDATE bio_artist SET bio_artist.description_artist = ?, bio_artist.chemin_ImgArt = ?
+            WHERE bio_artist.Id_Artiste = ?
+            AND bio_artist.Id_Langue = ?";
+            try {
+                $requeteBio = $db->prepare($sqlBio);
+                $requeteBio->execute([
+                    $_POST['bio-fr'],
+                    $img,
+                    $id, 
+                    $fr
+                ]);
+            } catch (PDOException $e){
+                echo "Erreur de la modification langue 'Français'" . $e->getMessage();
+                exit();
+            }
+        } else {
+            $sqlBio = "UPDATE bio_artist SET bio_artist.description_artist = :bio, bio_artist.chemin_ImgArt = :imageArt
+            WHERE bio_artist.Id_Artiste = :Id_Artiste
+            AND bio_artist.Id_Langue = :Id_Langue";
+            try {
+                $requeteBio = $db->prepare($sqlBio);
+                $requeteBio->bindValue(":bio", $_POST['bio-fr'], PDO::PARAM_STR);
+                $requeteBio->bindValue(":imageArt", $ancienneImageFr, PDO::PARAM_STR);
+                $requeteBio->bindValue(":Id_Langue", $fr, PDO::PARAM_STR);
+                $requeteBio->bindValue(":Id_Artiste", $id, PDO::PARAM_STR);
+                $requeteBio->execute();
+            } catch (PDOException $e){
+                echo "Erreur de la modification langue 'Français'" . $e->getMessage();
+                exit();
+        }
+        }
+
+    } elseif(isset($_POST['submit-bio-en'])) {
+        if(!empty($_FILES['photo-artiste-en']['name'])) {
+        $img = $_FILES['photo-artiste-en']['name'];
+        $cheminImage = './img-artiste/' . $_FILES['photo-artiste-en']['name'];
+        move_uploaded_file($_FILES['photo-artiste-en']['tmp_name'], $cheminImage);
+
+        $sqlBio = "UPDATE bio_artist SET bio_artist.description_artist = ?, bio_artist.chemin_ImgArt = ?
+        WHERE bio_artist.Id_Artiste = ?
+        AND bio_artist.Id_Langue = ?";
+        try {
+            $requeteBio = $db->prepare($sqlBio);
+            $requeteBio->execute([
+                $_POST['bio-en'],
+                $img,
+                $id, 
+                $en
+            ]);
+        } catch (PDOException $e){
+            echo "Erreur de la modification langue 'Anglais'" . $e->getMessage();
+            exit();
+        }
+    } else {
+        $sqlBio = "UPDATE bio_artist SET bio_artist.description_artist = :bio, bio_artist.chemin_ImgArt = :imageArt
+        WHERE bio_artist.Id_Artiste = :Id_Artiste
+        AND bio_artist.Id_Langue = :Id_Langue";
+        try {
+            $requeteBio = $db->prepare($sqlBio);
+            $requeteBio->bindValue(":bio", $_POST['bio-en'], PDO::PARAM_STR);
+            $requeteBio->bindValue(":imageArt", $ancienneImageEn, PDO::PARAM_STR);
+            $requeteBio->bindValue(":Id_Langue", $en, PDO::PARAM_STR);
+            $requeteBio->bindValue(":Id_Artiste", $id, PDO::PARAM_STR);
+            $requeteBio->execute();
+        } catch (PDOException $e){
+            echo "Erreur de la modification langue 'Anglais'" . $e->getMessage();
+            exit();
+        }
+    }
+        
+    } elseif(isset($_POST['submit-bio-fa'])) {
+
+        if(!empty($_FILES['photo-artiste-fa']['name'])) {
+            $img = $_FILES['photo-artiste-fa']['name'];
+            $cheminImage = './img-artiste/' . $_FILES['photo-artiste-fa']['name'];
+            move_uploaded_file($_FILES['photo-artiste-fa']['tmp_name'], $cheminImage);
+
+            $sqlBio = "UPDATE bio_artist SET bio_artist.description_artist = ?, bio_artist.chemin_ImgArt = ?
+            WHERE bio_artist.Id_Artiste = ?
+            AND bio_artist.Id_Langue = ?";
+            try {
+                $requeteBio = $db->prepare($sqlBio);
+                $requeteBio->execute([
+                    $_POST['bio-fa'],
+                    $img,
+                    $id, 
+                    $fa
+                ]);
+            } catch (PDOException $e){
+                echo "Erreur de la modification langue 'Farsi'" . $e->getMessage();
+                exit();
+            }
+
+        } else {
+            $sqlBio = "UPDATE bio_artist SET bio_artist.description_artist = :bio, bio_artist.chemin_ImgArt = :imageArt
+            WHERE bio_artist.Id_Artiste = :Id_Artiste
+            AND bio_artist.Id_Langue = :Id_Langue";
+            try {
+                $requeteBio = $db->prepare($sqlBio);
+                $requeteBio->bindValue(":bio", $_POST['bio-fa'], PDO::PARAM_STR);
+                $requeteBio->bindValue(":imageArt", $ancienneImageFa, PDO::PARAM_STR);
+                $requeteBio->bindValue(":Id_Langue", $fa, PDO::PARAM_STR);
+                $requeteBio->bindValue(":Id_Artiste", $id, PDO::PARAM_STR);
+                $requeteBio->execute();
+            } catch (PDOException $e){
+                echo "Erreur de la modification langue 'Farsi'" . $e->getMessage();
+                exit();
+            }
+        }
+
+    } elseif(isset($_POST['submit-bio-de'])) {
+
+        if(!empty($_FILES['photo-artiste-de']['name'])) {
+            $img = $_FILES['photo-artiste-de']['name'];
+            $cheminImage = './img-artiste/' . $_FILES['photo-artiste-de']['name'];
+            move_uploaded_file($_FILES['photo-artiste-de']['tmp_name'], $cheminImage);
+
+            $sqlBio = "UPDATE bio_artist SET bio_artist.description_artist = ?, bio_artist.chemin_ImgArt = ?
+            WHERE bio_artist.Id_Artiste = ?
+            AND bio_artist.Id_Langue = ?";
+            try {
+                $requeteBio = $db->prepare($sqlBio);
+                $requeteBio->execute([
+                    $_POST['bio-de'],
+                    $img,
+                    $id, 
+                    $de
+                ]);
+            } catch (PDOException $e){
+                echo "Erreur de la modification langue 'Allemand'" . $e->getMessage();
+                exit();
+            }
+
+        } else {
+            $sqlBio = "UPDATE bio_artist SET bio_artist.description_artist = :bio, bio_artist.chemin_ImgArt = :imageArt
+            WHERE bio_artist.Id_Artiste = :Id_Artiste
+            AND bio_artist.Id_Langue = :Id_Langue";
+            try {
+                $requeteBio = $db->prepare($sqlBio);
+                $requeteBio->bindValue(":bio", $_POST['bio-de'], PDO::PARAM_STR);
+                $requeteBio->bindValue(":imageArt", $ancienneImageDe, PDO::PARAM_STR);
+                $requeteBio->bindValue(":Id_Langue", $de, PDO::PARAM_STR);
+                $requeteBio->bindValue(":Id_Artiste", $id, PDO::PARAM_STR);
+                $requeteBio->execute();
+            } catch (PDOException $e){
+                echo "Erreur de la modification langue 'Allemand'" . $e->getMessage();
+                exit();
+            }
+        }
+
+    } elseif(isset($_POST['submit-bio-ch'])) {
+
+        if(!empty($_FILES['photo-artiste-ch']['name'])) {
+            $img = $_FILES['photo-artiste-ch']['name'];
+            $cheminImage = './img-artiste/' . $_FILES['photo-artiste-ch']['name'];
+            move_uploaded_file($_FILES['photo-artiste-ch']['tmp_name'], $cheminImage);
+
+            $sqlBio = "UPDATE bio_artist SET bio_artist.description_artist = ?, bio_artist.chemin_ImgArt = ?
+            WHERE bio_artist.Id_Artiste = ?
+            AND bio_artist.Id_Langue = ?";
+            try {
+                $requeteBio = $db->prepare($sqlBio);
+                $requeteBio->execute([
+                    $_POST['bio-ch'],
+                    $img,
+                    $id, 
+                    $ch
+                ]);
+            } catch (PDOException $e){
+                echo "Erreur de la modification langue 'Chinois'" . $e->getMessage();
+                exit();
+            }
+
+        } else {
+            $sqlBio = "UPDATE bio_artist SET bio_artist.description_artist = :bio, bio_artist.chemin_ImgArt = :imageArt
+            WHERE bio_artist.Id_Artiste = :Id_Artiste
+            AND bio_artist.Id_Langue = :Id_Langue";
+            try {
+                $requeteBio = $db->prepare($sqlBio);
+                $requeteBio->bindValue(":bio", $_POST['bio-ch'], PDO::PARAM_STR);
+                $requeteBio->bindValue(":imageArt", $ancienneImageCh, PDO::PARAM_STR);
+                $requeteBio->bindValue(":Id_Langue", $ch, PDO::PARAM_STR);
+                $requeteBio->bindValue(":Id_Artiste", $id, PDO::PARAM_STR);
+                $requeteBio->execute();
+            } catch (PDOException $e){
+                echo "Erreur de la modification langue 'Chinois'" . $e->getMessage();
+                exit();
+            }
+        }
+    }
 }
 
 ;?>
 
 <div class="bio-artiste-add">
-    <form action=""  enctype="multipart/form-data">
-      
         <div class="btn-update-description spe-add-artiste">
             <div id="fr-btn" class="btn-langue">
                 <button>Français</button>
@@ -32,29 +327,28 @@ try {
                 <button>Chinois</button>
             </div>
         </div>
-
+      
         <div class="update-description-by-btn">
             <div class="composant">
-                <?php include "includes/components/bio/fr-bio.php";?>
+                <?php include "includes/components/fr-bio.php";?>
             </div>
 
             <div class="composant">
-                <?php include "includes/components/bio/en-bio.php";?>
+                <?php include "includes/components/en-bio.php";?>
             </div>
 
             <div class="composant">
-                <?php include "includes/components/bio/de-bio.php";?>
+                <?php include "includes/components/de-bio.php";?>
             </div>
 
             <div class="composant">
-                <?php include "includes/components/bio/fa-bio.php";?>
+                <?php include "includes/components/fa-bio.php";?>
             </div>
 
             <div class="composant">
-                <?php include "includes/components/bio/ch-bio.php";?>
+                <?php include "includes/components/ch-bio.php";?>
             </div>
         </div>
-    </form>
 
 </div>
 

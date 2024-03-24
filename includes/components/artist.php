@@ -13,7 +13,7 @@ $artists = $requete->fetchAll(PDO::FETCH_ASSOC);
 <div class="art-content-now">
     <h2 class="title-page-artist">Liste des Artistes</h2>
     <div class="btn-dirart">
-        <button><a href="./list-dirart.php">Liste des directeurs artistiques</a></button>
+        <button><a href="./card-dirart.php">Liste des directeurs artistiques</a></button>
     </div>
     <div class="search-container form-divs-list-artist">
         <div class="search-bar-contain">

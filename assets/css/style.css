@@ -31,6 +31,10 @@
     width: max-content;
   }
 
+  a {
+    color: var(--FONTCOLOR2);
+  }
+
 /***********   PAGE CONNEXION   ***********/
 
   .content-bienvenue {
@@ -124,7 +128,7 @@
    nav div#burger {
     height: fit-content;
     width: fit-content;
-    padding: 1rem 0 0 1rem;
+    padding: 0.75rem;
     cursor: pointer;
     position: absolute;
    }
@@ -192,6 +196,7 @@
   div.nav-contain {
     grid-column: 1/13;
     height: 3rem;
+    width: 100vw;
     padding: 0 2rem 0 6rem;
     background-color: #223533;
     display: flex;
@@ -486,12 +491,17 @@ div.art-content-now {
 
 div.expo-content-now {
   overflow-y: scroll;
-  height: 86%;
+  height: 76%;
+}
+
+#rect {
+  height: 90%;
 }
 
 div.container-cards-art-now {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 div.card-art-now-expo {

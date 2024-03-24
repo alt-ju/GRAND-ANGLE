@@ -1,10 +1,9 @@
 <?php 
 
-$id = $_GET['id'];
+session_start();
 
 $title = "Modifier un artiste";
 
-session_start();
 
 include "includes/pages/header.php";
 include "includes/pages/nav-head.php";

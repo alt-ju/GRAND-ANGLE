@@ -20,7 +20,7 @@ $collabs = $requete->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="gestion">
 
-<?php include 'includes/components/list-collab.php' ;?>
+<?php include 'includes/components/card-collab.php' ;?>
 
 </div>
 

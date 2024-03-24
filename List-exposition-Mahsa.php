@@ -12,7 +12,7 @@ include "includes/pages/nav-head.php";
 ?>
 
 <div class="gestion">
-  <?php include "includes/components/tab-expositions.php" ;?>
+  <?php include "includes/components/expo-card.php" ;?>
 </div>
 
 

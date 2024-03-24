@@ -15,10 +15,10 @@
     <!-- Boostrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <!-- css link -->
+    <link rel="stylesheet" href="./assets/css/mediaqueries.css">
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/styleM.css">
-    <link rel="stylesheet" href="./assets/css/mediaqueries.css">
     <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css"> 
     
     <!-- <script src="assets/javascript/script.js"></script> -->

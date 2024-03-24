@@ -1,5 +1,7 @@
 <?php 
 
+$id = $_GET['id'];
+
 require_once "./config/pdo.php";
 
 $sqldirart = "SELECT * FROM dirart";
@@ -14,7 +16,7 @@ $requeteUpArtiste->bindValue(":Id_Artiste", $id, PDO::PARAM_INT);
 $requeteUpArtiste->execute();
 $artisteUp = $requeteUpArtiste->fetch();
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit-up-artiste'])) {
 
     $nom = $_POST['nom-artiste-up'];
     $prenom = $_POST['prenom-artiste-up'];
