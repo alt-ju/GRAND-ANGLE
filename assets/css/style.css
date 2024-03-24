@@ -451,7 +451,6 @@ button.expo-btn:hover {
 button.btnActive {
   width: 10rem;
   height: 2rem;
-  
   border: none;
   background-color: #B1CDCB;
   border-radius: 50px;

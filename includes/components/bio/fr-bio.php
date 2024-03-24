@@ -1,6 +1,9 @@
 <?php 
 
-
+/* $sql="SELECT artiste.Id_Artiste, artiste.Nom_Artiste, artiste.Prenom_Artiste
+FROM artiste";
+$query = $db->prepare($sql);
+$artisteConc = $query->fetchAll(PDO::FETCH_ASSOC); */
 
 ;?>
 
@@ -21,8 +24,11 @@
             <textarea name="bio-fr" id="bio-fr" cols="40" rows="10"></textarea>
         </div>
         <div class="div-artiste-bio">
-            <select name="" id="">
-                <option value="<?= $artisteConc['Id_Artiste']?>"><?= $artisteConc['Prenom_Artiste'] . " " . $artisteConc['Nom_Artiste']?></option>
+            <label for="artisteConc">Artiste concerné :</label>
+            <select name="artisteConc" id="artisteConc">
+                <?php foreach($artisteConc as $artisteC) : ?>
+                <option value="<?= $artisteC['Id_Artiste']?>"><?= $artisteC['Prenom_Artiste'] . " " . $artisteC['Nom_Artiste']?></option>
+                <?php endforeach; ?>
             </select>
         </div>
 

@@ -1,121 +1,110 @@
 <?php 
 
-require_once "config/pdo.php";
+$sqlArtConc = "SELECT * FROM artiste";
+try {
+    $queryArtConc = $db->query($sqlArtConc);
+    $artisteConc = $queryArtConc->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo 'erreur sql' . $e->getMessage();
+}
 
-$sql="SELECT artiste.Id_Artiste, artiste.Nom_Artiste, artiste.Prenom_Artiste
-FROM artiste";
-$query = $db->prepare($sql);
-$artisteConc = $query->fetchAll(PDO::FETCH_ASSOC);
+$sql = "SELECT * FROM langue";
+$requeteLangue = $db->query($sql);
+$langues = $requeteLangue->fetchAll(PDO::FETCH_ASSOC);
+
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if(isset($_POST['bio-submit'])) {
+
+        if(isset($_POST["bio"], $_POST["langues-bio"], $_POST["artisteConc"], $_FILES["photo-artiste-add-bio"])
+        && !empty($_POST["bio"]) && !empty($_POST["langues-bio"]) && !empty($_POST["artisteConc"]) && !empty($_FILES["photo-artiste-add-bio"])) {
+
+            $cheminImage = './img-artiste/' . $_FILES['photo-artiste-add-bio']['name'];
+            move_uploaded_file($_FILES['photo-artiste-add-bio']['tmp_name'], $cheminImage);
+    
+            $bio = filtrage($_POST["bio"]);
+    
+            $sqlBio = "INSERT INTO bio_artist(description_artist, chemin_Imgart, Id_Langue, Id_Artiste) VALUES (:description_artist, :chemin_Imgart, :Id_Langue, :Id_Artiste)";
+            $query = $db->prepare($sqlBio);
+            try{
+                $query->bindValue(":description_artist", $bio, PDO::PARAM_STR);
+                $query->bindValue(":chemin_Imgart", $_FILES['photo-artiste-add-bio']['name'], PDO::PARAM_STR);
+                $query->bindValue(":Id_Langue", $_POST["langues-bio"], PDO::PARAM_INT);
+                $query->bindValue(":Id_Artiste", $_POST["artisteConc"], PDO::PARAM_INT);
+                $query->execute();
+    
+                $idBio = $db->lastInsertId(); 
+            } catch (PDOException $e) {
+                echo ("erreur d'insertion") . $e->getMessage();
+            }
+            
+            echo("Ajout en bdd réussi");
+    
+        } else {
+            die("Wrong");
+        }
+    }
+    
+    }
 
 ;?>
 
-<div class="bio-artiste-add">
-    <form action=""  enctype="multipart/form-data">
-      
-        <div class="btn-update-description spe-add-artiste">
-            <div id="fr-btn" class="btn-langue">
-                <button>Français</button>
+<form action="" method="POST" enctype="multipart/form-data">
+    <div class="add-oeuvre-descr">
+        <div class="add-description">
+            <div>
+                <h2>Ajouter une biographie :</h2>
             </div>
-            <div id="en-btn" class="btn-langue">
-                <button>Anglais</button>
-            </div>
-            <div id="de-btn" class="btn-langue">
-                <button>Allemand</button>
-            </div>
-            <div id="fa-btn" class="btn-langue">
-                <button>Farsi</button>
-            </div>
-            <div id="ch-btn" class="btn-langue">
-                <button>Chinois</button>
-            </div>
-        </div>
-
-        <div class="update-description-by-btn">
-            <div class="composant">
-                <?php include "includes/components/bio/fr-bio.php";?>
+            <div class="img-container-add-artiste">
+                <div class="img-content-add-artiste">
+                    <img id="preview-img-artiste-add" src="./assets/img/imgvide.webp" alt="">  
                 </div>
-
-            <div class="composant">
-                <?php include "includes/components/bio/en-bio.php";?>
+                <div class="input-photo-artiste">
+                    <label for="photo-artiste-add-bio">Photo de l'artiste :</label>
+                    <input type="file" id="photo-artiste-add-bio" name="photo-artiste-add-bio" accept="image/*" onchange="previewImage(this)">
+                </div>
             </div>
-
-            <div class="composant">
-                <?php include "includes/components/bio/de-bio.php";?>
-            </div>
-
-            <div class="composant">
-                <?php include "includes/components/bio/fa-bio.php";?>
-            </div>
-
-            <div class="composant">
-                <?php include "includes/components/bio/ch-bio.php";?>
-            </div>
+            
+            <label for="bio">Biographie :</label>
+            <textarea name="bio" id="bio" cols="40" rows="10"></textarea>
         </div>
-    </form>
 
-</div>
+        <div class="div-select-oeuvre">
+            <label for="artisteConc">Artiste concerné : </label>
+            <select name="artisteConc" id="artisteConc">
+                <?php foreach($artisteConc as $artisteC) :?>
+                <option value="<?= $artisteC["Id_Artiste"] ?>"><?= $artisteC["Nom_Artiste"] ?> <?= $artisteC["Prenom_Artiste"] ?></option>
+                <?php endforeach ;?>
+            </select>
+        </div>
+                
+        <div class="div-select-langue">
+            <label for="langues-bio">Langues : </label>
+            <select name="langues-bio" id="langues-bio">
+                <?php foreach($langues as $langue) :?>
+                <option value="<?= $langue["Id_Langue"] ?>"><?= $langue["libelle_Langue"] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
+        <div class="btn-submit-add-oeuvre btn-add-descr">
+            <input type="submit" name="bio-submit" id="bio-submit" value="Valider">
+        </div>  
+    </div>   
+</form>   
+            
 <script>
-
-    const divFr = document.querySelector('.fr');
-    const divEn = document.querySelector('.en');
-    const divDe = document.querySelector('.de');
-    const divFa = document.querySelector('.fa');
-    const divCh = document.querySelector('.ch');
-
-   document.addEventListener("DOMContentLoaded", function() {
-        divEn.style.display = 'none';
-        divDe.style.display = 'none';
-        divFa.style.display = 'none';
-        divCh.style.display = 'none';
-        divFr.style.display = 'block';
-
-    }) 
-
-    const btnFr = document.getElementById('fr-btn')
-    btnFr.addEventListener('click', function () {
-        divEn.style.display = 'none';
-        divDe.style.display = 'none';
-        divFa.style.display = 'none';
-        divCh.style.display = 'none';
-        divFr.style.display = 'block';
-    })
-
-    const btnEn = document.getElementById('en-btn')
-    btnEn.addEventListener('click', function () {
-        divEn.style.display = 'block';
-        divDe.style.display = 'none';
-        divFa.style.display = 'none';
-        divCh.style.display = 'none';
-        divFr.style.display = 'none';
-    })
-
-    const btnDe = document.getElementById('de-btn')
-    btnDe.addEventListener('click', function () {
-        divEn.style.display = 'none';
-        divDe.style.display = 'block';
-        divFa.style.display = 'none';
-        divCh.style.display = 'none';
-        divFr.style.display = 'none';
-    })
-
-    const btnFa = document.getElementById('fa-btn')
-    btnFa.addEventListener('click', function () {
-        divEn.style.display = 'none';
-        divDe.style.display = 'none';
-        divFa.style.display = 'block';
-        divCh.style.display = 'none';
-        divFr.style.display = 'none';
-    })
-
-    const btnCh = document.getElementById('ch-btn')
-    btnCh.addEventListener('click', function () {
-        divEn.style.display = 'none';
-        divDe.style.display = 'none';
-        divFa.style.display = 'none';
-        divCh.style.display = 'block';
-        divFr.style.display = 'none';
-    })
-
-
+    function previewImage(input) {
+        const imgElement = document.getElementById('preview-img-artiste-add');
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+            imgElement.src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]); 
+        } else {
+            imgElement.src = "placeholder.jpg"; 
+        }
+}
 </script>
